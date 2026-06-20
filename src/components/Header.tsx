@@ -8,8 +8,10 @@ const navItems = [
   { label: "Inicio", href: "/" },
   { label: "Partidos", href: "/partidos" },
   { label: "Equipo", href: "/plantilla" },
+  { label: "Club", href: "/club" },
   { label: "Galería", href: "/galeria" },
   { label: "Noticias", href: "/blog" },
+  { label: "Contacto", href: "/contacto" },
 ];
 
 export default function Header() {

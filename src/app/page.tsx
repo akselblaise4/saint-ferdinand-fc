@@ -13,6 +13,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Section, SectionTitle } from "@/components/sections/Section";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import StatsVisualizer from "@/components/sections/StatsVisualizer";
+import { Marquee } from "@/components/ui/marquee";
 import type { Player } from "@/types/football";
 
 const squad: { n: number; name: string; pos: Player["position"]; age: number; nation: string }[] = [
@@ -314,6 +315,21 @@ export default function Home() {
           </ScrollReveal>
         )}
       </Section>
+
+      <section className="border-t bg-club-black/5 py-16">
+        <div className="mx-auto max-w-6xl px-6 text-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">Patrocinadores</span>
+          <h2 className="mt-2 font-display text-4xl text-club-black md:text-5xl">SPONSORS</h2>
+          <div className="mx-auto mt-4 h-0.5 w-16 bg-club-red" />
+        </div>
+        <Marquee className="mt-10" pauseOnHover>
+          {["NIKE", "ADIDAS", "PUMA", "COCA-COLA", "PEPSI", "BUDWEISER", "EA SPORTS", "SAMSUNG"].map((brand) => (
+            <div key={brand} className="mx-8 flex h-16 w-32 items-center justify-center rounded-xl border bg-white px-6 shadow-sm">
+              <span className="font-display text-2xl tracking-wider text-muted-foreground/40">{brand}</span>
+            </div>
+          ))}
+        </Marquee>
+      </section>
     </>
   );
 }
