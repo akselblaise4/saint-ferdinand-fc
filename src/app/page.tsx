@@ -12,6 +12,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Section, SectionTitle } from "@/components/sections/Section";
 import ScrollReveal from "@/components/animations/ScrollReveal";
+import StatsVisualizer from "@/components/sections/StatsVisualizer";
 import type { Player } from "@/types/football";
 
 const squad: { n: number; name: string; pos: Player["position"]; age: number; nation: string }[] = [
@@ -216,10 +217,35 @@ export default function Home() {
       <Section theme="dark" id="galeria">
         <SectionTitle label="Multimedia" title="GALERÍA" theme="dark" />
         <ScrollReveal>
-          <div className="section-fade">
-            <GalleryHorizontal albums={albums as any} />
+          <div className="mt-10">
+            <BentoGridHome tiles={tiles} />
           </div>
         </ScrollReveal>
+
+        {ss && (
+          <ScrollReveal delay={0.2}>
+            <div className="mt-12 grid gap-6 md:grid-cols-2">
+              <StatsVisualizer
+                title="Rendimiento"
+                stats={[
+                  { label: "Partidos jugados", value: ss.played, max: ss.played > 10 ? ss.played : 14 },
+                  { label: "Victorias", value: ss.wins, max: ss.played },
+                  { label: "Efectividad", value: Math.round(((ss.wins * 3 + (ss.draws || 0)) / (ss.played * 3)) * 100), max: 100 },
+                  { label: "Goles por partido", value: Math.round((ss.goalsFor / Math.max(ss.played, 1)) * 10) / 10, max: 5 },
+                ]}
+              />
+              <StatsVisualizer
+                title="Disciplina"
+                stats={[
+                  { label: "Goles a favor", value: Math.min(ss.goalsFor, 50), max: Math.max(ss.goalsFor, 50) },
+                  { label: "Goles en contra", value: Math.min(ss.goalsAgainst, 50), max: Math.max(ss.goalsAgainst, 50) },
+                  { label: "Diferencia de goles", value: ss.goalDiff > 0 ? Math.min(Math.abs(ss.goalDiff), 30) : 0, max: 30 },
+                  { label: "Balance win/loss", value: Math.round((ss.wins / Math.max(ss.wins + (ss.losses || 0), 1)) * 100), max: 100 },
+                ]}
+              />
+            </div>
+          </ScrollReveal>
+        )}
       </Section>
 
       <Section theme="alt" id="tabla">

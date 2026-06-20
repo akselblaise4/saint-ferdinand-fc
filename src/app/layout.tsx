@@ -20,8 +20,15 @@ const bebasNeue = Bebas_Neue({
 });
 
 export const metadata: Metadata = {
-  title: "Saint Ferdinand FC",
-  description: "Club de Fútbol · USS Liga Premier · Madrid",
+  title: "Saint Ferdinand FC | Club de Fútbol",
+  description: "Club de Fútbol · USS Liga Premier · Madrid · Plantilla, partidos, estadísticas y galería",
+  openGraph: {
+    title: "Saint Ferdinand FC",
+    description: "Club de Fútbol · USS Liga Premier · Madrid",
+    siteName: "Saint Ferdinand FC",
+    locale: "es_ES",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

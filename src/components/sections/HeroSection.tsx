@@ -3,6 +3,7 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import ParticleBackground from "@/components/visuals/ParticleBackground";
 
 gsap.registerPlugin(useGSAP);
 
@@ -20,8 +21,6 @@ export default function HeroSection({
   playersCount,
 }: HeroSectionProps) {
   const container = useRef<HTMLElement>(null);
-  const bgRef = useRef<HTMLDivElement>(null);
-  const gridRef = useRef<HTMLDivElement>(null);
   const badgeRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const metaRef = useRef<HTMLDivElement>(null);
@@ -33,9 +32,7 @@ export default function HeroSection({
   useGSAP(() => {
     const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-    tl.fromTo(bgRef.current, { scale: 1.2, filter: "blur(8px)" }, { scale: 1, filter: "blur(0px)", duration: 1.6 })
-      .fromTo(gridRef.current, { opacity: 0 }, { opacity: 1, duration: 1.2 }, 0)
-      .fromTo(glowRef.current, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 1.4 }, 0.2)
+    tl.fromTo(glowRef.current, { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 1.4 }, 0)
       .fromTo(badgeRef.current, { opacity: 0, y: 40, rotation: -10 }, { opacity: 1, y: 0, rotation: 0, duration: 0.8 }, 0.4)
       .fromTo(titleRef.current, { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.8 }, 0.6)
       .fromTo(metaRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, 0.8)
@@ -49,31 +46,21 @@ export default function HeroSection({
       ref={container}
       className="relative flex min-h-[90vh] items-center justify-center overflow-hidden bg-club-black"
     >
-      {/* Background gradient */}
-      <div
-        ref={bgRef}
-        className="absolute inset-0 bg-gradient-to-b from-club-red/30 via-club-black to-club-black"
-      />
+      <ParticleBackground density={50} speed={0.2} color="200,16,46" />
 
-      {/* Grid overlay */}
-      <div
-        ref={gridRef}
-        className="absolute inset-0 bg-grid-white opacity-40"
-      />
+      <div className="absolute inset-0 bg-gradient-to-b from-club-red/30 via-club-black to-club-black" />
 
-      {/* Radial glow */}
+      <div className="absolute inset-0 bg-grid-white opacity-40" />
+
       <div
         ref={glowRef}
         className="absolute left-1/2 top-1/3 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-club-red/20 blur-[120px]"
       />
 
-      {/* Decorative lines */}
       <div ref={lineLeftRef} className="absolute left-0 top-1/2 h-px w-1/4 bg-gradient-to-r from-transparent to-club-red/40" />
       <div ref={lineRightRef} className="absolute right-0 top-1/2 h-px w-1/4 bg-gradient-to-l from-transparent to-club-red/40" />
 
-      {/* Content */}
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
-        {/* Emblem / Badge */}
         <div ref={badgeRef} className="mx-auto mb-8 flex items-center justify-center">
           {emblemUrl ? (
             <img
@@ -88,7 +75,6 @@ export default function HeroSection({
           )}
         </div>
 
-        {/* Title */}
         <div className="overflow-hidden">
           <h1
             ref={titleRef}
@@ -100,7 +86,6 @@ export default function HeroSection({
           </h1>
         </div>
 
-        {/* Meta */}
         <div
           ref={metaRef}
           className="mt-6 flex flex-col items-center gap-3 md:flex-row md:justify-center md:gap-6"
@@ -123,7 +108,6 @@ export default function HeroSection({
         </div>
       </div>
 
-      {/* Scroll indicator */}
       <div
         ref={indicatorRef}
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
