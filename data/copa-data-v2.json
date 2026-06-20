@@ -1,0 +1,2801 @@
+{
+  "fetchedAt": "2026-06-19T22:06:02.150Z",
+  "eventId": "-5qp1c",
+  "groupId": "5jvbh",
+  "info": {
+    "admin": "ZBJs7taX2wbT7LuUmPIbeAWRmt63",
+    "blue": false,
+    "d_f": 1782230400000,
+    "d_i": 1776787200000,
+    "evt_data": {
+      "as_red": 1,
+      "as_yellow": 3
+    },
+    "first": 4,
+    "inf_g": 4,
+    "info": {
+      "sub_title": "Martes Uss Liga Premier "
+    },
+    "last": 4,
+    "new_inscription": true,
+    "parent": "-5qp1c",
+    "premium2": 10,
+    "sport": 11,
+    "tournament_plan": 20,
+    "url_c": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c1776222903091.png?alt=media"
+  },
+  "teams": [
+    {
+      "id": "-OqC_2kK9ObTZiyadqgY",
+      "name": "MISTRAL CITY",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_2kK9ObTZiyadqgY.jpg?alt=media&token=1&m=1776202531104",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 8,
+          "groupPos": 2,
+          "data": "1=7#9=-1#2=4#3=2#4=1#0=13#5=29#6=16#7=13#13=1#14=2#15=0#12=3#16=0#17=20#11=0#18=1.81#19=1.86#8=67#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 2,
+          "groupPos": 2,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=7#6=4#7=3#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.75#19=1.50#8=50#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 0,
+          "groupPos": 0,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 0,
+          "groupPos": 0,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_3rU7j-w-cQMUuLJ",
+      "name": "TOCO Y ME VOY",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_3rU7j-w-cQMUuLJ.png?alt=media&token=1&m=1776203056804",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 1,
+          "groupPos": 0,
+          "data": "1=7#9=0#2=7#3=0#4=0#0=21#5=43#6=9#7=34#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=4.78#19=3.00#8=100#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 0,
+          "groupPos": 0,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=6#6=0#7=6#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=6.00#19=3.00#8=100#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 1,
+          "groupPos": 1,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 1,
+          "groupPos": 1,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_5MMlZWxXrXNaCYT",
+      "name": "SPORT PILSEN",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_5MMlZWxXrXNaCYT.jpg?alt=media&token=1&m=1776203033733",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 5,
+          "groupPos": 1,
+          "data": "1=7#9=0#2=5#3=1#4=1#0=16#5=38#6=22#7=16#13=0#14=10#15=0#12=10#16=0#17=50#11=0#18=1.73#19=2.29#8=76#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 4,
+          "groupPos": 4,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=3#6=3#7=0#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.00#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 2,
+          "groupPos": 2,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 2,
+          "groupPos": 2,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_6cXw4pS3n-rmQhv",
+      "name": "5 ORIENTE",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_6cXw4pS3n-rmQhv.png?alt=media&token=1&m=1776201767792",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 24,
+          "groupPos": 6,
+          "data": "1=7#9=0#2=1#3=1#4=5#0=4#5=14#6=21#7=-7#13=1#14=4#15=0#12=5#16=0#17=30#11=0#18=0.67#19=0.57#8=19#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 3,
+          "groupPos": 3,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 3,
+          "groupPos": 3,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 7,
+          "groupPos": 7,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=3#6=9#7=-6#13=1#14=0#15=0#12=1#16=0#17=10#11=0#18=0.33#19=0.00#8=0#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_7rvSZqsFhWvktA8",
+      "name": "AC CHITAL",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_7rvSZqsFhWvktA8.png?alt=media&token=1&m=1776201881009",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 17,
+          "groupPos": 4,
+          "data": "1=7#9=-1#2=3#3=1#4=3#0=9#5=25#6=35#7=-10#13=3#14=2#15=0#12=5#16=0#17=40#11=0#18=0.71#19=1.29#8=48#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 0,
+          "groupPos": 0,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 4,
+          "groupPos": 4,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 4,
+          "groupPos": 4,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 1,
+          "groupPos": 1,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=9#6=4#7=5#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=2.25#19=3.00#8=100#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_95dCU2MtUSDezVQ",
+      "name": "PALO VIO FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_95dCU2MtUSDezVQ.png?alt=media&token=1&m=1776204353963",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 28,
+          "groupPos": 6,
+          "data": "1=7#9=0#2=1#3=0#4=6#0=3#5=22#6=34#7=-12#13=1#14=6#15=0#12=7#16=0#17=40#11=0#18=0.65#19=0.43#8=14#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 5,
+          "groupPos": 5,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 5,
+          "groupPos": 5,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 1,
+          "groupPos": 1,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=6#6=5#7=1#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=1.20#19=3.00#8=100#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_AGQQye878Hevpts",
+      "name": "TREN DEL AGUA FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_AGQQye878Hevpts.png?alt=media&token=1&m=1776203091835",
+      "playersCount": 18,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 7,
+          "groupPos": 2,
+          "data": "1=7#9=0#2=4#3=1#4=2#0=13#5=34#6=19#7=15#13=2#14=8#15=0#12=10#16=0#17=60#11=0#18=1.79#19=1.86#8=62#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 0,
+          "groupPos": 0,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=10#6=2#7=8#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=5.00#19=3.00#8=100#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 6,
+          "groupPos": 6,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 6,
+          "groupPos": 6,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_Ba3Cy-WGnQuhKcX",
+      "name": "LOS BORGES",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Ba3Cy-WGnQuhKcX.png?alt=media&token=1&m=1776202508234",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 2,
+          "groupPos": 0,
+          "data": "1=7#9=0#2=7#3=0#4=0#0=21#5=45#6=14#7=31#13=1#14=3#15=0#12=4#16=0#17=25#11=0#18=3.21#19=3.00#8=100#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 3,
+          "groupPos": 3,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=3#6=6#7=-3#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=0.50#19=1.50#8=50#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 7,
+          "groupPos": 7,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 7,
+          "groupPos": 7,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_CmKD8KCCNMu5P65",
+      "name": "ATLÉTICO RONGJI",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_CmKD8KCCNMu5P65.jpg?alt=media&token=1&m=1776201899416",
+      "playersCount": 17,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 11,
+          "groupPos": 2,
+          "data": "1=7#9=0#2=4#3=1#4=2#0=13#5=25#6=26#7=-1#13=0#14=5#15=0#12=5#16=0#17=25#11=0#18=0.96#19=1.86#8=62#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 5,
+          "groupPos": 5,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=2#6=6#7=-4#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.33#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 8,
+          "groupPos": 8,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 8,
+          "groupPos": 8,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_DyMZey8vTF5Shq5",
+      "name": "SAINT FERDINAND",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_DyMZey8vTF5Shq5.png?alt=media&token=1&m=1776202952097",
+      "playersCount": 17,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 23,
+          "groupPos": 5,
+          "data": "1=7#9=0#2=2#3=0#4=5#0=6#5=19#6=32#7=-13#13=2#14=2#15=0#12=4#16=0#17=30#11=0#18=0.59#19=0.86#8=29#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 1,
+          "groupPos": 1,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 9,
+          "groupPos": 9,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 9,
+          "groupPos": 9,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 6,
+          "groupPos": 6,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=1#6=5#7=-4#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=0.20#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_FQbzrz6biJyLrgY",
+      "name": "BACHI FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_FQbzrz6biJyLrgY.jpg?alt=media&token=1&m=1776201925893",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 29,
+          "groupPos": 7,
+          "data": "1=7#9=0#2=0#3=2#4=5#0=2#5=9#6=35#7=-26#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=0.26#19=0.29#8=10#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 10,
+          "groupPos": 10,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 10,
+          "groupPos": 10,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 0,
+          "groupPos": 0,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=7#6=6#7=1#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.17#19=3.00#8=100#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_GXUXoNpefLZvgrA",
+      "name": "CSD RASISM",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_GXUXoNpefLZvgrA.jpg?alt=media&token=1&m=1776202141390",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 9,
+          "groupPos": 1,
+          "data": "1=7#9=0#2=4#3=1#4=2#0=13#5=26#6=18#7=8#13=0#14=5#15=0#12=5#16=0#17=25#11=0#18=1.44#19=1.86#8=62#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 7,
+          "groupPos": 7,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=0#6=6#7=-6#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=0.00#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 11,
+          "groupPos": 11,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 11,
+          "groupPos": 11,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_Hjozjwl44ZvqZ-o",
+      "name": "IMPUTADOS",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Hjozjwl44ZvqZ-o.png?alt=media&token=1&m=1776202340146",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 30,
+          "groupPos": 7,
+          "data": "1=7#9=0#2=0#3=1#4=6#0=1#5=16#6=36#7=-20#13=2#14=6#15=0#12=8#16=0#17=50#11=0#18=0.44#19=0.14#8=5#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 12,
+          "groupPos": 12,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 12,
+          "groupPos": 12,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 2,
+          "groupPos": 2,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=14#6=9#7=5#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.56#19=1.50#8=50#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_J1kpZm34LAF2JCy",
+      "name": "CSD RICKY BALBOA",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_J1kpZm34LAF2JCy.jpg?alt=media&token=1&m=1776798191146",
+      "playersCount": 17,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 26,
+          "groupPos": 6,
+          "data": "1=7#9=0#2=1#3=1#4=5#0=4#5=14#6=34#7=-20#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=0.41#19=0.57#8=19#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 13,
+          "groupPos": 13,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 13,
+          "groupPos": 13,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 5,
+          "groupPos": 5,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=1#6=1#7=0#13=1#14=0#15=0#12=1#16=0#17=10#11=0#18=1.00#19=0.00#8=0#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_KG12A1ebHYGs8Dv",
+      "name": "EL CICLÓN",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_KG12A1ebHYGs8Dv.png?alt=media&token=1&m=1776202225843",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 14,
+          "groupPos": 3,
+          "data": "1=7#9=0#2=3#3=2#4=2#0=11#5=20#6=19#7=1#13=0#14=3#15=0#12=3#16=0#17=15#11=0#18=1.05#19=1.57#8=52#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 7,
+          "groupPos": 7,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=1#6=6#7=-5#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.17#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 14,
+          "groupPos": 14,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 14,
+          "groupPos": 14,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_LTlExMlUN6IMFDk",
+      "name": "SOLDADOS DE DEUS",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_LTlExMlUN6IMFDk.jpg?alt=media&token=1&m=1776203000600",
+      "playersCount": 14,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 4,
+          "groupPos": 1,
+          "data": "1=7#9=0#2=6#3=0#4=1#0=18#5=35#6=19#7=16#13=1#14=6#15=0#12=7#16=0#17=40#11=0#18=1.84#19=2.57#8=86#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 6,
+          "groupPos": 6,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=4#6=8#7=-4#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=0.50#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 15,
+          "groupPos": 15,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 15,
+          "groupPos": 15,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_Mm0WhupmrtcPspt",
+      "name": "LA SALAR FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Mm0WhupmrtcPspt.jpg?alt=media&token=1&m=1776202358519",
+      "playersCount": 14,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 20,
+          "groupPos": 5,
+          "data": "1=7#9=0#2=2#3=1#4=4#0=7#5=24#6=38#7=-14#13=3#14=7#15=0#12=10#16=0#17=65#11=0#18=0.63#19=1.00#8=33#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 16,
+          "groupPos": 16,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 16,
+          "groupPos": 16,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 7,
+          "groupPos": 7,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=3#6=11#7=-8#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.27#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_NxBrUJMDH8Ovoq4",
+      "name": "PARCHES FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_NxBrUJMDH8Ovoq4.png?alt=media&token=1&m=1776202900199",
+      "playersCount": 14,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 12,
+          "groupPos": 3,
+          "data": "1=7#9=0#2=4#3=1#4=2#0=13#5=21#6=22#7=-1#13=0#14=5#15=0#12=5#16=0#17=25#11=0#18=0.95#19=1.86#8=62#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 3,
+          "groupPos": 3,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=7#6=7#7=0#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=1.00#19=1.50#8=50#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 17,
+          "groupPos": 17,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 17,
+          "groupPos": 17,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_PC0yWmNcYXIe3gB",
+      "name": "CSD VERSACE",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_PC0yWmNcYXIe3gB.jpg?alt=media&token=1&m=1776202180657",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 3,
+          "groupPos": 0,
+          "data": "1=7#9=0#2=6#3=0#4=1#0=18#5=56#6=18#7=38#13=0#14=7#15=0#12=7#16=0#17=35#11=0#18=3.11#19=2.57#8=86#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 1,
+          "groupPos": 1,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=12#6=8#7=4#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=1.50#19=3.00#8=100#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 18,
+          "groupPos": 18,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 18,
+          "groupPos": 18,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_QgOUsdJxTNDQEf2",
+      "name": "YO LA AMABA FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_QgOUsdJxTNDQEf2.jpg?alt=media&token=1&m=1776203146240",
+      "playersCount": 14,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 13,
+          "groupPos": 3,
+          "data": "1=7#9=0#2=4#3=0#4=3#0=12#5=27#6=23#7=4#13=1#14=11#15=0#12=12#16=0#17=65#11=0#18=1.17#19=1.71#8=57#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 4,
+          "groupPos": 4,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=4#6=4#7=0#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=1.00#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 19,
+          "groupPos": 19,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 19,
+          "groupPos": 19,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_S8kbj2zHa58whnI",
+      "name": "HANGOVER",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_S8kbj2zHa58whnI.png?alt=media&token=1&m=1776444000261",
+      "playersCount": 18,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 6,
+          "groupPos": 1,
+          "data": "1=7#9=0#2=4#3=1#4=2#0=13#5=38#6=18#7=20#13=1#14=4#15=0#12=5#16=0#17=30#11=0#18=2.11#19=1.86#8=62#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 5,
+          "groupPos": 5,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=0#6=3#7=-3#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=0.00#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 20,
+          "groupPos": 20,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 20,
+          "groupPos": 20,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_TJfPPjn6PnAID3J",
+      "name": "REAL GORREAOS",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_TJfPPjn6PnAID3J.jpg?alt=media&token=1&m=1776202929137",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 18,
+          "groupPos": 4,
+          "data": "1=7#9=0#2=3#3=0#4=4#0=9#5=23#6=34#7=-11#13=1#14=3#15=0#12=4#16=0#17=25#11=0#18=0.68#19=1.29#8=43#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 2,
+          "groupPos": 2,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 21,
+          "groupPos": 21,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 21,
+          "groupPos": 21,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 4,
+          "groupPos": 4,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=4#6=6#7=-2#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.67#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_URBDDGPYGhx6zbN",
+      "name": "C.A MODO AVIÓN",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_URBDDGPYGhx6zbN.jpg?alt=media&token=1&m=1776201962692",
+      "playersCount": 14,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 25,
+          "groupPos": 5,
+          "data": "1=7#9=0#2=1#3=1#4=5#0=4#5=25#6=33#7=-8#13=0#14=3#15=0#12=3#16=0#17=15#11=0#18=0.76#19=0.57#8=19#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 3,
+          "groupPos": 3,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 22,
+          "groupPos": 22,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 22,
+          "groupPos": 22,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 3,
+          "groupPos": 3,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=6#6=5#7=1#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=1.20#19=1.50#8=50#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_Vba6g_7prPgA8ME",
+      "name": "EL PATÉ FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Vba6g_7prPgA8ME.jpg?alt=media&token=1&m=1776202247124",
+      "playersCount": 12,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 15,
+          "groupPos": 3,
+          "data": "1=7#9=0#2=3#3=1#4=3#0=10#5=18#6=20#7=-2#13=0#14=2#15=0#12=2#16=0#17=10#11=0#18=0.90#19=1.43#8=48#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 6,
+          "groupPos": 6,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=1#6=5#7=-4#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.20#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 23,
+          "groupPos": 23,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 23,
+          "groupPos": 23,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_WnJynA5mThqv-9c",
+      "name": "CATENACCIO CSD",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_WnJynA5mThqv-9c.png?alt=media&token=1&m=1776443710425",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 10,
+          "groupPos": 2,
+          "data": "1=7#9=0#2=4#3=1#4=2#0=13#5=28#6=24#7=4#13=1#14=3#15=0#12=4#16=0#17=25#11=0#18=1.17#19=1.86#8=62#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "points": 1,
+          "groupPos": 1,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=7#6=5#7=2#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.40#19=3.00#8=100#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 24,
+          "groupPos": 24,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 24,
+          "groupPos": 24,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_Yzu60Cq_e0WCmsS",
+      "name": "GUATAFOGO FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Yzu60Cq_e0WCmsS.jpg?alt=media&token=1&m=1776202299319",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 16,
+          "groupPos": 4,
+          "data": "1=7#9=0#2=3#3=0#4=4#0=9#5=40#6=39#7=1#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.03#19=1.29#8=43#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 4,
+          "groupPos": 4,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 25,
+          "groupPos": 25,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 25,
+          "groupPos": 25,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 5,
+          "groupPos": 5,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=2#6=5#7=-3#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.40#19=0.00#8=0#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_fdp6_9qLkO1F_FR",
+      "name": "LA FERIA",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_fdp6_9qLkO1F_FR.jpg?alt=media&token=1&m=1776799123660",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 31,
+          "groupPos": 7,
+          "data": "1=7#9=-3#2=0#3=0#4=7#0=-3#5=13#6=47#7=-34#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=0.28#19=-0.43#8=0#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 26,
+          "groupPos": 26,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 26,
+          "groupPos": 26,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 4,
+          "groupPos": 4,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=3#6=3#7=0#13=1#14=1#15=0#12=2#16=0#17=15#11=0#18=1.00#19=0.00#8=0#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_gudsYv9I_Ytk99i",
+      "name": "PARACHOQUES ",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_gudsYv9I_Ytk99i.png?alt=media&token=1&m=1776202548814",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 27,
+          "groupPos": 7,
+          "data": "1=7#9=0#2=1#3=1#4=5#0=4#5=17#6=41#7=-24#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.41#19=0.57#8=19#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 27,
+          "groupPos": 27,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 27,
+          "groupPos": 27,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 6,
+          "groupPos": 6,
+          "data": "1=1#9=0#2=0#3=0#4=1#0=0#5=2#6=3#7=-1#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=0.67#19=0.00#8=0#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_iBF4FA1v8HmA6pv",
+      "name": "ESCUDEROS FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_iBF4FA1v8HmA6pv.jpg?alt=media&token=1&m=1776204223776",
+      "playersCount": 17,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 22,
+          "groupPos": 5,
+          "data": "1=7#9=0#2=2#3=0#4=5#0=6#5=26#6=32#7=-6#13=0#14=5#15=0#12=5#16=0#17=25#11=0#18=0.81#19=0.86#8=29#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 5,
+          "groupPos": 5,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 28,
+          "groupPos": 28,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 28,
+          "groupPos": 28,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 2,
+          "groupPos": 2,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=9#6=8#7=1#13=0#14=0#15=0#12=0#16=0#17=0#11=0#18=1.13#19=1.50#8=50#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_jVavi_xccZ4k6Pi",
+      "name": "CANCHEROS FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_jVavi_xccZ4k6Pi.jpg?alt=media&token=1&m=1776443727110",
+      "playersCount": 16,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 0,
+          "groupPos": 0,
+          "data": "1=7#9=0#2=7#3=0#4=0#0=21#5=55#6=16#7=39#13=0#14=5#15=0#12=5#16=0#17=25#11=0#18=3.44#19=3.00#8=100#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "points": 2,
+          "groupPos": 2,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=10#6=4#7=6#13=1#14=4#15=0#12=5#16=0#17=30#11=0#18=2.50#19=1.50#8=50#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 29,
+          "groupPos": 29,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 29,
+          "groupPos": 29,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    },
+    {
+      "id": "-OqC_kx_Smw8rsXRTopv",
+      "name": "FRAGATA FC",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_kx_Smw8rsXRTopv.jpg?alt=media&token=1&m=1776204275181",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 21,
+          "groupPos": 6,
+          "data": "1=7#9=0#2=2#3=1#4=4#0=7#5=25#6=39#7=-14#13=2#14=5#15=0#12=7#16=0#17=45#11=0#18=0.64#19=1.00#8=33#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 6,
+          "groupPos": 6,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 30,
+          "groupPos": 30,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 30,
+          "groupPos": 30,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501929678,
+          "points": 3,
+          "groupPos": 3,
+          "data": "1=2#9=0#2=1#3=0#4=1#0=3#5=6#6=6#7=0#13=2#14=1#15=0#12=3#16=0#17=25#11=0#18=1.00#19=1.50#8=50#",
+          "suspended": true
+        }
+      ]
+    },
+    {
+      "id": "-OqC_wM7ZUqlA-evocqO",
+      "name": "DEPORTIVO EL YACAL",
+      "nickname": "",
+      "photo": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_wM7ZUqlA-evocqO.png?alt=media&token=1&m=1776202198923",
+      "playersCount": 15,
+      "stats": [
+        {
+          "timestamp": 1776197057283,
+          "points": 19,
+          "groupPos": 4,
+          "data": "1=7#9=0#2=3#3=0#4=4#0=9#5=21#6=38#7=-17#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=0.55#19=1.29#8=43#",
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500552663,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780500857504,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501080629,
+          "points": 7,
+          "groupPos": 7,
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501337755,
+          "points": 31,
+          "groupPos": 31,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501343530,
+          "points": 31,
+          "groupPos": 31,
+          "suspended": false
+        },
+        {
+          "timestamp": 1780501563408,
+          "points": 0,
+          "groupPos": 0,
+          "data": "1=2#9=0#2=2#3=0#4=0#0=6#5=14#6=4#7=10#13=0#14=1#15=0#12=1#16=0#17=5#11=0#18=3.50#19=3.00#8=100#",
+          "suspended": true
+        },
+        {
+          "timestamp": 1780501929678,
+          "suspended": false
+        }
+      ]
+    }
+  ],
+  "media": [
+    {
+      "id": "9005417359954752",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417359954752.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ot-aRzq0Cq-zdG7sSvqG93XQ5wUdrWGu",
+      "type": "news",
+      "timestamp": 1781894790304,
+      "leg": "Fotos Fecha 8 Jueves 18/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417360088472",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417360088472.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ot-aRzq0Cq-zdG7sSvqG93XQ5wUdrWGu",
+      "type": "news",
+      "timestamp": 1781894656302,
+      "leg": "Fotos Fecha 8 Jueves 18/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417360377788",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417360377788.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ot-aRzq0Cq-zdG7sSvqG93XQ5wUdrWGu",
+      "type": "news",
+      "timestamp": 1781894367670,
+      "leg": "Fotos Fecha 8 Jueves 18/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417438272729",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417438272729.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/196TUQW2bZINA-fOh7h60zAFzHySYQC03",
+      "type": "news",
+      "timestamp": 1781816473136,
+      "leg": "Fotos Fecha 8 miércoles 17/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417515422795",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417515422795.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1eGcrlPLVvBGfbFGUHZniyhHhx4P1qOwB",
+      "type": "news",
+      "timestamp": 1781739323117,
+      "leg": "Fotos Fecha 8 Martes 16/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417539650513",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417539650513.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1u3sIWv2WbDHQYS29uuOumhaEPeCMkA8o?usp=sharing",
+      "type": "news",
+      "timestamp": 1781715095721,
+      "leg": "Fotos Finales y Premiaciones 🏆"
+    },
+    {
+      "id": "9005417539830470",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417539830470.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1tqEyanDup1Zl0O6ZKZDmboxt-xW90jPZ",
+      "type": "news",
+      "timestamp": 1781714916236,
+      "leg": "Fotos Fecha 9 Lunes 15/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417685364978",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417685364978.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1zZfjUWAXa-LiovFzNSRcHIik3VHkkmYu",
+      "type": "news",
+      "timestamp": 1781569380777,
+      "leg": "Fotos Fecha 6 Domingo 14/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417964862495",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417964862495.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/11F-47QutQZLVGQdkxWoCkMr50dw-Asxp",
+      "type": "news",
+      "timestamp": 1781289883914,
+      "leg": "Fotos Fecha 7 Jueves 11/9 ⚽️🔥"
+    },
+    {
+      "id": "9005417965082039",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417965082039.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/11F-47QutQZLVGQdkxWoCkMr50dw-Asxp",
+      "type": "news",
+      "timestamp": 1781289664162,
+      "leg": "Fotos Fecha 7 Jueves 11/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417965375022",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417965375022.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/11F-47QutQZLVGQdkxWoCkMr50dw-Asxp",
+      "type": "news",
+      "timestamp": 1781289371256,
+      "leg": "Fotos Fecha 7 Jueves 11/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418056956201",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418056956201.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1l8MOg2M2gtWceYBv8LozkWqXrxTKXY0W",
+      "type": "news",
+      "timestamp": 1781197789980,
+      "leg": "Fotos Fecha 7 Miércoles 10/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418129452347",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418129452347.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1E6UJfS6cjyOFGF9O50n9GbBZVBBIjqIt",
+      "type": "news",
+      "timestamp": 1781125293333,
+      "leg": "Fotos Fecha 7 Martes 09/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418222391411",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418222391411.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1i93tZzkbSDR72beVykdG8r8AVS1sVcIg",
+      "type": "news",
+      "timestamp": 1781032353740,
+      "leg": "Fotos Fecha 8 Lunes 08/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418318689250",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418318689250.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1B3ptNWl-m4p1PFs5qtmL3EajIbUlFfKJ",
+      "type": "news",
+      "timestamp": 1780936055610,
+      "leg": "Fotos Fecha 5 Domingo 07/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418568770982",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418568770982.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1y3n8xfqZojYjDzyDz1_Ki5pl8DolEnsG",
+      "type": "news",
+      "timestamp": 1780685975185,
+      "leg": "Fotos Fecha 6 Jueves 04/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418574704958",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418574704958.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1y3n8xfqZojYjDzyDz1_Ki5pl8DolEnsG",
+      "type": "news",
+      "timestamp": 1780680041706,
+      "leg": "Fotos Fecha 6 Jueves 04/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418574767037",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418574767037.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1y3n8xfqZojYjDzyDz1_Ki5pl8DolEnsG",
+      "type": "news",
+      "timestamp": 1780679981035,
+      "leg": "Fotos Fecha 6 Jueves 04/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418648704614",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418648704614.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O-bi9LVo2mu1V3rR6L6NtZlekmSnhZMe",
+      "type": "news",
+      "timestamp": 1780606040331,
+      "leg": "Fotos Fecha 6 Miércoles 03/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418824464058",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418824464058.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1jUDjLhNwyipC589qPs34k3cp8NCn9ySn",
+      "type": "news",
+      "timestamp": 1780430280586,
+      "leg": "Fotos Fecha 7 Lunes 01/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418904265684",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418904265684.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ZMf3Z4Uik-3agTv8PZ6wXyxkAcQcfIsi",
+      "type": "news",
+      "timestamp": 1780350480666,
+      "leg": "Fotos Fecha 4 Domingo 31/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419163739669",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419163739669.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O1BZ4uNpTyhLLVDF5k0J9ze38Uotud46",
+      "type": "news",
+      "timestamp": 1780091006918,
+      "leg": "Fotos Fecha 5 Jueves 28/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419164068232",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419164068232.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O1BZ4uNpTyhLLVDF5k0J9ze38Uotud46",
+      "type": "news",
+      "timestamp": 1780090676986,
+      "leg": "Fotos Fecha 5 Jueves 28/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419164513845",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419164513845.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O1BZ4uNpTyhLLVDF5k0J9ze38Uotud46",
+      "type": "news",
+      "timestamp": 1780090232118,
+      "leg": "Fotos Fecha 5 Jueves 28/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419241465804",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419241465804.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1gdvTKO2etuRUvXKUIYJvnpFHl6xPAu-M",
+      "type": "news",
+      "timestamp": 1780013279566,
+      "leg": "Fotos Fecha 5 Miércoles 27/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419349931657",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419349931657.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1qJg-eJjGjdIpZgvhgy4IpQMy_Jy5rXa5",
+      "type": "news",
+      "timestamp": 1779904813336,
+      "leg": "Fotos Fecha 6 Martes 26/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419442994212",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419442994212.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1kXAdvO3m-f3qNFRfc590VCSUYlafc2fg",
+      "type": "news",
+      "timestamp": 1779811752986,
+      "leg": "Fotos Fecha 6 - Lunes 25/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419869898082",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419869898082.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ISfoPzzPloUszmz_VlzYNSaVphYxxNg3",
+      "type": "news",
+      "timestamp": 1779384847613,
+      "leg": "Fotos Fecha 4 Miércoles 20/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419945842441",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419945842441.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1YCBf1s2sO3yE3Isnt6jIGxGm7U60D70a",
+      "type": "news",
+      "timestamp": 1779308903491,
+      "leg": "Fotos Fecha 5 Martes 19/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420042412046",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420042412046.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1HDn1sgBjQHrPGN0ieI1f-rW8yYxzWg0s",
+      "type": "news",
+      "timestamp": 1779212332742,
+      "leg": "Fotos Fecha 5 Lunes 18/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420045005600",
+      "evt": "8ard",
+      "url": "https://youtu.be/dJ9WEtFwzEw",
+      "type": "1775875309436",
+      "timestamp": 1779209735392,
+      "leg": "El Toque vs Saint Lauren FC"
+    },
+    {
+      "id": "9005420125997391",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420125997391.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1MgIU1KKTZlDlh7c4UI3GK17GO5QBCeMA",
+      "type": "news",
+      "timestamp": 1779128748970,
+      "leg": "Fotos Fecha 3 Domingo 17/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420383976949",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420383976949.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1bf10aaOv5WgwSqVVYioL4ZVo4ed-9nw3",
+      "type": "news",
+      "timestamp": 1778870769324,
+      "leg": "Fotos Fecha 4 Jueves 14/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420384182828",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420384182828.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1bf10aaOv5WgwSqVVYioL4ZVo4ed-9nw3",
+      "type": "news",
+      "timestamp": 1778870566532,
+      "leg": "Fotos Fecha 4 Jueves 14/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420384693109",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420384693109.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1bf10aaOv5WgwSqVVYioL4ZVo4ed-9nw3",
+      "type": "news",
+      "timestamp": 1778870052291,
+      "leg": "Fotos Fecha 4 Jueves 14/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420468379543",
+      "evt": "5jvbh",
+      "url": "https://m.youtube.com/watch?v=epUNkz2eHdc&ra=m&fbclid=PAZnRzaARy_0RleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafm6Fim0hcFpvqXweDCwvkVh6mJ4hNR6qnR6GW9jV2gktfnimoGSTQUnKR-eQ_aem_svIUy8a1RXI2ElDCWn6i1w",
+      "type": "news",
+      "timestamp": 1778786361448,
+      "leg": "Link Partidos Grabados Cancha 5 "
+    },
+    {
+      "id": "9005420468779937",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420468779937.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1q1daOCMfVMv3gKuFo56pmGnPwRSsGsd1",
+      "type": "news",
+      "timestamp": 1778785964946,
+      "leg": "Fotos Fecha 3 Miércoles 13/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420569028530",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420569028530.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1GkT4ewMAyWRo6W8m0XjsCzq8oI9DSUyR",
+      "type": "news",
+      "timestamp": 1778685716888,
+      "leg": "Fotos Fecha 4 Martes 12/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420569375796",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420569375796.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/mobile/folders/1oLgmRF0nVYCbCnRsMgHTkqIQbU7m_nsL?fbclid=PAZnRzaARxdKdleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacc_UC8r5V3KHds4Cp4lzu9YdLgggJbbcExV3GxWtMTguXlXk53-OSCsYM_Og_aem_mYQd7xpzCgue2jM2DpEpgg&pli=1",
+      "type": "news",
+      "timestamp": 1778685383021,
+      "leg": "Fotos Fecha 3 Martes 5/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420644229365",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420644229365.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Vs4GCQ1Fcf9DN1Z-umB2LVRAWwuUNTPg",
+      "type": "news",
+      "timestamp": 1778610518968,
+      "leg": "Fotos Fecha 4 Lunes 11/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420740094176",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420740094176.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1cfBzL7iJVEJAFsAcw3KM6pkDioaejuz9",
+      "type": "news",
+      "timestamp": 1778514651025,
+      "leg": "Fotos Fecha 2 Domingo 10/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420987426762",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420987426762.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1NXp0pwXyhtaxthubLnGze0YTsh_fgm89",
+      "type": "news",
+      "timestamp": 1778267318468,
+      "leg": "Fotos Fecha 3 Jueves 7/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420987984478",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420987984478.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1NXp0pwXyhtaxthubLnGze0YTsh_fgm89",
+      "type": "news",
+      "timestamp": 1778266762014,
+      "leg": "Fotos Fecha 3 Jueves 7/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420990220205",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420990220205.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1NXp0pwXyhtaxthubLnGze0YTsh_fgm89",
+      "type": "news",
+      "timestamp": 1778264525084,
+      "leg": "Fotos Fecha 3 jueves 7/5 ⚽️🔥"
+    },
+    {
+      "id": "9005421254434765",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421254434765.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1tDeYK6v4w2_VE3988NiZKsFIdqmMXw_6",
+      "type": "news",
+      "timestamp": 1778000309775,
+      "leg": "Fotos Fecha 3 Lunes 4/5 ⚽️🔥"
+    },
+    {
+      "id": "9005421593303292",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421593303292.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1KYxJ1Pi6G4lPSF0DefS9V0rAIo32bAEZ",
+      "type": "news",
+      "timestamp": 1777661442737,
+      "leg": "Fotos Fecha 2 Jueves 30/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421594144654",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421594144654.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1KYxJ1Pi6G4lPSF0DefS9V0rAIo32bAEZ",
+      "type": "news",
+      "timestamp": 1777660600556,
+      "leg": "Fotos Fecha 2 Jueves 30/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421594235148",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421594235148.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1KYxJ1Pi6G4lPSF0DefS9V0rAIo32bAEZ",
+      "type": "news",
+      "timestamp": 1777660513823,
+      "leg": "Fotos Fecha 2 Jueves 30/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421670960750",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/news_images%2F-OrVEqjkwepoAz20ghhE.jpg?alt=media&token=1",
+      "urlP": "https://youtube.com/live/6PtalTXX_h8?feature=share",
+      "type": "news",
+      "timestamp": 1777583780241,
+      "leg": "🔴 EN VIVO | CANCHA 5 ⚽ FECHA 2 - LIGA PREMIER JUEVES APERTURA 2026"
+    },
+    {
+      "id": "9005421687890813",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421687890813.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1FmftHLciWtMzDJQWK0a3C2Zem1loMv2G",
+      "type": "news",
+      "timestamp": 1777566854659,
+      "leg": "Fotos Fecha 2 Miércoles 29/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421777252293",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421777252293.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ukS2J71-eVTMe9AUv_-CEEoeCuMLHExP",
+      "type": "news",
+      "timestamp": 1777477493372,
+      "leg": "Fotos Fecha 2 Martes 28/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421842882513",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421842882513.png?alt=media",
+      "urlP": "https://www.youtube.com/live/IIZn2bdfMdE?si=UrgRMRJavp99cXUV",
+      "type": "news",
+      "timestamp": 1777411863183,
+      "leg": "Partidos Grabados | Cancha 2 | Miercoles 22/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421847556142",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421847556142.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1GPpdrEqbexscAReWMuIWXtQZevQqSm7s",
+      "type": "news",
+      "timestamp": 1777407190761,
+      "leg": "Fotos Fecha 2 Lunes 27/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421944641454",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421944641454.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1IPMzcr0a8gx_mVPzbH7M4l7wYc1Xuf-P",
+      "type": "news",
+      "timestamp": 1777310104032,
+      "leg": "Fotos Fecha 1 Domingo 26/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422191217161",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422191217161.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Xj1G8NZZUZojGE1wajcf7E3MrsbueX7w",
+      "type": "news",
+      "timestamp": 1777063531581,
+      "leg": "Fotos Fecha 1 Jueves 23/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422191339702",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422191339702.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Xj1G8NZZUZojGE1wajcf7E3MrsbueX7w",
+      "type": "news",
+      "timestamp": 1777063409614,
+      "leg": "Fotos Fecha 1 Jueves 23/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422191505770",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422191505770.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Xj1G8NZZUZojGE1wajcf7E3MrsbueX7w",
+      "type": "news",
+      "timestamp": 1777063241351,
+      "leg": "Fotos Fecha 1 Jueves 23/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422294882338",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422294882338.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1b5ClTPdqBm6G3Xnp171I2ibotgAo2K0_",
+      "type": "news",
+      "timestamp": 1776959862328,
+      "leg": "Fotos Fecha 1 Miércoles 22/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422378173156",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422378173156.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1DLmx1unYB_rglfrpVeQ3SHUFjIXCQc2V",
+      "type": "news",
+      "timestamp": 1776876572490,
+      "leg": "Fotos Fecha 1 Martes 21/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422477835231",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422477835231.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/13YX_PY81oktkZV9AaD058VzT7j67VjBh",
+      "type": "news",
+      "timestamp": 1776776911645,
+      "leg": "Fotos Fecha 1 Lunes 20/4 ⚽️🔥"
+    }
+  ],
+  "news": [
+    {
+      "id": "9005417359954752",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417359954752.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ot-aRzq0Cq-zdG7sSvqG93XQ5wUdrWGu",
+      "type": "news",
+      "timestamp": 1781894790304,
+      "leg": "Fotos Fecha 8 Jueves 18/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417360088472",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417360088472.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ot-aRzq0Cq-zdG7sSvqG93XQ5wUdrWGu",
+      "type": "news",
+      "timestamp": 1781894656302,
+      "leg": "Fotos Fecha 8 Jueves 18/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417360377788",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417360377788.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ot-aRzq0Cq-zdG7sSvqG93XQ5wUdrWGu",
+      "type": "news",
+      "timestamp": 1781894367670,
+      "leg": "Fotos Fecha 8 Jueves 18/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417438272729",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417438272729.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/196TUQW2bZINA-fOh7h60zAFzHySYQC03",
+      "type": "news",
+      "timestamp": 1781816473136,
+      "leg": "Fotos Fecha 8 miércoles 17/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417515422795",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417515422795.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1eGcrlPLVvBGfbFGUHZniyhHhx4P1qOwB",
+      "type": "news",
+      "timestamp": 1781739323117,
+      "leg": "Fotos Fecha 8 Martes 16/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417539650513",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417539650513.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1u3sIWv2WbDHQYS29uuOumhaEPeCMkA8o?usp=sharing",
+      "type": "news",
+      "timestamp": 1781715095721,
+      "leg": "Fotos Finales y Premiaciones 🏆"
+    },
+    {
+      "id": "9005417539830470",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417539830470.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1tqEyanDup1Zl0O6ZKZDmboxt-xW90jPZ",
+      "type": "news",
+      "timestamp": 1781714916236,
+      "leg": "Fotos Fecha 9 Lunes 15/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417685364978",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417685364978.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1zZfjUWAXa-LiovFzNSRcHIik3VHkkmYu",
+      "type": "news",
+      "timestamp": 1781569380777,
+      "leg": "Fotos Fecha 6 Domingo 14/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417964862495",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417964862495.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/11F-47QutQZLVGQdkxWoCkMr50dw-Asxp",
+      "type": "news",
+      "timestamp": 1781289883914,
+      "leg": "Fotos Fecha 7 Jueves 11/9 ⚽️🔥"
+    },
+    {
+      "id": "9005417965082039",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417965082039.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/11F-47QutQZLVGQdkxWoCkMr50dw-Asxp",
+      "type": "news",
+      "timestamp": 1781289664162,
+      "leg": "Fotos Fecha 7 Jueves 11/6 ⚽️🔥"
+    },
+    {
+      "id": "9005417965375022",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005417965375022.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/11F-47QutQZLVGQdkxWoCkMr50dw-Asxp",
+      "type": "news",
+      "timestamp": 1781289371256,
+      "leg": "Fotos Fecha 7 Jueves 11/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418056956201",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418056956201.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1l8MOg2M2gtWceYBv8LozkWqXrxTKXY0W",
+      "type": "news",
+      "timestamp": 1781197789980,
+      "leg": "Fotos Fecha 7 Miércoles 10/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418129452347",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418129452347.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1E6UJfS6cjyOFGF9O50n9GbBZVBBIjqIt",
+      "type": "news",
+      "timestamp": 1781125293333,
+      "leg": "Fotos Fecha 7 Martes 09/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418222391411",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418222391411.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1i93tZzkbSDR72beVykdG8r8AVS1sVcIg",
+      "type": "news",
+      "timestamp": 1781032353740,
+      "leg": "Fotos Fecha 8 Lunes 08/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418318689250",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418318689250.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1B3ptNWl-m4p1PFs5qtmL3EajIbUlFfKJ",
+      "type": "news",
+      "timestamp": 1780936055610,
+      "leg": "Fotos Fecha 5 Domingo 07/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418568770982",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418568770982.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1y3n8xfqZojYjDzyDz1_Ki5pl8DolEnsG",
+      "type": "news",
+      "timestamp": 1780685975185,
+      "leg": "Fotos Fecha 6 Jueves 04/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418574704958",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418574704958.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1y3n8xfqZojYjDzyDz1_Ki5pl8DolEnsG",
+      "type": "news",
+      "timestamp": 1780680041706,
+      "leg": "Fotos Fecha 6 Jueves 04/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418574767037",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418574767037.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1y3n8xfqZojYjDzyDz1_Ki5pl8DolEnsG",
+      "type": "news",
+      "timestamp": 1780679981035,
+      "leg": "Fotos Fecha 6 Jueves 04/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418648704614",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418648704614.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O-bi9LVo2mu1V3rR6L6NtZlekmSnhZMe",
+      "type": "news",
+      "timestamp": 1780606040331,
+      "leg": "Fotos Fecha 6 Miércoles 03/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418824464058",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418824464058.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1jUDjLhNwyipC589qPs34k3cp8NCn9ySn",
+      "type": "news",
+      "timestamp": 1780430280586,
+      "leg": "Fotos Fecha 7 Lunes 01/6 ⚽️🔥"
+    },
+    {
+      "id": "9005418904265684",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005418904265684.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ZMf3Z4Uik-3agTv8PZ6wXyxkAcQcfIsi",
+      "type": "news",
+      "timestamp": 1780350480666,
+      "leg": "Fotos Fecha 4 Domingo 31/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419163739669",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419163739669.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O1BZ4uNpTyhLLVDF5k0J9ze38Uotud46",
+      "type": "news",
+      "timestamp": 1780091006918,
+      "leg": "Fotos Fecha 5 Jueves 28/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419164068232",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419164068232.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O1BZ4uNpTyhLLVDF5k0J9ze38Uotud46",
+      "type": "news",
+      "timestamp": 1780090676986,
+      "leg": "Fotos Fecha 5 Jueves 28/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419164513845",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419164513845.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1O1BZ4uNpTyhLLVDF5k0J9ze38Uotud46",
+      "type": "news",
+      "timestamp": 1780090232118,
+      "leg": "Fotos Fecha 5 Jueves 28/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419241465804",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419241465804.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1gdvTKO2etuRUvXKUIYJvnpFHl6xPAu-M",
+      "type": "news",
+      "timestamp": 1780013279566,
+      "leg": "Fotos Fecha 5 Miércoles 27/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419349931657",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419349931657.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1qJg-eJjGjdIpZgvhgy4IpQMy_Jy5rXa5",
+      "type": "news",
+      "timestamp": 1779904813336,
+      "leg": "Fotos Fecha 6 Martes 26/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419442994212",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419442994212.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1kXAdvO3m-f3qNFRfc590VCSUYlafc2fg",
+      "type": "news",
+      "timestamp": 1779811752986,
+      "leg": "Fotos Fecha 6 - Lunes 25/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419869898082",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419869898082.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ISfoPzzPloUszmz_VlzYNSaVphYxxNg3",
+      "type": "news",
+      "timestamp": 1779384847613,
+      "leg": "Fotos Fecha 4 Miércoles 20/5 ⚽️🔥"
+    },
+    {
+      "id": "9005419945842441",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005419945842441.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1YCBf1s2sO3yE3Isnt6jIGxGm7U60D70a",
+      "type": "news",
+      "timestamp": 1779308903491,
+      "leg": "Fotos Fecha 5 Martes 19/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420042412046",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420042412046.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1HDn1sgBjQHrPGN0ieI1f-rW8yYxzWg0s",
+      "type": "news",
+      "timestamp": 1779212332742,
+      "leg": "Fotos Fecha 5 Lunes 18/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420125997391",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420125997391.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1MgIU1KKTZlDlh7c4UI3GK17GO5QBCeMA",
+      "type": "news",
+      "timestamp": 1779128748970,
+      "leg": "Fotos Fecha 3 Domingo 17/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420383976949",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420383976949.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1bf10aaOv5WgwSqVVYioL4ZVo4ed-9nw3",
+      "type": "news",
+      "timestamp": 1778870769324,
+      "leg": "Fotos Fecha 4 Jueves 14/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420384182828",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420384182828.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1bf10aaOv5WgwSqVVYioL4ZVo4ed-9nw3",
+      "type": "news",
+      "timestamp": 1778870566532,
+      "leg": "Fotos Fecha 4 Jueves 14/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420384693109",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420384693109.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1bf10aaOv5WgwSqVVYioL4ZVo4ed-9nw3",
+      "type": "news",
+      "timestamp": 1778870052291,
+      "leg": "Fotos Fecha 4 Jueves 14/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420468379543",
+      "evt": "5jvbh",
+      "url": "https://m.youtube.com/watch?v=epUNkz2eHdc&ra=m&fbclid=PAZnRzaARy_0RleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAafm6Fim0hcFpvqXweDCwvkVh6mJ4hNR6qnR6GW9jV2gktfnimoGSTQUnKR-eQ_aem_svIUy8a1RXI2ElDCWn6i1w",
+      "type": "news",
+      "timestamp": 1778786361448,
+      "leg": "Link Partidos Grabados Cancha 5 "
+    },
+    {
+      "id": "9005420468779937",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420468779937.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1q1daOCMfVMv3gKuFo56pmGnPwRSsGsd1",
+      "type": "news",
+      "timestamp": 1778785964946,
+      "leg": "Fotos Fecha 3 Miércoles 13/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420569028530",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420569028530.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1GkT4ewMAyWRo6W8m0XjsCzq8oI9DSUyR",
+      "type": "news",
+      "timestamp": 1778685716888,
+      "leg": "Fotos Fecha 4 Martes 12/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420569375796",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420569375796.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/mobile/folders/1oLgmRF0nVYCbCnRsMgHTkqIQbU7m_nsL?fbclid=PAZnRzaARxdKdleHRuA2FlbQIxMQBzcnRjBmFwcF9pZA8xMjQwMjQ1NzQyODc0MTQAAacc_UC8r5V3KHds4Cp4lzu9YdLgggJbbcExV3GxWtMTguXlXk53-OSCsYM_Og_aem_mYQd7xpzCgue2jM2DpEpgg&pli=1",
+      "type": "news",
+      "timestamp": 1778685383021,
+      "leg": "Fotos Fecha 3 Martes 5/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420644229365",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420644229365.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Vs4GCQ1Fcf9DN1Z-umB2LVRAWwuUNTPg",
+      "type": "news",
+      "timestamp": 1778610518968,
+      "leg": "Fotos Fecha 4 Lunes 11/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420740094176",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420740094176.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1cfBzL7iJVEJAFsAcw3KM6pkDioaejuz9",
+      "type": "news",
+      "timestamp": 1778514651025,
+      "leg": "Fotos Fecha 2 Domingo 10/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420987426762",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420987426762.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1NXp0pwXyhtaxthubLnGze0YTsh_fgm89",
+      "type": "news",
+      "timestamp": 1778267318468,
+      "leg": "Fotos Fecha 3 Jueves 7/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420987984478",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420987984478.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1NXp0pwXyhtaxthubLnGze0YTsh_fgm89",
+      "type": "news",
+      "timestamp": 1778266762014,
+      "leg": "Fotos Fecha 3 Jueves 7/5 ⚽️🔥"
+    },
+    {
+      "id": "9005420990220205",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005420990220205.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1NXp0pwXyhtaxthubLnGze0YTsh_fgm89",
+      "type": "news",
+      "timestamp": 1778264525084,
+      "leg": "Fotos Fecha 3 jueves 7/5 ⚽️🔥"
+    },
+    {
+      "id": "9005421254434765",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421254434765.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1tDeYK6v4w2_VE3988NiZKsFIdqmMXw_6",
+      "type": "news",
+      "timestamp": 1778000309775,
+      "leg": "Fotos Fecha 3 Lunes 4/5 ⚽️🔥"
+    },
+    {
+      "id": "9005421593303292",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421593303292.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1KYxJ1Pi6G4lPSF0DefS9V0rAIo32bAEZ",
+      "type": "news",
+      "timestamp": 1777661442737,
+      "leg": "Fotos Fecha 2 Jueves 30/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421594144654",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421594144654.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1KYxJ1Pi6G4lPSF0DefS9V0rAIo32bAEZ",
+      "type": "news",
+      "timestamp": 1777660600556,
+      "leg": "Fotos Fecha 2 Jueves 30/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421594235148",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421594235148.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1KYxJ1Pi6G4lPSF0DefS9V0rAIo32bAEZ",
+      "type": "news",
+      "timestamp": 1777660513823,
+      "leg": "Fotos Fecha 2 Jueves 30/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421670960750",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/news_images%2F-OrVEqjkwepoAz20ghhE.jpg?alt=media&token=1",
+      "urlP": "https://youtube.com/live/6PtalTXX_h8?feature=share",
+      "type": "news",
+      "timestamp": 1777583780241,
+      "leg": "🔴 EN VIVO | CANCHA 5 ⚽ FECHA 2 - LIGA PREMIER JUEVES APERTURA 2026"
+    },
+    {
+      "id": "9005421687890813",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421687890813.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1FmftHLciWtMzDJQWK0a3C2Zem1loMv2G",
+      "type": "news",
+      "timestamp": 1777566854659,
+      "leg": "Fotos Fecha 2 Miércoles 29/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421777252293",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421777252293.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1ukS2J71-eVTMe9AUv_-CEEoeCuMLHExP",
+      "type": "news",
+      "timestamp": 1777477493372,
+      "leg": "Fotos Fecha 2 Martes 28/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421842882513",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421842882513.png?alt=media",
+      "urlP": "https://www.youtube.com/live/IIZn2bdfMdE?si=UrgRMRJavp99cXUV",
+      "type": "news",
+      "timestamp": 1777411863183,
+      "leg": "Partidos Grabados | Cancha 2 | Miercoles 22/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421847556142",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421847556142.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1GPpdrEqbexscAReWMuIWXtQZevQqSm7s",
+      "type": "news",
+      "timestamp": 1777407190761,
+      "leg": "Fotos Fecha 2 Lunes 27/4 ⚽️🔥"
+    },
+    {
+      "id": "9005421944641454",
+      "evt": "6d06s",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005421944641454.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1IPMzcr0a8gx_mVPzbH7M4l7wYc1Xuf-P",
+      "type": "news",
+      "timestamp": 1777310104032,
+      "leg": "Fotos Fecha 1 Domingo 26/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422191217161",
+      "evt": "kjk7t",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422191217161.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Xj1G8NZZUZojGE1wajcf7E3MrsbueX7w",
+      "type": "news",
+      "timestamp": 1777063531581,
+      "leg": "Fotos Fecha 1 Jueves 23/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422191339702",
+      "evt": "66786",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422191339702.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Xj1G8NZZUZojGE1wajcf7E3MrsbueX7w",
+      "type": "news",
+      "timestamp": 1777063409614,
+      "leg": "Fotos Fecha 1 Jueves 23/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422191505770",
+      "evt": "sz2ln",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422191505770.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1Xj1G8NZZUZojGE1wajcf7E3MrsbueX7w",
+      "type": "news",
+      "timestamp": 1777063241351,
+      "leg": "Fotos Fecha 1 Jueves 23/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422294882338",
+      "evt": "mp7pq",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422294882338.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1b5ClTPdqBm6G3Xnp171I2ibotgAo2K0_",
+      "type": "news",
+      "timestamp": 1776959862328,
+      "leg": "Fotos Fecha 1 Miércoles 22/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422378173156",
+      "evt": "5jvbh",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422378173156.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/1DLmx1unYB_rglfrpVeQ3SHUFjIXCQc2V",
+      "type": "news",
+      "timestamp": 1776876572490,
+      "leg": "Fotos Fecha 1 Martes 21/4 ⚽️🔥"
+    },
+    {
+      "id": "9005422477835231",
+      "evt": "8ard",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F9005422477835231.jpg?alt=media",
+      "urlP": "https://drive.google.com/drive/folders/13YX_PY81oktkZV9AaD058VzT7j67VjBh",
+      "type": "news",
+      "timestamp": 1776776911645,
+      "leg": "Fotos Fecha 1 Lunes 20/4 ⚽️🔥"
+    }
+  ],
+  "photos": [
+    {
+      "id": "9005420045005600",
+      "evt": "8ard",
+      "url": "https://youtu.be/dJ9WEtFwzEw",
+      "type": "1775875309436",
+      "timestamp": 1779209735392,
+      "leg": "El Toque vs Saint Lauren FC"
+    }
+  ],
+  "partners": [
+    {
+      "id": "-OZ7l15xnQY6Qc4vLxje",
+      "title": "Mojala",
+      "phone": "+56432231112 ",
+      "url": "https://mojala.cl/",
+      "website": "https://copafacil-storage.b-cdn.net/users%2FZBJs7taX2wbT7LuUmPIbeAWRmt631756788686743.png?alt=media"
+    },
+    {
+      "id": "-OZ7lD5ffqlcQEyGQ-Qo",
+      "title": "Friends Group",
+      "phone": "+56979610790",
+      "url": "https://www.instagram.com/friendsgroupcl/",
+      "website": "https://copafacil-storage.b-cdn.net/users%2FZBJs7taX2wbT7LuUmPIbeAWRmt631756788720078.png?alt=media"
+    },
+    {
+      "id": "-OZ7lYSi35Nv7dVanBZ6",
+      "title": "Cristal",
+      "phone": "",
+      "url": "https://www.cristal.cl/",
+      "website": "https://copafacil-storage.b-cdn.net/users%2FZBJs7taX2wbT7LuUmPIbeAWRmt631756788781886.png?alt=media"
+    },
+    {
+      "id": "-OZ7ldq22G7TMd41EyOZ",
+      "title": "EpicBet",
+      "phone": "",
+      "url": "https://epicbet.com/es/deportes/",
+      "website": "https://copafacil-storage.b-cdn.net/users%2FZBJs7taX2wbT7LuUmPIbeAWRmt631756788850650.png?alt=media"
+    },
+    {
+      "id": "-OZ7loFhzclBF-MBAJgd",
+      "title": "Gatorade",
+      "phone": "",
+      "url": "https://gatorade.lat/cl/",
+      "website": "https://copafacil-storage.b-cdn.net/users%2FZBJs7taX2wbT7LuUmPIbeAWRmt631756788891387.png?alt=media"
+    }
+  ],
+  "attachments": [
+    {
+      "id": "1778872488332",
+      "title": "Reglamento Premier",
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c%2F1778872417390.pdf?alt=media"
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+[
+  {
+    "url": "https://copafacil.com/api/request/user/?uid=ZBJs7taX2wbT7LuUmPIbeAWRmt63&a=1",
+    "status": 200,
+    "contentType": "application/json; charset=utf-8",
+    "body": {
+      "canceled": 0,
+      "email": "contacto.ligapremier@gmail.com",
+      "name": "Liga Premier",
+      "premium2": 10,
+      "service": "stripe",
+      "tournament_plan": 20,
+      "url": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/users%2FZBJs7taX2wbT7LuUmPIbeAWRmt631756482146384.png?alt=media"
+    }
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Mm0WhupmrtcPspt.jpg?alt=media&token=1&m=1776202358519",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_7rvSZqsFhWvktA8.png?alt=media&token=1&m=1776201881009",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_wM7ZUqlA-evocqO.png?alt=media&token=1&m=1776202198923",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_2kK9ObTZiyadqgY.jpg?alt=media&token=1&m=1776202531104",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_CmKD8KCCNMu5P65.jpg?alt=media&token=1&m=1776201899416",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_FQbzrz6biJyLrgY.jpg?alt=media&token=1&m=1776201925893",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_QgOUsdJxTNDQEf2.jpg?alt=media&token=1&m=1776203146240",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_GXUXoNpefLZvgrA.jpg?alt=media&token=1&m=1776202141390",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_3rU7j-w-cQMUuLJ.png?alt=media&token=1&m=1776203056804",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Vba6g_7prPgA8ME.jpg?alt=media&token=1&m=1776202247124",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_NxBrUJMDH8Ovoq4.png?alt=media&token=1&m=1776202900199",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_DyMZey8vTF5Shq5.png?alt=media&token=1&m=1776202952097",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_J1kpZm34LAF2JCy.jpg?alt=media&token=1&m=1776798191146",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Yzu60Cq_e0WCmsS.jpg?alt=media&token=1&m=1776202299319",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_TJfPPjn6PnAID3J.jpg?alt=media&token=1&m=1776202929137",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_6cXw4pS3n-rmQhv.png?alt=media&token=1&m=1776201767792",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_kx_Smw8rsXRTopv.jpg?alt=media&token=1&m=1776204275181",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_95dCU2MtUSDezVQ.png?alt=media&token=1&m=1776204353963",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_LTlExMlUN6IMFDk.jpg?alt=media&token=1&m=1776203000600",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_Ba3Cy-WGnQuhKcX.png?alt=media&token=1&m=1776202508234",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_5MMlZWxXrXNaCYT.jpg?alt=media&token=1&m=1776203033733",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_AGQQye878Hevpts.png?alt=media&token=1&m=1776203091835",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_PC0yWmNcYXIe3gB.jpg?alt=media&token=1&m=1776202180657",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_gudsYv9I_Ytk99i.png?alt=media&token=1&m=1776202548814",
+    "status": 200,
+    "contentType": "image/png",
+    "body": null
+  },
+  {
+    "url": "https://copafacil-storage.b-cdn.net/events%2F-5qp1c%2F5jvbh%2Fteams%2F-OqC_iBF4FA1v8HmA6pv.jpg?alt=media&token=1&m=1776204223776",
+    "status": 200,
+    "contentType": "image/jpeg",
+    "body": null
+  }
+]

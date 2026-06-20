@@ -1,0 +1,14 @@
+name: GitHub Action de PR-Agent
+on:
+  pull_request:
+    types: [opened, reopened, ready_for_review, synchronized]
+jobs:
+  pr_agent_job:
+    runs-on: ubuntu-latest
+    name: Run PR Agent on Pull Request
+    steps:
+      - name: PR Agent action
+        uses: Codium-ai/pr-agent@main
+        env:
+          OPENAI_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

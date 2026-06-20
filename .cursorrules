@@ -1,0 +1,16 @@
+# Scroll de Seda
+Sincronizar el ciclo RAF de Lenis directamente con el ticker global de GSAP para evitar desajustes.
+
+# Cero Basura en useFrame
+Prohibir crear/instanciar vectores u objetos de Three.js dentro de bucles continuos.
+
+# Cero Fugas de Memoria
+Obligar .dispose() en geometrías, materiales y texturas al desmontar componentes R3F.
+
+# Ecuaciones de Movimiento Físico
+deltaX = mouseX - (left + width/2)
+deltaY = mouseY - (top + height/2)
+Interpolación elástica para cursores magnéticos.
+
+# Escala Tipográfica Fluida
+fontSize = clamp(minSize, baseSize + scale * viewportWidth, maxSize)
