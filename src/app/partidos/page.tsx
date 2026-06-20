@@ -5,6 +5,7 @@ import Bracket from "@/components/visuals/Bracket";
 import PageEnter from "@/components/animations/PageEnter";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
+import PageHero from "@/components/sections/PageHero";
 
 const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
 function fmt(d: string | null) { if (!d) return ""; const [y, m, dd] = d.split("-").map(Number); return `${dd} ${monthNames[m - 1]} ${y}`; }
@@ -13,14 +14,12 @@ function getTeamPhoto(data: any, name: string): string | null {
   return data.standings?.find((s: any) => s.name === name)?.photo || null;
 }
 
-function Badge({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "destructive" | "success" | "secondary" | "outline" }) {
-  const cls = variant === "default" ? "border-transparent bg-primary text-primary-foreground"
-    : variant === "destructive" ? "border-transparent bg-red-100 text-red-700"
-    : variant === "success" ? "border-transparent bg-emerald-100 text-emerald-700"
-    : variant === "secondary" ? "border-transparent bg-muted text-muted-foreground"
-    : "border text-foreground";
-  return <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold transition-colors ${cls}`}>{children}</span>;
-}
+const resultStyles: Record<string, string> = {
+  win: "border-emerald-200 bg-emerald-50 text-emerald-700",
+  loss: "border-red-200 bg-red-50 text-red-700",
+  draw: "border-zinc-200 bg-zinc-50 text-zinc-600",
+  upcoming: "border-zinc-200 bg-white text-zinc-500",
+};
 
 export default function PartidosPage() {
   const data = getCopaData();
@@ -44,27 +43,14 @@ export default function PartidosPage() {
 
   return (
     <PageEnter>
-      {/* ── HERO ── */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-club-black pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[length:24px_24px]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-club-black to-club-black" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-sm">
-              <span className="text-2xl">⚽</span>
-            </div>
-            <div>
-              <h1 className="font-display text-6xl leading-none tracking-tight text-white md:text-8xl">Partidos</h1>
-              <p className="mt-2 text-sm text-white/40">{data.event?.title} · {ss?.played || 0} partidos jugados</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        icon="⚽"
+        title="Partidos"
+        subtitle={`${data.event?.title} · ${ss?.played || 0} partidos jugados`}
+      />
 
-      {/* ── STATS BAR (RED) ── */}
       <ScrollReveal>
-        <section className="relative bg-primary overflow-hidden">
+        <section className="relative overflow-hidden bg-primary">
           <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[length:20px_20px]" />
           <div className="relative mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-4 divide-x divide-white/10">
@@ -76,7 +62,7 @@ export default function PartidosPage() {
               ].map(s => (
                 <div key={s.label} className="px-4 py-8 text-center md:py-10">
                   <p className="font-display text-3xl leading-none text-white md:text-4xl">{s.value}</p>
-                  <p className="mt-2 text-xs font-medium text-white/60 uppercase tracking-wider">{s.label}</p>
+                  <p className="mt-2 text-xs font-medium uppercase tracking-wider text-white/60">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -84,7 +70,6 @@ export default function PartidosPage() {
         </section>
       </ScrollReveal>
 
-      {/* ── FASE REGULAR ── */}
       <ScrollReveal delay={0.1}>
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-5xl px-6">
@@ -103,16 +88,15 @@ export default function PartidosPage() {
                 const homeLogo = getTeamPhoto(data, m.team1.name);
                 const awayLogo = getTeamPhoto(data, m.team2.name);
 
-                const badgeVariant = isFuture ? "outline" : result === "win" ? "success" : result === "loss" ? "destructive" : "secondary";
-                const badgeLabel = isFuture ? "Próximo" : result === "win" ? "V" : result === "loss" ? "D" : "E";
-
                 return (
                   <StaggerItem key={m.id + i}>
                     <div className="rounded-xl border bg-card shadow-sm transition-all hover:shadow-md">
                       <div className="flex items-center justify-between gap-4 p-4 md:px-6">
                         <div className="flex min-w-0 items-center gap-3">
-                          <span className="shrink-0 text-xs text-muted-foreground w-16 text-right tabular-nums">{fmt(m.date)}</span>
-                          <Badge variant={badgeVariant}>{badgeLabel}</Badge>
+                          <span className="w-16 shrink-0 text-right text-xs tabular-nums text-muted-foreground">{fmt(m.date)}</span>
+                          <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${result ? resultStyles[result] : resultStyles.upcoming}`}>
+                            {isFuture ? "Próximo" : result === "win" ? "Victoria" : result === "loss" ? "Derrota" : "Empate"}
+                          </span>
                         </div>
                         <div className="flex items-center justify-center gap-3 md:gap-6">
                           <div className="flex items-center gap-2">
@@ -129,11 +113,11 @@ export default function PartidosPage() {
                             {sc !== null ? (
                               <>
                                 <span className={`font-display text-xl leading-none ${result === "win" ? "text-emerald-600" : result === "loss" ? "text-red-500" : "text-muted-foreground"}`}>{sc}</span>
-                                <span className="text-xs text-muted">-</span>
+                                <span className="text-xs text-muted-foreground">-</span>
                                 <span className={`font-display text-xl leading-none ${result === "loss" ? "text-emerald-600" : result === "win" ? "text-red-500" : "text-muted-foreground"}`}>{oc}</span>
                               </>
                             ) : (
-                              <span className="text-xs font-semibold text-muted">VS</span>
+                              <span className="text-xs font-semibold text-muted-foreground">VS</span>
                             )}
                           </div>
                           <div className="flex items-center gap-2">
@@ -161,10 +145,9 @@ export default function PartidosPage() {
         </section>
       </ScrollReveal>
 
-      {/* ── PLAYOFFS ── */}
       {bracketTrees.length > 0 && (
         <ScrollReveal delay={0.15}>
-          <section className="relative bg-club-black py-16 md:py-24 overflow-hidden">
+          <section className="relative overflow-hidden bg-club-black py-16 md:py-24">
             <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[length:24px_24px]" />
             <div className="relative mx-auto max-w-6xl px-6">
               <div className="mb-8">

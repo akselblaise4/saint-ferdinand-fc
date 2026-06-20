@@ -3,14 +3,13 @@ import { getCopaData } from "@/lib/loadData";
 import PageEnter from "@/components/animations/PageEnter";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
+import PageHero from "@/components/sections/PageHero";
 
-function Badge({ children, variant = "default" }: { children: React.ReactNode; variant?: "default" | "destructive" | "success" | "secondary" }) {
-  const cls = variant === "default" ? "border-transparent bg-white/20 text-white"
-    : variant === "destructive" ? "border-transparent bg-red-500/70 text-white"
-    : variant === "success" ? "border-transparent bg-emerald-500/70 text-white"
-    : "border border-white/20 text-white/80";
-  return <span className={`inline-flex items-center rounded-full border px-2 py-0.5 text-xs font-semibold transition-colors backdrop-blur-sm ${cls}`}>{children}</span>;
-}
+const resultBadge: Record<string, string> = {
+  win: "bg-emerald-500/70 text-white",
+  loss: "bg-red-500/70 text-white",
+  draw: "bg-zinc-500/70 text-white",
+};
 
 export default function GaleriaPage() {
   const data = getCopaData();
@@ -21,7 +20,7 @@ export default function GaleriaPage() {
     return [r ? parseInt(r[1]) : -1, {
       opponent: m.team1.id === data.saints?.id ? m.team2.name : m.team1.name,
       score: sc !== null ? `${sc}-${oc}` : null,
-      result: sc !== null && oc !== null ? (sc > oc ? "W" : sc < oc ? "L" : "D") : null
+      result: sc !== null && oc !== null ? (sc > oc ? "win" : sc < oc ? "loss" : "draw") : null
     }];
   }));
 
@@ -34,25 +33,12 @@ export default function GaleriaPage() {
 
   return (
     <PageEnter>
-      {/* ── HERO ── */}
-      <section className="relative min-h-[50vh] flex items-center overflow-hidden bg-club-black pt-20">
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(255,255,255,0.07)_1px,transparent_1px)] bg-[length:24px_24px]" />
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-club-black to-club-black" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <div className="flex items-center gap-5">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/5 ring-1 ring-white/10 backdrop-blur-sm">
-              <span className="text-2xl">📸</span>
-            </div>
-            <div>
-              <h1 className="font-display text-6xl leading-none tracking-tight text-white md:text-8xl">Galería</h1>
-              <p className="mt-2 text-sm text-white/40">{albums.length} álbumes de Saint Ferdinand</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <PageHero
+        icon="📸"
+        title="Galería"
+        subtitle={`${albums.length} álbumes de Saint Ferdinand`}
+      />
 
-      {/* ── ALBUMS ── */}
       <ScrollReveal delay={0.1}>
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-6xl px-6">
@@ -88,8 +74,16 @@ export default function GaleriaPage() {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
                         <div className="relative z-10 w-full p-5">
                           <div className="flex items-center gap-2">
-                            {m.urlDrive && <Badge variant="default">Álbum</Badge>}
-                            {result && <Badge variant={result === "win" ? "success" : result === "loss" ? "destructive" : "secondary"}>{result === "win" ? "Victoria" : result === "loss" ? "Derrota" : "Empate"}</Badge>}
+                            {m.urlDrive && (
+                              <span className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-white backdrop-blur-sm">
+                                Álbum
+                              </span>
+                            )}
+                            {result && (
+                              <span className={`inline-flex items-center rounded-full border border-white/20 px-2.5 py-0.5 text-[11px] font-semibold backdrop-blur-sm ${resultBadge[result]}`}>
+                                {result === "win" ? "Victoria" : result === "loss" ? "Derrota" : "Empate"}
+                              </span>
+                            )}
                           </div>
                           <h3 className="mt-2 text-lg font-bold text-white">{m.title || "Álbum"}</h3>
                           {matchInfo?.opponent && (

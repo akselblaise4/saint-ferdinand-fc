@@ -11,6 +11,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Section, SectionTitle } from "@/components/sections/Section";
+import ScrollReveal from "@/components/animations/ScrollReveal";
 import type { Player } from "@/types/football";
 
 const squad: { n: number; name: string; pos: Player["position"]; age: number; nation: string }[] = [
@@ -91,7 +92,7 @@ export default function Home() {
       id: "position",
       children: (
         <div className="section-fade flex h-full flex-col items-center justify-center p-5 text-center">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Posici&oacute;n</span>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">Posición</span>
           <span className="font-display text-8xl leading-none text-club-red">
             {saints?.season?.pos ?? "-"}
           </span>
@@ -117,11 +118,11 @@ export default function Home() {
       children: (
         <div className="section-fade p-5">
           <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-            Pr&oacute;ximo partido
+            Próximo partido
           </span>
           {nextMatch ? (
             <div className="mt-3 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-club-red/10 text-xs font-bold text-club-red">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full club-gradient text-xs font-bold text-white shadow-sm">
                 VS
               </div>
               <div>
@@ -139,7 +140,7 @@ export default function Home() {
               </div>
             </div>
           ) : (
-            <p className="mt-3 text-sm text-muted-foreground">Sin pr&oacute;ximos partidos</p>
+            <p className="mt-3 text-sm text-muted-foreground">Sin próximos partidos</p>
           )}
         </div>
       ),
@@ -174,104 +175,117 @@ export default function Home() {
         playersCount={saints?.playersCount ?? undefined}
       />
 
-      {/* Stats Dashboard */}
       <Section theme="dark" id="stats">
         <SectionTitle label="Resumen" title="ESTADÍSTICAS" theme="dark" />
-        <MatchdayCard
-          nextMatch={nextMatch as any}
-          saintsId={saints?.id || null}
-          saintsPhoto={saints?.photo || null}
-          opponentName={nextOppName}
-          opponentPhoto={nextOppPhoto}
-        />
-        <div className="mt-10">
-          <BentoGridHome tiles={tiles} />
-        </div>
+        <ScrollReveal>
+          <MatchdayCard
+            nextMatch={nextMatch as any}
+            saintsId={saints?.id || null}
+            saintsPhoto={saints?.photo || null}
+            opponentName={nextOppName}
+            opponentPhoto={nextOppPhoto}
+          />
+        </ScrollReveal>
+        <ScrollReveal delay={0.15}>
+          <div className="mt-10">
+            <BentoGridHome tiles={tiles} />
+          </div>
+        </ScrollReveal>
       </Section>
 
-      {/* Players Section — replaces RosterBento */}
       <Section theme="light" id="plantilla">
         <SectionTitle label="Equipo" title="PLANTILLA" theme="light" />
         <div className="mx-auto max-w-5xl">
-          <div className="section-fade mb-8 grid gap-4 md:grid-cols-2">
-            {players.slice(0, 4).map((p, i) => (
-              <PlayerCard key={p.id} player={p} variant="expanded" />
-            ))}
-          </div>
-          <div className="section-fade grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {players.slice(4).map((p) => (
-              <PlayerCard key={p.id} player={p} variant="default" />
-            ))}
-          </div>
-        </div>
-      </Section>
-
-      {/* Gallery */}
-      <Section theme="dark" id="galeria">
-        <SectionTitle label="Multimedia" title="GALERÍA" theme="dark" />
-        <div className="section-fade">
-          <GalleryHorizontal albums={albums as any} />
-        </div>
-      </Section>
-
-      {/* Standings & Scorers */}
-      <Section theme="alt" id="tabla">
-        <SectionTitle label="Competición" title="CLASIFICACIÓN" theme="light" />
-        <div className="section-fade mx-auto max-w-5xl">
-          <Card className="overflow-hidden border-0 shadow-lg">
-            <CardHeader className="bg-club-black text-white">
-              <CardTitle className="font-display text-2xl tracking-wide text-white">
-                {event?.title || "Liga"}
-              </CardTitle>
-              <CardDescription className="text-white/60">
-                Posiciones actuales
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="p-0">
-              <DataTable
-                columns={[
-                  { key: "pos", header: "#", cell: (s: any) => <span className="font-bold">{s.pos}</span>, className: "w-12" },
-                  { key: "name", header: "Equipo", cell: (s: any) => <span className="font-medium">{s.name}</span> },
-                  { key: "pj", header: "PJ", cell: (s: any) => s.stats?.played ?? 0 },
-                  { key: "v", header: "V", cell: (s: any) => s.stats?.wins ?? 0 },
-                  { key: "e", header: "E", cell: (s: any) => s.stats?.draws ?? 0 },
-                  { key: "d", header: "D", cell: (s: any) => s.stats?.losses ?? 0 },
-                  { key: "gf", header: "GF", cell: (s: any) => s.stats?.goalsFor ?? 0 },
-                  { key: "gc", header: "GC", cell: (s: any) => s.stats?.goalsAgainst ?? 0 },
-                  { key: "dg", header: "DG", cell: (s: any) => {
-                    const dg = (s.stats?.goalsFor ?? 0) - (s.stats?.goalsAgainst ?? 0);
-                    return <span className={dg >= 0 ? "text-emerald-600" : "text-red-600"}>{dg > 0 ? "+" : ""}{dg}</span>;
-                  }},
-                  { key: "pts", header: "Pts", cell: (s: any) => <span className="font-bold text-club-red">{s.pts}</span>, className: "text-right" },
-                ]}
-                data={topStandings}
-                keyExtractor={(s: any) => s.id}
-              />
-            </CardContent>
-          </Card>
-        </div>
-
-        {scorers.length > 0 && (
-          <div className="section-fade mx-auto mt-12 max-w-3xl">
-            <h3 className="mb-6 text-center font-display text-3xl text-club-black">GOLEADORES</h3>
-            <div className="space-y-2">
-              {scorers.map((s, i) => (
-                <div
-                  key={s.player + s.team}
-                  className="flex items-center gap-4 rounded-lg border bg-white px-4 py-3 shadow-sm transition-colors hover:bg-club-red-light"
-                >
-                  <span className="w-6 text-center text-sm font-bold text-muted-foreground">
-                    {i + 1}
-                  </span>
-                  <div className="flex-1">
-                    <p className="text-sm font-semibold text-foreground">{s.player}</p>
-                    <p className="text-xs text-muted-foreground">{s.team}</p>
-                  </div>
-                  <span className="font-display text-2xl leading-none text-club-red">{s.goals}</span>
-                </div>
+          <ScrollReveal>
+            <div className="section-fade mb-8 grid gap-4 md:grid-cols-2">
+              {players.slice(0, 4).map((p) => (
+                <PlayerCard key={p.id} player={p} variant="expanded" />
               ))}
             </div>
+          </ScrollReveal>
+          <ScrollReveal delay={0.1}>
+            <div className="section-fade grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {players.slice(4).map((p) => (
+                <PlayerCard key={p.id} player={p} variant="default" />
+              ))}
+            </div>
+          </ScrollReveal>
+        </div>
+      </Section>
+
+      <Section theme="dark" id="galeria">
+        <SectionTitle label="Multimedia" title="GALERÍA" theme="dark" />
+        <ScrollReveal>
+          <div className="section-fade">
+            <GalleryHorizontal albums={albums as any} />
           </div>
+        </ScrollReveal>
+      </Section>
+
+      <Section theme="alt" id="tabla">
+        <SectionTitle label="Competición" title="CLASIFICACIÓN" theme="light" />
+        <ScrollReveal>
+          <div className="section-fade mx-auto max-w-5xl">
+            <Card className="overflow-hidden border-0 shadow-lg">
+              <CardHeader className="bg-club-black text-white">
+                <CardTitle className="font-display text-2xl tracking-wide text-white">
+                  {event?.title || "Liga"}
+                </CardTitle>
+                <CardDescription className="text-white/60">
+                  Posiciones actuales
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="p-0">
+                <DataTable
+                  columns={[
+                    { key: "pos", header: "#", cell: (s: any) => <span className="font-bold">{s.pos}</span>, className: "w-12" },
+                    { key: "name", header: "Equipo", cell: (s: any) => {
+                      const isSffc = s.name?.includes("SAINT");
+                      return <span className={`font-medium ${isSffc ? "text-club-red font-bold" : ""}`}>{s.name}</span>;
+                    }},
+                    { key: "pj", header: "PJ", cell: (s: any) => s.stats?.played ?? 0 },
+                    { key: "v", header: "V", cell: (s: any) => s.stats?.wins ?? 0 },
+                    { key: "e", header: "E", cell: (s: any) => s.stats?.draws ?? 0 },
+                    { key: "d", header: "D", cell: (s: any) => s.stats?.losses ?? 0 },
+                    { key: "gf", header: "GF", cell: (s: any) => s.stats?.goalsFor ?? 0 },
+                    { key: "gc", header: "GC", cell: (s: any) => s.stats?.goalsAgainst ?? 0 },
+                    { key: "dg", header: "DG", cell: (s: any) => {
+                      const dg = (s.stats?.goalsFor ?? 0) - (s.stats?.goalsAgainst ?? 0);
+                      return <span className={dg >= 0 ? "text-emerald-600" : "text-red-600"}>{dg > 0 ? "+" : ""}{dg}</span>;
+                    }},
+                    { key: "pts", header: "Pts", cell: (s: any) => <span className="font-bold text-club-red">{s.pts}</span>, className: "text-right" },
+                  ]}
+                  data={topStandings}
+                  keyExtractor={(s: any) => s.id}
+                />
+              </CardContent>
+            </Card>
+          </div>
+        </ScrollReveal>
+
+        {scorers.length > 0 && (
+          <ScrollReveal delay={0.1}>
+            <div className="section-fade mx-auto mt-12 max-w-3xl">
+              <h3 className="mb-6 text-center font-display text-3xl text-club-black">GOLEADORES</h3>
+              <div className="space-y-2">
+                {scorers.map((s, i) => (
+                  <div
+                    key={s.player + s.team}
+                    className="flex items-center gap-4 rounded-lg border bg-white px-4 py-3 shadow-sm transition-colors hover:bg-club-red-light"
+                  >
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full club-gradient text-xs font-bold text-white">
+                      {i + 1}
+                    </span>
+                    <div className="flex-1">
+                      <p className="text-sm font-semibold text-foreground">{s.player}</p>
+                      <p className="text-xs text-muted-foreground">{s.team}</p>
+                    </div>
+                    <span className="font-display text-2xl leading-none text-club-red">{s.goals}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </ScrollReveal>
         )}
       </Section>
     </>
