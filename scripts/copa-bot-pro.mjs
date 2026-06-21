@@ -183,6 +183,37 @@ async function main() {
   // Enhanced match details with sections
   const matchDetails = bot.processMatchDetails(allDetails, playerNamesMap, teamNames, matchesById, `${EVENT_ID}@${GROUP}`, SAINTS_ID);
 
+  // Merge match details into each MatchEntry so modals show events
+  const matchDetailKeys = {};
+  const allDetailsByMid={};Object.keys(matchDetails).forEach(k=>{const mid=k.split('/details/').pop();if(mid)allDetailsByMid[mid]=allDetails[k];});Object.keys(matchDetails).forEach(k => {
+    const mid = k.split('/details/').pop();
+    if (mid) matchDetailKeys[mid] = matchDetails[k];
+  });
+  const mergeDetails = (match) => {
+    const detail = matchDetailKeys[match.id];
+    if (detail) {
+      const rawDetail = allDetailsByMid[match.id];
+      const mappedList = Object.entries(rawDetail?.list || {}).map(([ts, ev]) => ({
+        id: match.id + '_' + ts,
+        matchId: match.id,
+        ac: ev.ac || 0,
+        pl_id1: ev.pl_id1 || null,
+        team1: ev.team1 || null,
+        val1: ev.val1 ?? null,
+        val2: ev.val2 ?? null,
+        val3: ev.val3 ?? null,
+        playerName: playerNamesMap[ev.pl_id1] || null,
+      }));
+      match.details = { list: mappedList, info: detail.info, best: detail.best };
+    }
+    const rawMatch = allMatches?.[match.id];
+    if (rawMatch?.l && allPlaces[rawMatch.l]) {
+      match.venue = allPlaces[rawMatch.l].title || allPlaces[rawMatch.l].name || null;
+    }
+  };
+  allMatchesProcessed.forEach(m => mergeDetails(m));
+  saintsMatches.forEach(m => mergeDetails(m));
+
   // Enhanced top scorers with match context
   const topScorers = bot.processTopScorers(allDetails, playerNamesMap, teamNames, matchesById, `${EVENT_ID}@${GROUP}`);
   const saintsScorers = topScorers.filter(s => s.teamId === SAINTS_ID);
@@ -191,10 +222,9 @@ async function main() {
   const playersData = bot.processPlayers(allPlayersRaw, teamNames);
 
   // Enriched media with venue info
-  const placesRaw = rtdbData[`events/${EVENT_ID}/places`] || {};
-  const placesMap = {};
-  Object.entries(placesRaw).forEach(([id, p]) => { placesMap[id] = p; });
-  const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, placesMap);
+  const placesLookup = {};
+Object.entries(allPlaces).forEach(([id, p]) => { placesLookup[id] = p; });
+const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, placesLookup);
 
   // --- Saints data ---
   const saintsTeam = allTeams.find(t => t.id === SAINTS_ID);
@@ -270,6 +300,7 @@ async function main() {
     },
     attachments: Object.entries(allAttachments).map(([id, a]) => ({ id, title: a.title, url: a.url })),
     partners: Object.entries(allPartners).map(([id, p]) => ({ id, name: p.title, phone: p.numb, url: p.urlP || p.url_l })),
+    playerNames: playerNamesMap,
     firestore: firestoreData,
   };
 

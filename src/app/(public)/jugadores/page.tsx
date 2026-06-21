@@ -9,7 +9,12 @@ export default function JugadoresPage() {
   const rankingsMap = new Map<string, number>();
   for (const s of (data as any).topScorers.saints) {
     scorersMap.set(s.playerName, s.goals);
-    
+  }
+  const ranksMap = new Map<string, number>();
+  for (const s of (data as any).topScorers.overall) {
+    if (!ranksMap.has(s.playerName)) {
+      ranksMap.set(s.playerName, s.overallRank || ranksMap.size + 1);
+    }
   }
   const sorted = [...(players as any[])].sort((a, b) => (scorersMap.get(b.name) || 0) - (scorersMap.get(a.name) || 0));
 
@@ -39,7 +44,7 @@ export default function JugadoresPage() {
               name={player.name}
               number={i + 1}
               goals={scorersMap.get(player.name) || 0}
-              rank={undefined}
+              rank={ranksMap.get(player.name)}
             />
           ))}
         </div>

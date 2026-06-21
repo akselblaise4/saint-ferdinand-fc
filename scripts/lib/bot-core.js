@@ -455,6 +455,7 @@ export class CopaBot {
     });
 
     const topScorers = Object.values(scorersMap).sort((a, b) => b.goals - a.goals);
+    topScorers.forEach((s, i) => s.overallRank = i + 1);
     return topScorers;
   }
 

@@ -1,4 +1,4 @@
-import { getCopaData } from "@/lib/loadData";
+﻿import { getCopaData } from "@/lib/loadData";
 import PageEnter from "@/components/animations/PageEnter";
 import ScrollReveal from "@/components/animations/ScrollReveal";
 import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
@@ -32,9 +32,9 @@ export default function PlantillaPage() {
   return (
     <PageEnter>
       <PageHero
-        icon="👥"
+        icon="ðŸ‘¥"
         title="Equipo"
-        subtitle={`${saints?.playersCount || sorted.length} jugadores · ${data.event?.title}`}
+        subtitle={`${saints?.playersCount || sorted.length} jugadores Â· ${data.event?.title}`}
       />
 
       <section className="py-16 md:py-20">
@@ -60,7 +60,7 @@ export default function PlantillaPage() {
                       <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
                         <span>{scorersMap.get(p.name) || 0} goles</span>
                         <span className="h-1 w-1 rounded-full bg-border" />
-                        <span>Rank #{data.topScorers.saints.find(s => s.player === p.name)?.overallRank || "—"}</span>
+                        <span>Rank #{data.topScorers.saints.find(s => s.playerName === p.name)?.overallRank || "â€”"}</span>
                       </div>
                     </div>
                   </div>

@@ -14,22 +14,18 @@ export default function CopaPage() {
   const saints = data.saints;
   const ss = saints?.season?.stats;
   const matches = data.matches?.saints?.filter((m: any) => m.score1 != null && m.score2 != null) || [];
-  const mdItems = (data as any).matchDetails?.items || {};
   const topScorers = (data as any).topScorers?.overall || [];
   const saintsScorers = (data as any).topScorers?.saints || [];
   const media = (data as any).media?.enriched?.filtered || [];
   const roster = saints?.id ? ((data as any).players?.byTeam?.[saints.id]?.players || []) : [];
+  const playerNamesMap: Record<string, string> = {};
+  (roster as any[]).forEach((p: any) => { if (p.id) playerNamesMap[p.id] = p.firstName && p.lastName ? p.firstName + ' ' + p.lastName : p.name; });
 
   const isHome = (m: any) => m.team1?.id === saints?.id;
   const teamName = (m: any) => isHome(m) ? m.team2?.name : m.team1?.name;
   const gf = (m: any) => isHome(m) ? m.score1 : m.score2;
   const gc = (m: any) => isHome(m) ? m.score2 : m.score1;
 
-  const findDetail = (m: any) => {
-    const mid = m.id;
-    const detailKey = Object.keys(mdItems).find(k => k.endsWith("/details/" + mid));
-    return detailKey ? mdItems[detailKey] : null;
-  };
 
   return (
     <PageEnter>
@@ -84,39 +80,47 @@ export default function CopaPage() {
             <h2 className="font-display text-2xl md:text-3xl mb-8">Partidos</h2>
             <div className="space-y-4">
               {matches.map((m: any) => {
-                const detail = findDetail(m);
                 const isSaintsHome = isHome(m);
+                const mergedDetail = m.details;
+                const goals = mergedDetail?.list?.filter((e: any) => e.ac === 1 || e.ac === 5) || [];
+                const cards = mergedDetail?.list?.filter((e: any) => e.ac === 4 || e.ac === 9) || [];
+                const bestKey = mergedDetail?.best ? Object.keys(mergedDetail.best)[0] : null;
+                const mvpName = bestKey ? (playerNamesMap?.[bestKey] || null) : null;
+                const mvpRating = bestKey ? (Object.values(mergedDetail.best)[0] as any)?.num_val || null : null;
                 return (
                   <div key={m.id} className="rounded-xl border bg-card overflow-hidden">
                     <div className="flex items-center justify-between p-4 bg-muted/20">
                       <span className="text-sm text-muted-foreground">{m.date}</span>
-                      <span className="text-xs font-semibold uppercase">{m.isPlayoff ? m.title || "Playoff" : "Fase Regular"}</span>
+                      <div className="flex items-center gap-2">
+                        {m.venue && <span className="text-xs text-muted-foreground">{m.venue}</span>}
+                        <span className="text-xs font-semibold uppercase">{m.isPlayoff ? m.title || "Playoff" : "Fase Regular"}</span>
+                      </div>
                     </div>
                     <div className="p-4">
-                      <div className="flex items-center justify-between">
-                        <span className="font-semibold">{isSaintsHome ? "SAINT FERDINAND" : teamName(m)}</span>
-                        <span className="text-2xl font-bold px-4">{gf(m)} — {gc(m)}</span>
-                        <span className="font-semibold text-right">{isSaintsHome ? teamName(m) : "SAINT FERDINAND"}</span>
+                      <div className="flex items-center justify-between gap-2">
+                        <span className="font-semibold truncate min-w-0">{isSaintsHome ? "SAINT FERDINAND" : teamName(m)}</span>
+                        <span className="text-2xl font-bold px-4 shrink-0">{gf(m)} — {gc(m)}</span>
+                        <span className="font-semibold text-right truncate min-w-0">{isSaintsHome ? teamName(m) : "SAINT FERDINAND"}</span>
                       </div>
-                      {detail && (
+                      {(goals.length > 0 || cards.length > 0 || mvpName) && (
                         <div className="mt-3 space-y-1 text-sm text-muted-foreground">
-                          {detail.sections?.goals?.length > 0 && (
-                            <div key="goals"><span className="font-semibold text-foreground">Goles: </span>
-                              {detail.sections.goals.map((g: any, i: number) => (
-                                <span key={i}>{g.playerName || "?"} ({g.teamName}){i < detail.sections.goals.length - 1 ? ", " : ""}</span>
+                          {goals.length > 0 && (
+                            <div><span className="font-semibold text-foreground">Goles: </span>
+                              {goals.map((g: any, i: number) => (
+                                <span key={i}>{g.playerName || "?"} ({(g.team1 === m.team1?.id ? m.team1?.name : m.team2?.name) || ""}){i < goals.length - 1 ? ", " : ""}</span>
                               ))}
                             </div>
                           )}
-                          {detail.sections?.cards?.length > 0 && (
-                            <div key="cards"><span className="font-semibold text-foreground">Tarjetas: </span>
-                              {detail.sections.cards.map((c: any, i: number) => (
-                                <span key={i}>{c.playerName || "?"} — {c.msg || (c.actionCode === 4 ? "Expulsión" : "Amarilla")}{i < detail.sections.cards.length - 1 ? "; " : ""}</span>
+                          {cards.length > 0 && (
+                            <div><span className="font-semibold text-foreground">Tarjetas: </span>
+                              {cards.map((c: any, i: number) => (
+                                <span key={i}>{c.playerName || "?"} — {c.val2 === 2 ? "Segunda amarilla" : (c.ac === 4 ? "Expulsión" : "Amarilla")}{i < cards.length - 1 ? "; " : ""}</span>
                               ))}
                             </div>
                           )}
-                          {detail.mvp && (
-                            <div key="mvp"><span className="font-semibold text-foreground">MVP: </span>
-                              <span>{detail.mvp.playerName || "?"} ({detail.mvp.rating})</span>
+                          {mvpName && (
+                            <div><span className="font-semibold text-foreground">MVP: </span>
+                              <span>{mvpName} ({mvpRating})</span>
                             </div>
                           )}
                         </div>
@@ -245,16 +249,27 @@ export default function CopaPage() {
             <div className="mx-auto max-w-6xl px-6">
               <h2 className="font-display text-2xl md:text-3xl mb-8">Medios</h2>
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {media.map((m: any) => (
-                  <a key={m.id} href={m.urlDrive || m.url} target="_blank" rel="noopener noreferrer" className="rounded-xl border bg-card p-4 hover:bg-muted/50 transition-colors block">
-                    <p className="font-semibold">{m.title}</p>
-                    <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
-                      {m.cancha && <span className="rounded-full bg-muted px-2 py-0.5">{m.cancha}</span>}
-                      {m.turno && <span className="rounded-full bg-muted px-2 py-0.5">Turno {m.turno}</span>}
-                      {m.matchedDate && <span className="rounded-full bg-muted px-2 py-0.5">{m.matchedDate}</span>}
+                {media.map((m: any) => {
+                  const isDrive = m.urlDrive && (m.urlDrive.includes("drive.google.com") || m.urlDrive.includes("drive"));
+                  const isPhoto = m.url && (m.url.match(/.(jpg|jpeg|png|gif|webp)(\?|$)/i));
+                  return (
+                  <a key={m.id} href={m.urlDrive || m.url} target="_blank" rel="noopener noreferrer" className="rounded-xl border bg-card overflow-hidden hover:bg-muted/50 transition-colors block group">
+                    {isPhoto && (
+                      <div className="h-40 bg-muted overflow-hidden">
+                        <img src={m.url} alt={m.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                      </div>
+                    )}
+                    <div className={"p-4" + (isPhoto ? "" : " pt-0")}>
+                      <p className="font-semibold text-sm">{m.title}</p>
+                      <div className="mt-2 flex flex-wrap gap-2 text-xs text-muted-foreground">
+                        {m.cancha && <span className="rounded-full bg-muted px-2 py-0.5">{m.cancha}</span>}
+                        {m.turno && <span className="rounded-full bg-muted px-2 py-0.5">Turno {m.turno}</span>}
+                        {m.matchedDate && <span className="rounded-full bg-muted px-2 py-0.5">{m.matchedDate}</span>}
+                        {isDrive && <span className="rounded-full bg-blue-100 text-blue-700 px-2 py-0.5">Drive</span>}
+                      </div>
                     </div>
                   </a>
-                ))}
+                );})}
               </div>
             </div>
           </section>

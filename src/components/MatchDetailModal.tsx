@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -6,7 +6,7 @@ import type { Match, MatchEvent } from "@/types/football";
 
 const AC_GOAL = 1;
 const AC_CARD = 9;
-const AC_SUB_IN = 1;
+const AC_SUB_IN = 10;
 
 interface MatchDetailModalProps {
   match: Match | null;
@@ -171,9 +171,9 @@ export default function MatchDetailModal({ match, teamPhotos, onClose }: MatchDe
               </div>
               <div className="flex flex-col items-center gap-1">
                 <div className="flex items-center gap-3">
-                  <span className="font-display-xl text-[48px] md:text-[56px] leading-none">{match.score?.home != null ? match.score.home : "—"}</span>
+                  <span className="font-display-xl text-[48px] md:text-[56px] leading-none">{match.score?.home != null ? match.score.home : "â€”"}</span>
                   <span className="font-display-xl text-[48px] md:text-[56px] leading-none text-on-surface-variant opacity-40">-</span>
-                  <span className="font-display-xl text-[48px] md:text-[56px] leading-none">{match.score?.away != null ? match.score.away : "—"}</span>
+                  <span className="font-display-xl text-[48px] md:text-[56px] leading-none">{match.score?.away != null ? match.score.away : "â€”"}</span>
                 </div>
                 {match.penalties?.home != null && match.penalties?.away != null && (
                   <span className="font-label-caps text-label-caps text-on-surface-variant mt-2">
@@ -195,11 +195,11 @@ export default function MatchDetailModal({ match, teamPhotos, onClose }: MatchDe
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <span className="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider">Fecha</span>
-                  <p className="font-stats-num text-[14px] mt-1">{match.date || "—"}</p>
+                  <p className="font-stats-num text-[14px] mt-1">{match.date || "â€”"}</p>
                 </div>
                 <div>
                   <span className="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider">Cancha</span>
-                  <p className="font-stats-num text-[14px] mt-1">{match.venue || "—"}</p>
+                  <p className="font-stats-num text-[14px] mt-1">{match.venue || "â€”"}</p>
                 </div>
                 <div>
                   <span className="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider">Fase</span>
@@ -246,7 +246,7 @@ export default function MatchDetailModal({ match, teamPhotos, onClose }: MatchDe
                 <>
                   <div className="h-[1px] bg-white/5" />
                   <div className="bg-primary-container/20 border border-primary-container/40 px-4 py-3">
-                    <p className="font-label-caps text-label-caps text-primary">Walkover — Partido adjudicado</p>
+                    <p className="font-label-caps text-label-caps text-primary">Walkover â€” Partido adjudicado</p>
                   </div>
                 </>
               )}
@@ -256,7 +256,7 @@ export default function MatchDetailModal({ match, teamPhotos, onClose }: MatchDe
                 <>
                   <div className="h-[1px] bg-white/5" />
                   <div className="bg-yellow-500/10 border border-yellow-500/30 px-4 py-3 flex items-center gap-3">
-                    <span className="text-yellow-400 text-lg">★</span>
+                    <span className="text-yellow-400 text-lg">â˜…</span>
                     <div>
                       <span className="font-label-caps text-[10px] text-on-surface-variant uppercase tracking-wider">MVP del Partido</span>
                       <p className="font-label-caps text-label-caps text-on-surface">
