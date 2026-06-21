@@ -274,6 +274,254 @@ export class CopaBot {
     return { all, saints, byGroup: { [groupId]: all } };
   }
 
+  processMatchDetails(allDetails, playerNamesMap, teamNames, allMatches, groupId, saintsId) {
+    const ACTION_LABELS = {
+      1: "goal", 2: "assist", 3: "misconduct", 4: "red_card",
+      5: "own_goal", 6: "penalty_save", 7: "starter", 8: "substitute",
+      9: "yellow_card", 10: "substitution", 11: "goal_against",
+      12: "penalty_taken", 13: "penalty_missed", 14: "penalty_saved"
+    };
+    const ACTION_LABELS_ES = {
+      1: "GOL", 2: "ASISTENCIA", 3: "CONDUCTA_INDEBIDA", 4: "EXPULSION",
+      5: "AUTOGOL", 6: "ATAJA_PENAL", 7: "TITULAR", 8: "SUPLENTE",
+      9: "TARJETA_AMARILLA", 10: "CAMBIO", 11: "GOL_EN_CONTRA",
+      12: "PENAL_COBRADO", 13: "PENAL_FALLADO", 14: "PENAL_ATAJADO"
+    };
+
+    const getTeamName = (tid) => teamNames.get(tid) || tid;
+    const getPlayerName = (pid) => playerNamesMap[pid] || null;
+
+    const result = {};
+
+    Object.entries(allDetails).forEach(([matchId, detail]) => {
+      if (!detail?.list) return;
+
+      const teamsInMatch = new Set();
+      const sections = { lineup: [], goals: [], cards: [], subs: [], misconduct: [], others: [] };
+
+      Object.entries(detail.list).forEach(([ts, ev]) => {
+        const ac = ev.ac || 0;
+        const pid = ev.pl_id1 || null;
+        const entry = {
+          timestamp: parseInt(ts),
+          actionCode: ac,
+          action: ACTION_LABELS[ac] || `unknown_${ac}`,
+          actionLabel: ACTION_LABELS_ES[ac] || `DESCONOCIDO_${ac}`,
+          playerId: pid,
+          playerName: getPlayerName(pid),
+          teamId: ev.team1,
+          teamName: getTeamName(ev.team1),
+          minute: ac !== 7 ? (ev.val1 ?? null) : null,
+          val2: ev.val2 ?? null,
+          val3: ev.val3 ?? null,
+          msg: ev.msg || null,
+        };
+        if (ev.team1) teamsInMatch.add(ev.team1);
+
+        if (ac === 7) sections.lineup.push(entry);
+        else if (ac === 1 || ac === 5 || ac === 11) sections.goals.push(entry);
+        else if (ac === 4 || ac === 9) sections.cards.push(entry);
+        else if (ac === 10) sections.subs.push(entry);
+        else if (ac === 3) sections.misconduct.push(entry);
+        else sections.others.push(entry);
+      });
+
+      [sections.lineup, sections.goals, sections.cards, sections.subs, sections.misconduct, sections.others].forEach(arr => {
+        arr.sort((a, b) => a.timestamp - b.timestamp);
+      });
+
+      const teamsArr = Array.from(teamsInMatch).map(tid => ({ id: tid, name: getTeamName(tid) }));
+      let mvp = null;
+      if (detail.best) {
+        const bestKey = Object.keys(detail.best)[0];
+        if (bestKey) {
+          mvp = { playerId: bestKey, playerName: getPlayerName(bestKey), rating: detail.best[bestKey]?.num_val || null };
+        }
+      }
+
+      const match = allMatches?.[matchId];
+      const matchContext = match ? {
+        date: match.d_i ? new Date(match.d_i).toISOString().split("T")[0] : null,
+        localHour: match.d_i ? new Date(match.d_i - (match.gmt || 14400000)).getUTCHours() : null,
+        team1: { id: match.team1, name: getTeamName(match.team1) },
+        team2: { id: match.team2, name: getTeamName(match.team2) },
+        score1: match.dt?.qt_g1 ?? null,
+        score2: match.dt?.qt_g2 ?? null,
+        title: match.title || null,
+        place: match.l || null,
+      } : null;
+
+      result[matchId] = {
+        matchId,
+        matchContext,
+        teams: teamsArr,
+        numEvents: Object.keys(detail.list).length,
+        mvp,
+        info: detail.info || null,
+        sections,
+        allEvents: Object.values(detail.list).length,
+      };
+    });
+
+    return result;
+  }
+
+  processPlayers(allPlayersRaw, teamNames) {
+    const roster = {};
+    const allPlayers = [];
+
+    Object.entries(allPlayersRaw).forEach(([pid, p]) => {
+      if (!p || typeof p !== "object") return;
+
+      const name = p.nome || p.name || null;
+      const teamId = p.team || null;
+      const teamName = teamId ? (teamNames.get(teamId) || teamId) : null;
+
+      // Decode player stats
+      const stats = this.decodeStats(p.dt);
+
+      // Parse name - may be tab-separated
+      let firstName = null, lastName = null;
+      if (name) {
+        const parts = name.split("\t").filter(Boolean);
+        if (parts.length >= 2) {
+          firstName = parts[0];
+          lastName = parts.slice(1).join(" ");
+        } else {
+          firstName = name;
+        }
+      }
+
+      const playerEntry = {
+        id: pid,
+        name, firstName, lastName,
+        teamId, teamName,
+        photo: p.url || null,
+        stats,
+        statsHistory: p.fs || null,
+      };
+      allPlayers.push(playerEntry);
+
+      if (teamId) {
+        if (!roster[teamId]) roster[teamId] = { teamId, teamName, players: [] };
+        roster[teamId].players.push(playerEntry);
+      }
+    });
+
+    allPlayers.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+    Object.values(roster).forEach(r => r.players.sort((a, b) => (a.name || "").localeCompare(b.name || "")));
+
+    return { all: allPlayers, byTeam: roster };
+  }
+
+  processTopScorers(allDetails, playerNamesMap, teamNames, matchesById, groupId) {
+    const scorersMap = {};
+
+    Object.entries(allDetails).forEach(([matchId, detail]) => {
+      if (!detail?.list) return;
+
+      // Find match info
+      const match = matchesById?.[matchId];
+      const matchDate = match?.d_i ? new Date(match.d_i).toISOString().split("T")[0] : null;
+      const opponentTeamId = null; // determined per goal below
+      const matchHomeTeam = match?.team1 || null;
+      const matchAwayTeam = match?.team2 || null;
+
+      Object.entries(detail.list).forEach(([ts, ev]) => {
+        const ac = ev.ac || 0;
+        if (ac !== 1 && ac !== 5) return; // goals and own goals
+        const pid = ev.pl_id1;
+        if (!pid) return;
+
+        const teamScored = ev.team1;
+        const opponentId = teamScored === matchHomeTeam ? matchAwayTeam : (teamScored === matchAwayTeam ? matchHomeTeam : null);
+
+        if (!scorersMap[pid]) {
+          scorersMap[pid] = {
+            playerId: pid, playerName: playerNamesMap[pid] || null,
+            teamId: teamScored, teamName: teamNames.get(teamScored) || teamScored,
+            goals: 0, ownGoals: 0, goalsByMatch: [],
+          };
+        }
+        scorersMap[pid].goals++;
+        if (ac === 5) scorersMap[pid].ownGoals++;
+        scorersMap[pid].goalsByMatch.push({
+          matchId, date: matchDate,
+          opponentId, opponentName: opponentId ? (teamNames.get(opponentId) || opponentId) : null,
+          minute: ev.val1 ?? null,
+          isOwnGoal: ac === 5,
+        });
+      });
+    });
+
+    const topScorers = Object.values(scorersMap).sort((a, b) => b.goals - a.goals);
+    return topScorers;
+  }
+
+  enrichMediaWithVenue(allMedia, allMatches, groupId, placesMap) {
+    if (!allMedia) return { all: [], filtered: [] };
+
+    // Build a date-to-matches lookup for this group
+    const dateMatchMap = {};
+    Object.entries(allMatches).forEach(([id, m]) => {
+      if (m.evt !== `-5qp1c@${groupId}`) return;
+      const d = m.d_i ? new Date(m.d_i).toISOString().split("T")[0] : null;
+      if (!d) return;
+      if (!dateMatchMap[d]) dateMatchMap[d] = [];
+      dateMatchMap[d].push(m);
+    });
+
+    const all = [];
+    Object.entries(allMedia).forEach(([id, m]) => {
+      const ts = m.i?.m || null;
+      const leg = m.leg || "";
+
+      // Extract date from leg text (e.g., "Fotos Fecha 8 Martes 16/6")
+      let matchedDate = null;
+      let turno = null;
+      let cancha = null;
+
+      // Try to find a matching match by checking dates mentioned in leg
+      const dateMatch = leg.match(/(\d{1,2})\/(\d{1,2})/);
+      if (dateMatch) {
+        const day = parseInt(dateMatch[1]);
+        const month = parseInt(dateMatch[2]);
+        // Find matches around that date
+        for (const [dStr, matchesOnDate] of Object.entries(dateMatchMap)) {
+          const md = new Date(dStr);
+          if (md.getDate() === day && (md.getMonth() + 1) === month) {
+            matchedDate = dStr;
+            const firstMatch = matchesOnDate[0];
+            if (firstMatch) {
+              const localHour = firstMatch.d_i ? new Date(firstMatch.d_i - (firstMatch.gmt || 14400000)).getUTCHours() : null;
+              if (localHour === 20 || localHour === 8) turno = 1;
+              else if (localHour === 21 || localHour === 9) turno = 2;
+              else if (localHour === 22 || localHour === 10) turno = 3;
+              else if (localHour !== null) turno = localHour;
+              const placeId = firstMatch.l;
+              if (placeId && placesMap[placeId]) cancha = placesMap[placeId].title || placesMap[placeId].name || null;
+            }
+            break;
+          }
+        }
+      }
+
+      all.push({
+        id, type: m.ic || "news",
+        title: leg,
+        url: m.i?.url || m.url,
+        urlDrive: m.i?.urlP || m.urlP || null,
+        evt: m.evt, timestamp: ts,
+        date: ts ? new Date(ts).toISOString() : null,
+        matchedDate, turno, cancha,
+      });
+    });
+
+    const filtered = all.filter(m => m.evt === groupId);
+    filtered.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
+    return { all, filtered };
+  }
+
   processMedia(allMedia, groupId) {
     if (!allMedia) return { all: [], filtered: [] };
 

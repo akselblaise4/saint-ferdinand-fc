@@ -169,38 +169,32 @@ async function main() {
     }
   });
 
-  // Process match events and compute top scorers
-  const ACTION_LABELS = { 1: "goal", 2: "assist", 3: "misconduct", 4: "red_card", 5: "own_goal", 6: "penalty_save", 7: "starter", 8: "substitute", 9: "yellow_card", 10: "substitution", 11: "goal_against", 12: "penalty_taken", 13: "penalty_missed", 14: "penalty_saved" };
-  const matchDetails = {};
-  const scorersMap = {};
-
-  Object.entries(allDetails).forEach(([matchId, detail]) => {
-    if (!detail?.list) return;
-    const events = [];
-    Object.entries(detail.list).forEach(([ts, ev]) => {
-      const ac = ev.ac || 0;
-      const pid = ev.pl_id1 || null;
-      const entry = {
-        timestamp: parseInt(ts), actionCode: ac, action: ACTION_LABELS[ac] || `unknown_${ac}`,
-        playerId: pid, playerName: playerNamesMap[pid] || null,
-        teamId: ev.team1 || null, minute: ev.val1 ?? null,
-        val2: ev.val2 ?? null, val3: ev.val3 ?? null,
-        msg: ev.msg || null,
-      };
-      events.push(entry);
-
-      // Count goals for top scorers
-      if (ac === 1 && pid) {
-        if (!scorersMap[pid]) scorersMap[pid] = { playerId: pid, name: playerNamesMap[pid] || null, teamId: ev.team1, teamName: teamNames.get(ev.team1) || ev.team1, goals: 0 };
-        scorersMap[pid].goals++;
+  // Build match map keyed by the full detail path for correlation
+  const matchesById = {};
+  if (allMatches) {
+    Object.entries(allMatches).forEach(([id, m]) => {
+      if (m?.evt === `${EVENT_ID}@${GROUP}`) {
+        const detailKey = `events/${EVENT_ID}@${GROUP}/details/${id}`;
+        matchesById[detailKey] = m;
       }
     });
-    events.sort((a, b) => a.timestamp - b.timestamp);
-    matchDetails[matchId] = events;
-  });
+  }
 
-  const topScorers = Object.values(scorersMap).sort((a, b) => b.goals - a.goals);
+  // Enhanced match details with sections
+  const matchDetails = bot.processMatchDetails(allDetails, playerNamesMap, teamNames, matchesById, `${EVENT_ID}@${GROUP}`, SAINTS_ID);
+
+  // Enhanced top scorers with match context
+  const topScorers = bot.processTopScorers(allDetails, playerNamesMap, teamNames, matchesById, `${EVENT_ID}@${GROUP}`);
   const saintsScorers = topScorers.filter(s => s.teamId === SAINTS_ID);
+
+  // Enhanced player roster
+  const playersData = bot.processPlayers(allPlayersRaw, teamNames);
+
+  // Enriched media with venue info
+  const placesRaw = rtdbData[`events/${EVENT_ID}/places`] || {};
+  const placesMap = {};
+  Object.entries(placesRaw).forEach(([id, p]) => { placesMap[id] = p; });
+  const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, placesMap);
 
   // --- Saints data ---
   const saintsTeam = allTeams.find(t => t.id === SAINTS_ID);
@@ -253,20 +247,21 @@ async function main() {
     },
     standings,
     standingsByGroup,
-    media: { all: allMediaProcessed, saintsGroup: saintsMedia },
+    media: { all: allMediaProcessed, saintsGroup: saintsMedia, enriched: enrichedMedia },
     matches: {
       total: allMatchesProcessed.length,
       items: allMatchesProcessed,
       saints: saintsMatches,
     },
     players: {
-      total: Object.keys(playerNamesMap).length,
-      items: playerNamesMap,
+      total: playersData.all.length,
+      items: playersData.all,
+      byTeam: playersData.byTeam,
     },
     matchDetails: {
       total: Object.keys(matchDetails).length,
       items: matchDetails,
-      totalEvents: Object.values(matchDetails).reduce((s, e) => s + e.length, 0),
+      totalEvents: Object.values(matchDetails).reduce((s, e) => s + e.allEvents, 0),
     },
     topScorers: {
       overall: topScorers,
@@ -316,16 +311,17 @@ async function main() {
     logger.info(`    ${m.date} ${home} ${m.team2.name.padEnd(20)} ${score}`);
   });
 
+  const totalEvents = Object.values(matchDetails).reduce((s, e) => s + e.allEvents, 0);
   logger.info(`\nMedia: ${allMediaProcessed.length} total, ${saintsMedia.length} saints`);
-
-  const totalEvents = Object.values(matchDetails).reduce((s, e) => s + e.length, 0);
-  logger.info(`\n📊 Match Details: ${Object.keys(matchDetails).length} matches, ${totalEvents} events`);
-  logger.info(`🥅 Top Scorers: ${topScorers.length} total, ${saintsScorers.length} saints`);
-  topScorers.slice(0, 3).forEach(s => logger.info(`    ${(s.name || "???").padEnd(25)} ${s.goals} goles (${s.teamName})`));
+  logger.info(`📊 Match Details: ${Object.keys(matchDetails).length} matches, ${totalEvents} events`);
+  const goalCount = topScorers.reduce((s, t) => s + t.goals, 0);
+  logger.info(`🥅 Top Scorers: ${topScorers.length} players, ${goalCount} goals`);
+  topScorers.slice(0, 3).forEach(s => logger.info(`    ${(s.playerName || "???").padEnd(25)} ${s.goals} goles (${s.teamName})`));
   if (saintsScorers.length > 0) {
-    logger.info(`  Saint Ferdinand top scorer: ${saintsScorers[0].name || "???"} (${saintsScorers[0].goals} goles)`);
+    logger.info(`  Saint Ferdinand top scorer: ${saintsScorers[0].playerName || "???"} (${saintsScorers[0].goals} goles)`);
   }
-  logger.info(`🧑 Players: ${Object.keys(playerNamesMap).length} names resolved`);
+  logger.info(`🧑 Players: ${playersData.all.length} total, ${Object.keys(playersData.byTeam).length} teams with roster`);
+  logger.info(`📸 Media enriched: ${enrichedMedia.filtered.length} saints group items`);
 
   logger.info(`Changes: ${changes.changes.join(", ") || "none"}`);
 

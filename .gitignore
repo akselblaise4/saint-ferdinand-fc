@@ -43,6 +43,7 @@ yarn-error.log*
 # raw bot data (too large, not needed for build)
 data/rtdb-raw.json
 data/ws-frames.json
+data/*.json
 
 # typescript
 *.tsbuildinfo

@@ -1,8 +1,0 @@
-[
-  {
-    "url": "https://copafacil.com/assets/FontManifest.json",
-    "method": "GET",
-    "status": 200,
-    "body": "[{\"family\":\"MaterialIcons\",\"fonts\":[{\"asset\":\"https://copafacil.b-cdn.net/assets/fonts/MaterialIcons-Regular2.otf\"}]},{\"family\":\"packages/cupertino_icons/CupertinoIcons\",\"fonts\":[{\"asset\":\"https://copafacil.b-cdn.net/packages/cupertino_icons/assets/CupertinoIcons.ttf\"}]}]"
-  }
-]
