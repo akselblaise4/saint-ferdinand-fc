@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import PageEnter from "@/components/animations/PageEnter";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import PageHero from "@/components/sections/PageHero";
+import { motion } from "framer-motion";
 
 export default function ContactoPage() {
   const [sent, setSent] = useState(false);
@@ -15,69 +13,95 @@ export default function ContactoPage() {
   };
 
   return (
-    <PageEnter>
-      <PageHero title="Contacto" subtitle="Ponte en contacto con Saint Ferdinand FC" />
+    <>
 
-      <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="grid gap-12 md:grid-cols-2">
-            <ScrollReveal>
-              <div>
-                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-club-red">Contáctanos</span>
-                <h2 className="mt-2 font-display text-5xl text-club-black md:text-6xl">ESCRÍBENOS</h2>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-                  ¿Quieres contactar con el club? Déjanos tu mensaje y te responderemos lo antes posible.
-                </p>
-                <div className="mt-8 space-y-4">
+      <header className="relative h-[60vh] flex items-end overflow-hidden pt-20 bg-surface-container-low">
+        <div className="relative z-10 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-20">
+          <span className="font-label-lg text-label-lg uppercase tracking-[0.2em] text-primary mb-4 block">Contacto</span>
+          <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
+            Hablemos
+          </h1>
+          <p className="font-body-lg text-body-lg text-secondary max-w-md">
+            Ponte en contacto con Saint Ferdinand FC. Estaremos encantados de atenderte.
+          </p>
+        </div>
+      </header>
+
+      <main>
+        <section className="py-section-gap bg-surface">
+          <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-section-gap">
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="md:col-span-5"
+              >
+                <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Información</h2>
+                <div className="space-y-6">
                   {[
-                    { icon: "📍", label: "Dirección", value: "Madrid, España" },
-                    { icon: "📧", label: "Email", value: "contacto@saintferdinandfc.com" },
-                    { icon: "📱", label: "Teléfono", value: "+34 600 000 000" },
-                    { icon: "🕐", label: "Horario", value: "Lun–Vie 10:00–18:00" },
+                    { icon: "location_on", label: "Dirección", value: "Madrid, España" },
+                    { icon: "mail", label: "Email", value: "contacto@saintferdinandfc.com" },
+                    { icon: "call", label: "Teléfono", value: "+34 600 000 000" },
+                    { icon: "schedule", label: "Horario", value: "Lun–Vie 10:00–18:00" },
                   ].map((c) => (
                     <div key={c.label} className="flex items-center gap-4">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-club-red-muted text-lg">{c.icon}</div>
+                      <div className="w-12 h-12 border border-primary/20 flex items-center justify-center text-primary shrink-0">
+                        <span className="material-symbols-outlined">{c.icon}</span>
+                      </div>
                       <div>
-                        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{c.label}</p>
-                        <p className="text-sm font-medium text-foreground">{c.value}</p>
+                        <p className="font-label-sm text-label-sm uppercase text-secondary">{c.label}</p>
+                        <p className="font-body-md text-body-md">{c.value}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </ScrollReveal>
+              </motion.div>
 
-            <ScrollReveal delay={0.1}>
-              <form onSubmit={handleSubmit} className="space-y-5">
-                <div className="grid gap-5 sm:grid-cols-2">
-                  <div>
-                    <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Nombre</label>
-                    <input required className="mt-1.5 flex h-11 w-full rounded-lg border bg-background px-4 text-sm shadow-sm transition-colors focus:border-club-red focus:outline-none focus:ring-1 focus:ring-club-red" />
+              <motion.div
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="md:col-span-7"
+              >
+                <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Envíanos un mensaje</h2>
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+                    <div>
+                      <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Nombre</label>
+                      <input required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors" placeholder="TU NOMBRE" />
+                    </div>
+                    <div>
+                      <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Email</label>
+                      <input type="email" required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors" placeholder="TU EMAIL" />
+                    </div>
                   </div>
                   <div>
-                    <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Email</label>
-                    <input type="email" required className="mt-1.5 flex h-11 w-full rounded-lg border bg-background px-4 text-sm shadow-sm transition-colors focus:border-club-red focus:outline-none focus:ring-1 focus:ring-club-red" />
+                    <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Asunto</label>
+                    <input required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors" placeholder="ASUNTO" />
                   </div>
-                </div>
-                <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Asunto</label>
-                  <input required className="mt-1.5 flex h-11 w-full rounded-lg border bg-background px-4 text-sm shadow-sm transition-colors focus:border-club-red focus:outline-none focus:ring-1 focus:ring-club-red" />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">Mensaje</label>
-                  <textarea rows={5} required className="mt-1.5 flex w-full rounded-lg border bg-background px-4 py-3 text-sm shadow-sm transition-colors focus:border-club-red focus:outline-none focus:ring-1 focus:ring-club-red" />
-                </div>
-                <button
-                  type="submit"
-                  className="inline-flex h-11 w-full items-center justify-center rounded-lg club-gradient text-sm font-semibold text-white shadow-sm transition-all hover:shadow-md hover:shadow-primary/30 active:scale-[0.98]"
-                >
-                  {sent ? "✓ Mensaje enviado" : "Enviar mensaje"}
-                </button>
-              </form>
-            </ScrollReveal>
+                  <div>
+                    <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Mensaje</label>
+                    <textarea rows={5} required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors resize-none" placeholder="ESCRIBE TU MENSAJE..." />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full bg-primary text-on-primary font-label-lg text-label-lg uppercase py-4 tracking-[0.15em] transition-all hover:bg-primary-container hover:text-on-primary-container active:scale-[0.99] flex items-center justify-center gap-3"
+                  >
+                    {sent ? (
+                      <>✓ Mensaje enviado</>
+                    ) : (
+                      <>Enviar <span className="material-symbols-outlined text-xl">send</span></>
+                    )}
+                  </button>
+                </form>
+              </motion.div>
+            </div>
           </div>
-        </div>
-      </section>
-    </PageEnter>
+        </section>
+      </main>
+    </>
   );
 }

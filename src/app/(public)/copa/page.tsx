@@ -1,11 +1,11 @@
 import { getCopaData } from "@/lib/loadData";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import PageHero from "@/components/sections/PageHero";
 
 function formatDate(d: string | null) {
   if (!d) return "-";
-  return new Date(d).toLocaleDateString("es-CL", { day: "numeric", month: "long", year: "numeric" });
+  return new Date(d).toLocaleDateString("es-ES", { day: "numeric", month: "long", year: "numeric" });
 }
+
+const HERO_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuDFef9o9-Xqszly-_LqEJ_JWKLFBAOWGMtnMNLf1MkSCPpsNqyCFEdayR7BpzXAK_qRLCQyRbgSDH66FrYqqrY2D6LQJWjldKl_c7yqP4AczM__lZ2wbJ0kDnZRX94qR_l-CWXBepNq0ubnPL-FDGMCxO3XKv0";
 
 export default function CopaPage() {
   const data = getCopaData();
@@ -23,243 +23,231 @@ export default function CopaPage() {
   const gf = (m: any) => isHome(m) ? m.score1 : m.score2;
   const gc = (m: any) => isHome(m) ? m.score2 : m.score1;
 
+  const statBoxes = [
+    { label: "PJ", value: ss?.played || 0 },
+    { label: "PG", value: ss?.wins || 0 },
+    { label: "PE", value: ss?.draws || 0 },
+    { label: "PP", value: ss?.losses || 0 },
+    { label: "GF", value: ss?.goalsFor || 0 },
+    { label: "GC", value: ss?.goalsAgainst || 0 },
+    { label: "DIF", value: ss?.goalDiff != null ? (ss.goalDiff > 0 ? "+" : "") + ss.goalDiff : 0 },
+    { label: "PTS", value: saints?.season?.pts || 0 },
+  ];
+
   return (
     <>
-      <PageHero title="Copa Fácil" subtitle={`${ev?.title || "USS Liga Premier"}`} />
 
-      <section className="border-b border-border bg-surface-container py-8 md:py-10">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="border border-border bg-surface-container-lowest p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-on-surface-variant">Torneo</p>
-              <p className="mt-1 text-sm font-semibold text-on-surface">{ev?.title || "USS Liga Premier"}</p>
+      <header className="relative h-[65vh] flex items-end overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <img src={HERO_IMAGE} alt="" className="w-full h-full object-cover opacity-40 scale-105" />
+          <div className="absolute inset-0 hero-gradient" />
+        </div>
+        <div className="relative z-10 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-16">
+          <span className="font-label-lg text-label-lg uppercase tracking-[0.2em] text-primary mb-4 block">Competición</span>
+          <h1 className="font-display-xl text-display-xl text-on-surface uppercase leading-[0.9] mb-4">Copa Fácil</h1>
+          <p className="font-body-lg text-body-lg text-secondary">{ev?.title || "USS Liga Premier"}</p>
+        </div>
+      </header>
+
+      <main>
+
+        <section className="py-section-gap bg-surface-container-low">
+          <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-section-gap">
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
+                <span className="material-symbols-outlined text-primary text-3xl mb-4 block">emoji_events</span>
+                <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Torneo</p>
+                <p className="font-headline-md text-headline-md uppercase">{ev?.title || "USS Liga Premier"}</p>
+              </div>
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
+                <span className="material-symbols-outlined text-primary text-3xl mb-4 block">calendar_month</span>
+                <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Periodo</p>
+                <p className="font-headline-md text-headline-md uppercase">{formatDate(ev?.startDate)} — {formatDate(ev?.endDate)}</p>
+              </div>
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
+                <span className="material-symbols-outlined text-primary text-3xl mb-4 block">groups</span>
+                <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Divisiones</p>
+                <p className="font-headline-md text-headline-md uppercase">{data.divisions?.length || 0} divisiones</p>
+              </div>
             </div>
-            <div className="border border-border bg-surface-container-lowest p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-on-surface-variant">Periodo</p>
-              <p className="mt-1 text-sm font-semibold text-on-surface">{formatDate(ev?.startDate)} — {formatDate(ev?.endDate)}</p>
-            </div>
-            <div className="border border-border bg-surface-container-lowest p-5">
-              <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-on-surface-variant">Divisiones</p>
-              <p className="mt-1 text-sm font-semibold text-on-surface">{data.divisions?.length || 0} divisiones</p>
+
+            <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Saint Ferdinand</h2>
+            <div className="grid grid-cols-4 md:grid-cols-8 gap-gutter">
+              {statBoxes.map((s) => (
+                <div key={s.label} className="bg-surface-container-lowest p-4 md:p-6 border border-surface-container-high text-center">
+                  <p className="font-display-lg text-display-lg text-primary">{s.value}</p>
+                  <p className="font-label-sm text-label-sm uppercase text-secondary mt-2">{s.label}</p>
+                </div>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="border-b border-border py-10 md:py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">SAINT FERDINAND</h2>
-          <div className="grid grid-cols-4 gap-3 mb-4">
-            <StatBox label="PJ" value={ss?.played || 0} />
-            <StatBox label="PG" value={ss?.wins || 0} />
-            <StatBox label="PE" value={ss?.draws || 0} />
-            <StatBox label="PP" value={ss?.losses || 0} />
-            <StatBox label="GF" value={ss?.goalsFor || 0} />
-            <StatBox label="GC" value={ss?.goalsAgainst || 0} />
-            <StatBox label="DIF" value={ss?.goalDiff != null ? (ss.goalDiff > 0 ? "+" : "") + ss.goalDiff : 0} />
-            <StatBox label="PTS" value={saints?.season?.pts || 0} />
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border py-10 md:py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">Partidos</h2>
-          <div className="space-y-3">
-            {matches.map((m: any) => {
-              const isSaintsHome = isHome(m);
-              return (
-                <div key={m.id} className="border border-border bg-surface-container-lowest">
-                  <div className="flex items-center justify-between px-4 py-3 bg-surface-container border-b border-border">
-                    <span className="text-xs text-on-surface-variant">{m.date}</span>
-                    <span className="text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">
-                      {m.isPlayoff ? m.title || "Playoff" : "Fase Regular"}
-                    </span>
-                  </div>
-                  <div className="px-4 py-4">
-                    <div className="flex items-center justify-between gap-2">
-                      <span className="text-sm font-medium text-on-surface truncate">
-                        {isSaintsHome ? "SAINT FERDINAND" : teamName(m)}
+        <section className="py-section-gap bg-surface">
+          <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+            <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Partidos</h2>
+            <div className="space-y-gutter">
+              {matches.map((m: any) => {
+                const home = isHome(m);
+                return (
+                  <div
+                    key={m.id}
+                    className="bg-surface-container-lowest border border-surface-container-high overflow-hidden"
+                  >
+                    <div className="flex items-center justify-between px-6 py-3 bg-surface-container border-b border-surface-container-high">
+                      <span className="font-body-sm text-body-sm text-secondary">{m.date}</span>
+                      <span className={`font-label-sm text-label-sm uppercase ${m.isPlayoff ? "text-primary" : "text-secondary"}`}>
+                        {m.isPlayoff ? m.title || "Playoff" : "Fase Regular"}
                       </span>
-                      <span className="font-display text-xl font-bold text-on-surface px-3 shrink-0">
-                        {gf(m)} — {gc(m)}
+                    </div>
+                    <div className="px-6 py-5 flex items-center justify-between gap-4">
+                      <span className="font-headline-md text-headline-md uppercase flex-1 text-right">
+                        {home ? "Saint Ferdinand" : teamName(m)}
                       </span>
-                      <span className="text-sm font-medium text-on-surface text-right truncate">
-                        {isSaintsHome ? teamName(m) : "SAINT FERDINAND"}
+                      <span className="font-display-xl text-display-xl text-primary px-4 shrink-0">{gf(m)} — {gc(m)}</span>
+                      <span className="font-headline-md text-headline-md uppercase flex-1">
+                        {home ? teamName(m) : "Saint Ferdinand"}
                       </span>
                     </div>
                   </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {(data.standingsByGroup as any[])?.map((g: any) => (
-        <section key={g.group} className="border-b border-border bg-surface-container py-10 md:py-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">Grupo {g.group}</h2>
-            <div className="overflow-x-auto border border-border">
-              <table className="w-full text-sm">
-                <thead className="bg-surface-container-high">
-                  <tr>
-                    <th className="p-3 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">#</th>
-                    <th className="p-3 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">Equipo</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">PJ</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">PG</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">PE</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">PP</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">GF</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">GC</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">DIF</th>
-                    <th className="p-3 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">PTS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {g.teams?.map((t: any) => (
-                    <tr key={t.id} className={t.id === saints?.id ? "bg-club-red/5 font-semibold" : "border-t border-border"}>
-                      <td className="p-3 text-sm">{t.season?.pos}</td>
-                      <td className="p-3 text-sm">{t.name}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.played || 0}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.wins || 0}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.draws || 0}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.losses || 0}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.goalsFor || 0}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.goalsAgainst || 0}</td>
-                      <td className="p-3 text-center text-sm">{t.season?.stats?.goalDiff ?? 0}</td>
-                      <td className="p-3 text-center text-sm font-bold">{t.season?.pts || 0}</td>
+        {(data.standingsByGroup as any[])?.map((g: any) => (
+          <section key={g.group} className="py-section-gap bg-surface-container-low">
+            <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+              <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Grupo {g.group}</h2>
+              <div className="overflow-x-auto border border-surface-container-high">
+                <table className="w-full text-left">
+                  <thead className="bg-surface-container-high">
+                    <tr>
+                      {["#", "Equipo", "PJ", "PG", "PE", "PP", "GF", "GC", "DIF", "PTS"].map((h) => (
+                        <th key={h} className="p-4 font-label-sm text-label-sm uppercase text-secondary whitespace-nowrap">{h}</th>
+                      ))}
                     </tr>
+                  </thead>
+                  <tbody>
+                    {g.teams?.map((t: any) => (
+                      <tr key={t.id} className={t.id === saints?.id ? "bg-primary/5 font-semibold" : "border-t border-surface-container-high"}>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.pos}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.name}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.played || 0}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.wins || 0}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.draws || 0}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.losses || 0}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.goalsFor || 0}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.goalsAgainst || 0}</td>
+                        <td className="p-4 font-body-md text-body-md">{t.season?.stats?.goalDiff ?? 0}</td>
+                        <td className="p-4 font-headline-md text-headline-md text-primary">{t.season?.pts || 0}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+        ))}
+
+        <section className="py-section-gap bg-surface">
+          <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+            <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Goleadores</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
+                <h3 className="font-headline-sm text-headline-sm uppercase mb-6 text-primary">Generales</h3>
+                <div className="space-y-3">
+                  {topScorers.slice(0, 15).map((s: any, i: number) => (
+                    <div key={s.playerId || i} className="flex items-center justify-between border-b border-surface-container-high pb-3 last:border-0 last:pb-0">
+                      <div className="flex items-center gap-3">
+                        <span className="font-label-lg text-label-lg text-secondary w-6">{i + 1}</span>
+                        <div>
+                          <p className="font-body-md text-body-md">{s.playerName || "?"}</p>
+                          <p className="font-body-sm text-body-sm text-secondary">{s.teamName}</p>
+                        </div>
+                      </div>
+                      <span className="font-headline-md text-headline-md text-primary">{s.goals}</span>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </section>
-      ))}
-
-      <section className="border-b border-border py-10 md:py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">Goleadores</h2>
-          <div className="grid gap-6 md:grid-cols-2">
-            <div>
-              <h3 className="text-sm font-semibold text-on-surface mb-3">Generales</h3>
-              <div className="border border-border">
-                <table className="w-full text-sm">
-                  <thead className="bg-surface-container-high">
-                    <tr>
-                      <th className="p-2 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">#</th>
-                      <th className="p-2 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">Jugador</th>
-                      <th className="p-2 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">Equipo</th>
-                      <th className="p-2 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">Goles</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {topScorers.slice(0, 20).map((s: any, i: number) => (
-                      <tr key={s.playerId || i} className="border-t border-border">
-                        <td className="p-2 text-sm">{i + 1}</td>
-                        <td className="p-2 text-sm">{s.playerName || "?"}</td>
-                        <td className="p-2 text-sm text-on-surface-variant">{s.teamName}</td>
-                        <td className="p-2 text-center text-sm font-bold">{s.goals}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-on-surface mb-3">Saint Ferdinand</h3>
-              <div className="border border-border">
-                <table className="w-full text-sm">
-                  <thead className="bg-surface-container-high">
-                    <tr>
-                      <th className="p-2 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">#</th>
-                      <th className="p-2 text-left text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">Jugador</th>
-                      <th className="p-2 text-center text-[10px] font-semibold uppercase tracking-[0.06em] text-on-surface-variant">Goles</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {saintsScorers.map((s: any, i: number) => (
-                      <tr key={s.playerId || i} className="border-t border-border">
-                        <td className="p-2 text-sm">{i + 1}</td>
-                        <td className="p-2 text-sm">{s.playerName || "?"}</td>
-                        <td className="p-2 text-center text-sm font-bold">{s.goals}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-surface-container py-10 md:py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">Plantilla ({roster.length})</h2>
-          <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {roster.map((p: any) => (
-              <div key={p.id} className="border border-border bg-surface-container-lowest p-4 flex items-center gap-3">
-                <div className="h-10 w-10 border border-border bg-surface-container flex items-center justify-center text-sm font-bold text-on-surface-variant shrink-0">
-                  {(p.firstName?.[0] || "?").toUpperCase()}
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-medium text-on-surface truncate">{p.firstName || p.name}</p>
-                  {p.lastName && <p className="text-xs text-on-surface-variant truncate">{p.lastName}</p>}
                 </div>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {media.length > 0 && (
-        <section className="border-b border-border py-10 md:py-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">Medios</h2>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {media.map((m: any) => (
-                <a key={m.id} href={m.urlDrive || m.url} target="_blank" rel="noopener noreferrer"
-                  className="border border-border bg-surface-container-lowest transition-colors hover:bg-surface-container block">
-                  <div className="p-4">
-                    <p className="text-sm font-medium text-on-surface">{m.title}</p>
-                    <div className="mt-2 flex flex-wrap gap-2 text-xs text-on-surface-variant">
-                      {m.cancha && <span className="border border-border px-2 py-0.5">{m.cancha}</span>}
-                      {m.turno && <span className="border border-border px-2 py-0.5">Turno {m.turno}</span>}
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
+                <h3 className="font-headline-sm text-headline-sm uppercase mb-6 text-primary">Saint Ferdinand</h3>
+                <div className="space-y-3">
+                  {saintsScorers.map((s: any, i: number) => (
+                    <div key={s.playerId || i} className="flex items-center justify-between border-b border-surface-container-high pb-3 last:border-0 last:pb-0">
+                      <div className="flex items-center gap-3">
+                        <span className="font-label-lg text-label-lg text-secondary w-6">{i + 1}</span>
+                        <p className="font-body-md text-body-md">{s.playerName || "?"}</p>
+                      </div>
+                      <span className="font-headline-md text-headline-md text-primary">{s.goals}</span>
                     </div>
-                  </div>
-                </a>
-              ))}
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </section>
-      )}
 
-      {data.partners?.length > 0 && (
-        <section className="bg-surface-container py-10 md:py-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <h2 className="font-display text-xl font-bold uppercase tracking-[-0.01em] text-on-surface mb-5">Patrocinadores</h2>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {data.partners.map((p: any) => (
-                <div key={p.id} className="border border-border bg-surface-container-lowest p-4">
-                  <p className="text-sm font-semibold text-on-surface">{p.name}</p>
-                  {p.phone && <p className="text-xs text-on-surface-variant mt-1">{p.phone}</p>}
-                  {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="text-xs text-club-red mt-1 inline-block">Sitio Web</a>}
+        <section className="py-section-gap bg-surface-container-low">
+          <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+            <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Plantilla ({roster.length})</h2>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
+              {roster.map((p: any) => (
+                <div key={p.id} className="bg-surface-container-lowest p-4 md:p-6 border border-surface-container-high flex items-center gap-4">
+                  <div className="w-12 h-12 border border-surface-container-high bg-surface-container flex items-center justify-center shrink-0">
+                    <span className="font-headline-md text-headline-md text-secondary">{(p.firstName?.[0] || "?").toUpperCase()}</span>
+                  </div>
+                  <div className="min-w-0">
+                    <p className="font-body-md text-body-md truncate">{p.firstName || p.name}</p>
+                    {p.lastName && <p className="font-body-sm text-body-sm text-secondary truncate">{p.lastName}</p>}
+                  </div>
                 </div>
               ))}
             </div>
           </div>
         </section>
-      )}
-    </>
-  );
-}
 
-function StatBox({ label, value }: { label: string; value: string | number }) {
-  return (
-    <div className="border border-border bg-surface-container-lowest p-3 text-center">
-      <p className="font-display text-lg font-bold text-club-red">{value}</p>
-      <p className="text-[10px] font-semibold uppercase tracking-[0.08em] text-on-surface-variant mt-0.5">{label}</p>
-    </div>
+        {media.length > 0 && (
+          <section className="py-section-gap bg-surface">
+            <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+              <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Medios</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                {media.map((m: any) => (
+                  <a key={m.id} href={m.urlDrive || m.url} target="_blank" rel="noopener noreferrer"
+                    className="bg-surface-container-lowest p-6 border border-surface-container-high transition-all hover:-translate-y-1 hover:shadow-lg block"
+                  >
+                    <p className="font-headline-sm text-headline-sm uppercase mb-4">{m.title}</p>
+                    <div className="flex flex-wrap gap-2">
+                      {m.cancha && <span className="font-label-sm text-label-sm text-secondary border border-surface-container-high px-3 py-1">{m.cancha}</span>}
+                      {m.turno && <span className="font-label-sm text-label-sm text-secondary border border-surface-container-high px-3 py-1">Turno {m.turno}</span>}
+                    </div>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {data.partners?.length > 0 && (
+          <section className="py-section-gap bg-surface-container-low">
+            <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+              <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Patrocinadores</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+                {data.partners.map((p: any) => (
+                  <div key={p.id} className="bg-surface-container-lowest p-6 border border-surface-container-high">
+                    <p className="font-headline-md text-headline-md uppercase mb-2">{p.name}</p>
+                    {p.phone && <p className="font-body-md text-body-md text-secondary mb-2">{p.phone}</p>}
+                    {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="font-label-sm text-label-sm text-primary uppercase inline-flex items-center gap-2">Sitio Web <span className="material-symbols-outlined text-lg">open_in_new</span></a>}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+      </main>
+    </>
   );
 }

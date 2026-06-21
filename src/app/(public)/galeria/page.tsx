@@ -1,12 +1,11 @@
 import { getCopaData } from "@/lib/loadData";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
-import PageHero from "@/components/sections/PageHero";
+
+const HERO_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAG1zETlIJO5tIyPT9hYqidLt2ppqhYOLlzgQzMwxB6tICYYJYXeR6dCUxl1M_EqgqYb8RYRHCKBcXhTG5sMRSLhWLLnMbHp5BF7qB5pY2AYqo";
 
 const resultBadge: Record<string, string> = {
-  win: "bg-club-red text-white border-club-red",
-  loss: "bg-surface-container text-on-surface-variant border-border",
-  draw: "bg-surface-container text-on-surface-variant border-border",
+  win: "bg-primary text-on-primary border-primary",
+  loss: "bg-surface-container text-secondary border-surface-container-high",
+  draw: "bg-surface-container text-secondary border-surface-container-high",
 };
 
 export default function GaleriaPage() {
@@ -31,21 +30,32 @@ export default function GaleriaPage() {
 
   return (
     <>
-      <PageHero
-        title="Galería"
-        subtitle={`${albums.length} álbumes de Saint Ferdinand`}
-      />
 
-      <ScrollReveal delay={0.1}>
-        <section className="py-12 md:py-16">
-          <div className="mx-auto max-w-6xl px-6">
+      <header className="relative h-[70vh] flex items-end overflow-hidden pt-20">
+        <div className="absolute inset-0 z-0">
+          <img src={HERO_IMAGE} alt="" className="w-full h-full object-cover opacity-50 scale-105" />
+          <div className="absolute inset-0 hero-gradient" />
+        </div>
+        <div className="relative z-10 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-16 md:pb-20">
+          <span className="font-label-lg text-label-lg uppercase tracking-[0.2em] text-primary mb-4 block">Multimedia</span>
+          <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
+            Galería <br /><span className="text-primary">Saint Ferdinand</span>
+          </h1>
+          <p className="font-body-lg text-body-lg text-secondary">{albums.length} álbumes de la temporada</p>
+        </div>
+      </header>
+
+      <main>
+        <section className="py-section-gap bg-surface">
+          <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
             {albums.length === 0 ? (
-              <div className="flex flex-col items-center justify-center border border-dashed py-24 text-center">
-                <p className="text-sm font-medium text-on-surface-variant">No hay álbumes disponibles</p>
+              <div className="flex flex-col items-center justify-center border border-surface-container-high py-24 text-center">
+                <span className="material-symbols-outlined text-6xl text-secondary mb-4">photo_library</span>
+                <p className="font-body-lg text-body-lg text-secondary">No hay álbumes disponibles</p>
               </div>
             ) : (
-              <StaggerGrid className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                {albums.map((m) => {
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">
+                {albums.map((m, i) => {
                   const r = m.title?.match(/Fecha (\d+)/);
                   const roundNum = r ? parseInt(r[1]) : null;
                   const matchInfo = roundNum ? saintsRound.get(roundNum) : null;
@@ -57,42 +67,41 @@ export default function GaleriaPage() {
                   const result = sc != null && oc != null ? sc > oc ? "win" : sc < oc ? "loss" : "draw" : null;
 
                   return (
-                    <StaggerItem key={m.id}>
+                    <div
+                      key={m.id}
+                    >
                       <a href={m.urlDrive || "#"} target="_blank" rel="noopener noreferrer"
-                        className="group relative flex h-64 cursor-pointer items-end overflow-hidden border border-border bg-surface-container-lowest transition-colors hover:bg-surface-container">
-                        <img
-                          src={m.url || "/images/stadium-crowd.jpg"}
-                          alt={m.title || "Álbum"}
-                          className="absolute inset-0 h-full w-full object-cover transition-opacity duration-500 group-hover:opacity-80"
+                        className="group relative flex h-72 cursor-pointer items-end overflow-hidden bg-surface-container-lowest border border-surface-container-high"
+                      >
+                        <img src={m.url || HERO_IMAGE} alt={m.title || "Álbum"}
+                          className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-105"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-                        <div className="relative z-10 w-full p-5">
-                          <div className="flex items-center gap-2">
+                        <div className="relative z-10 w-full p-6">
+                          <div className="flex items-center gap-2 mb-2">
                             {m.urlDrive && (
-                              <span className="border border-white/40 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-white">
-                                Álbum
-                              </span>
+                              <span className="font-label-sm text-label-sm text-white border border-white/40 px-3 py-1">Álbum</span>
                             )}
                             {result && (
-                              <span className={`border px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] ${resultBadge[result]}`}>
+                              <span className={`font-label-sm text-label-sm px-3 py-1 border ${resultBadge[result]}`}>
                                 {result === "win" ? "Victoria" : result === "loss" ? "Derrota" : "Empate"}
                               </span>
                             )}
                           </div>
-                          <h3 className="mt-2 text-base font-bold text-white">{m.title || "Álbum"}</h3>
+                          <h3 className="font-headline-sm text-headline-sm uppercase text-on-surface mb-1">{m.title || "Álbum"}</h3>
                           {matchInfo?.opponent && (
-                            <p className="mt-1 text-sm text-white/70">vs {matchInfo.opponent} {sc != null && `${sc}-${oc}`}</p>
+                            <p className="font-body-md text-body-md text-white/70">vs {matchInfo.opponent} {sc != null && `${sc}-${oc}`}</p>
                           )}
                         </div>
                       </a>
-                    </StaggerItem>
+                    </div>
                   );
                 })}
-              </StaggerGrid>
+              </div>
             )}
           </div>
         </section>
-      </ScrollReveal>
+      </main>
     </>
   );
 }
