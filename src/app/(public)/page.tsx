@@ -1,5 +1,18 @@
+"use client";
+
+import { motion } from "framer-motion";
 import { Marquee } from "@/components/football/marquee";
 import { BorderBeam } from "@/components/football/border-beam";
+import { CardCompound } from "@/components/ui/card";
+import { BentoGrid, BentoGridItem, BentoGridPattern } from "@/components/ui/bento-grid";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { StatCard } from "@/components/ui/stat-card";
+import { cn } from "@/lib/utils";
+import ScrollReveal from "@/components/animations/ScrollReveal";
+import AnalogNoiseOverlay from "@/components/visuals/AnalogNoiseOverlay";
+import Link from "next/link";
+import { ArrowRight, Trophy, Users, Calendar, TrendingUp, Shield, Award } from "lucide-react";
 
 const topScorers = [
   { name: "M. López", goals: 14, assists: 5, pos: 1 },
@@ -18,227 +31,359 @@ const newsItems = [
 ];
 
 const honors = [
-  { title: "Liga Premier", count: "3", icon: "🏆" },
-  { title: "Copa USS", count: "2", icon: "🏅" },
-  { title: "Supercopa", count: "1", icon: "⭐" },
-  { title: "Liga de Campeones", count: "1", icon: "🌍" },
+  { title: "Liga Premier", count: "3", icon: Trophy },
+  { title: "Copa USS", count: "2", icon: Award },
+  { title: "Supercopa", count: "1", icon: Shield },
+  { title: "Liga de Campeones", count: "1", icon: TrendingUp },
 ];
 
-const partners = [
-  "Nike", "Coca-Cola", "Movistar", "Adidas", "Samsung", "Mahou",
+const partners = ["Nike", "Coca-Cola", "Movistar", "Adidas", "Samsung", "Mahou"];
+
+const navItems = [
+  { title: "Partidos", href: "/partidos", desc: "Calendario", icon: Calendar },
+  { title: "Plantilla", href: "/plantilla", desc: "Equipo", icon: Users },
+  { title: "Club", href: "/club", desc: "Historia", icon: Shield },
+  { title: "Jugadores", href: "/jugadores", desc: "Estadísticas", icon: TrendingUp },
+  { title: "Noticias", href: "/blog", desc: "Novedades", icon: Trophy },
+  { title: "Contacto", href: "/contacto", desc: "Escríbenos", icon: ArrowRight },
 ];
+
+const sectionVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { staggerChildren: 0.08 } },
+};
+
+const springEase = [0.34, 1.56, 0.64, 1] as const;
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: springEase } },
+};
 
 export default function Home() {
   return (
     <>
+      <AnalogNoiseOverlay />
       <Marquee />
 
-      {/* HERO */}
       <section className="relative pt-36 pb-20 px-5 md:px-10 max-w-7xl mx-auto">
-        <div className="flex flex-col items-center text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/[0.06] bg-white/[0.03] px-4 py-1.5 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-8">
-            <span className="size-1.5 rounded-full bg-club-red animate-pulse-soft" />
+        <motion.div
+          className="flex flex-col items-center text-center"
+          initial="hidden"
+          animate="visible"
+          variants={sectionVariants}
+        >
+          <motion.div
+            variants={itemVariants}
+            className="glass inline-flex items-center gap-2 rounded-full px-5 py-2 text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground mb-8"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-club-red animate-pulse-soft" />
             TEMPORADA 2026 · USS LIGA PREMIER
-          </div>
-          <h1 className="font-display text-7xl md:text-9xl lg:text-[140px] leading-[0.8] tracking-tighter text-white">
+          </motion.div>
+
+          <motion.h1
+            variants={itemVariants}
+            className="font-display text-7xl md:text-9xl lg:text-[160px] leading-[0.78] tracking-tighter text-white"
+          >
             SAINT
             <br />
-            <span className="text-club-red italic">FERDINAND</span>
-          </h1>
-          <p className="mt-6 max-w-lg text-sm leading-relaxed text-muted-foreground">
+            <span className="text-club-red italic drop-shadow-[0_0_40px_rgba(212,32,48,0.3)]">FERDINAND</span>
+          </motion.h1>
+
+          <motion.p
+            variants={itemVariants}
+            className="mt-6 max-w-lg text-sm leading-relaxed text-muted-foreground"
+          >
             Precisión, pasión y excelencia. Representamos a Madrid en la USS Liga Premier con orgullo y determinación.
-          </p>
-        </div>
+          </motion.p>
 
-        <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3">
+          <motion.div variants={itemVariants} className="mt-10 flex items-center gap-4">
+            <Button variant="primary" size="lg" hoverGlow rightIcon={<ArrowRight size={16} />}>
+              Ver Calendario
+            </Button>
+            <Button variant="glass" size="lg" hoverLift>
+              Plantilla 2026
+            </Button>
+          </motion.div>
+        </motion.div>
+
+        <motion.div
+          className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          variants={sectionVariants}
+        >
           {[
-            { label: "PARTIDOS", value: "15" },
-            { label: "VICTORIAS", value: "11" },
-            { label: "GOLES", value: "42" },
-            { label: "PTS", value: "34" },
+            { label: "PARTIDOS", value: "15", icon: Calendar },
+            { label: "VICTORIAS", value: "11", icon: Trophy },
+            { label: "GOLES", value: "42", icon: TrendingUp },
+            { label: "PTS", value: "34", icon: Award },
           ].map((stat) => (
-            <div key={stat.label} className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 text-center backdrop-blur-sm">
-              <div className="font-display text-5xl md:text-6xl italic text-club-red">{stat.value}</div>
-              <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{stat.label}</div>
-            </div>
+            <motion.div key={stat.label} variants={itemVariants}>
+              <CardCompound variant="glass" hover className="text-center py-8">
+                <div className="flex justify-center mb-2">
+                  <stat.icon size={20} className="text-club-red/60" />
+                </div>
+                <div className="font-display text-5xl md:text-6xl italic text-club-red leading-none">
+                  {stat.value}
+                </div>
+                <div className="mt-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+                  {stat.label}
+                </div>
+              </CardCompound>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </section>
 
-      {/* ÚLTIMAS NOTICIAS */}
-      <section className="pb-12 px-5 md:px-10 max-w-7xl mx-auto">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="size-1.5 rounded-full bg-club-red" />
-          <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Últimas Noticias</span>
-          <div className="h-px flex-1 bg-white/[0.06]" />
-          <a href="/blog" className="text-[10px] font-semibold uppercase tracking-widest text-club-red hover:text-club-red/80 transition-colors">Ver todas</a>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-          {newsItems.slice(0, 3).map((item) => (
-            <a key={item.title} href={item.href} className="group rounded-xl border border-white/[0.06] bg-white/[0.01] p-5 transition-all duration-300 hover:border-white/[0.12] hover:bg-white/[0.03]">
-              <div className="flex items-center gap-2 mb-3">
-                <span className="rounded-full border border-club-red/20 bg-club-red/10 px-2.5 py-0.5 text-[9px] font-semibold uppercase tracking-widest text-club-red">
-                  {item.category}
-                </span>
-                <span className="text-[10px] text-muted-foreground">{item.date}</span>
-              </div>
-              <h3 className="font-display text-xl tracking-wide text-white group-hover:text-club-red transition-colors">{item.title}</h3>
-            </a>
-          ))}
-        </div>
-      </section>
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
 
-      {/* BENTO GRID: COBERTURA + PRÓXIMO + GOLEADORES */}
-      <section className="pb-16 px-5 md:px-10 max-w-7xl mx-auto">
-        <div className="flex items-center gap-4 mb-8">
-          <div className="size-1.5 rounded-full bg-club-red" />
-          <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Cobertura del Partido</span>
-          <div className="h-px flex-1 bg-white/[0.06]" />
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-px overflow-hidden rounded-2xl border border-white/[0.04] bg-white/[0.02]">
-          <div className="md:col-span-2 md:row-span-2 relative flex flex-col justify-end bg-gradient-to-t from-background via-background/60 to-transparent p-8 min-h-[380px]">
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200')] bg-cover bg-center opacity-15" />
-            <div className="relative z-10">
-              <span className="inline-flex items-center rounded-full border border-club-red/30 bg-club-red/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-club-red mb-4">
-                Último Resultado
-              </span>
-              <div className="flex items-end gap-6">
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">LOCAL</div>
-                  <div className="font-display text-5xl text-white">SFC</div>
-                </div>
-                <div className="font-display text-7xl italic text-club-red">3 - 1</div>
-                <div>
-                  <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">VISITANTE</div>
-                  <div className="font-display text-5xl text-white">RIV</div>
-                </div>
-              </div>
-              <p className="mt-4 max-w-lg text-sm leading-relaxed text-muted-foreground">
-                Victoria contundente en casa. Doblete de M. López y gol de R. Gómez que sentenció el partido en el minuto 78.
-              </p>
-            </div>
+      <ScrollReveal>
+        <section className="py-16 px-5 md:px-10 max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-1 h-5 rounded-full bg-club-red" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Últimas Noticias
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+            <Link href="/blog">
+              <Button variant="ghost" size="sm" rightIcon={<ArrowRight size={14} />}>
+                Ver todas
+              </Button>
+            </Link>
           </div>
 
-          <div className="relative overflow-hidden rounded-xl p-6 border border-white/[0.04] bg-white/[0.01] flex flex-col justify-between">
-            <BorderBeam duration={5} size={250} colorFrom="#CEAB5D" colorTo="#D42030" />
-            <span className="relative z-10 inline-flex items-center rounded-full border border-club-gold/30 bg-club-gold/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-club-gold self-start">
-              Próximo Partido
+          <BentoGrid columns={3} gap="md">
+            {newsItems.slice(0, 3).map((item, i) => (
+              <BentoGridItem key={item.title} index={i} hoverLift>
+                <a href={item.href} className="flex flex-col h-full p-5">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Badge variant="outline" size="sm">{item.category}</Badge>
+                    <span className="text-[10px] text-muted-foreground font-mono">{item.date}</span>
+                  </div>
+                  <h3 className="font-display text-xl tracking-wide text-white group-hover:text-club-red transition-colors mt-auto">
+                    {item.title}
+                  </h3>
+                </a>
+              </BentoGridItem>
+            ))}
+          </BentoGrid>
+        </section>
+      </ScrollReveal>
+
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
+
+      <ScrollReveal>
+        <section className="py-16 px-5 md:px-10 max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-1 h-5 rounded-full bg-club-red" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Cobertura del Partido
             </span>
-            <div className="relative z-10 mt-4">
-              <div className="font-display text-3xl text-white">vs Atlético</div>
-              <div className="mt-2 space-y-1 text-xs text-muted-foreground">
-                <p>🔴 Domingo 16:00 hrs</p>
-                <p>📍 Estadio Municipal</p>
-              </div>
-              <div className="mt-4 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
-                <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">Cuenta Regresiva</div>
-                <div className="grid grid-cols-4 gap-2 text-center">
-                  {["03", "14", "28", "45"].map((val, i) => (
-                    <div key={i}>
-                      <div className="font-display text-xl text-white">{val}</div>
-                      <div className="text-[8px] font-semibold uppercase tracking-widest text-muted-foreground">
-                        {["DÍAS", "HRS", "MIN", "SEG"][i]}
+            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+          </div>
+
+          <BentoGridPattern pattern="mixed">
+            {[
+              <div key="result" className="relative flex flex-col justify-end p-6 min-h-[280px]">
+                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent rounded-2xl" />
+                <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200')] bg-cover bg-center opacity-10 rounded-2xl" />
+                <div className="relative z-10">
+                  <Badge variant="destructive" size="sm" className="mb-4">Último Resultado</Badge>
+                  <div className="flex items-end gap-6">
+                    <div>
+                      <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">LOCAL</div>
+                      <div className="font-display text-4xl text-white">SFC</div>
+                    </div>
+                    <div className="font-display text-6xl italic text-club-red drop-shadow-[0_0_20px_rgba(212,32,48,0.3)]">3 - 1</div>
+                    <div>
+                      <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-1">VISITANTE</div>
+                      <div className="font-display text-4xl text-white">RIV</div>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm text-muted-foreground/80 max-w-md">
+                    Victoria contundente en casa. Doblete de M. López y gol de R. Gómez que sentenció el partido en el minuto 78.
+                  </p>
+                </div>
+              </div>,
+
+              <div key="next" className="relative overflow-hidden p-5 flex flex-col justify-between min-h-[200px]">
+                <BorderBeam duration={5} size={250} colorFrom="#CEAB5D" colorTo="#D42030" />
+                <Badge variant="gold" size="sm" className="self-start relative z-10">Próximo Partido</Badge>
+                <div className="relative z-10 mt-auto">
+                  <div className="font-display text-2xl text-white">vs Atlético</div>
+                  <div className="mt-2 space-y-1 text-xs text-muted-foreground">
+                    <p>🔴 Domingo 16:00 hrs</p>
+                    <p>📍 Estadio Municipal</p>
+                  </div>
+                  <div className="mt-4 glass rounded-xl p-4">
+                    <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">Cuenta Regresiva</div>
+                    <div className="grid grid-cols-4 gap-2 text-center">
+                      {["03", "14", "28", "45"].map((val, i) => (
+                        <div key={i}>
+                          <div className="font-display text-xl text-white">{val}</div>
+                          <div className="text-[8px] font-semibold uppercase tracking-widest text-muted-foreground">
+                            {["DÍAS", "HRS", "MIN", "SEG"][i]}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>,
+
+              <div key="scorers" className="p-5 flex flex-col min-h-[280px]">
+                <Badge variant="destructive" size="sm" className="self-start">Top Goleadores</Badge>
+                <div className="mt-4 flex-1 space-y-2">
+                  {topScorers.map((player) => (
+                    <div key={player.name} className="flex items-center gap-3 glass rounded-xl px-4 py-3 transition-all hover:bg-white/5">
+                      <div className="flex w-8 h-8 items-center justify-center rounded-full bg-club-red text-xs font-bold text-white">
+                        {player.pos}
                       </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="text-sm font-medium text-white truncate">{player.name}</div>
+                        <div className="text-[10px] text-muted-foreground">{player.assists} asistencias</div>
+                      </div>
+                      <div className="font-display text-xl text-club-red">{player.goals}</div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </div>
-          </div>
+              </div>,
 
-          <div className="md:row-span-2 relative p-6 border-b border-white/[0.04] bg-white/[0.01] flex flex-col">
-            <span className="inline-flex items-center rounded-full border border-club-red/30 bg-club-red/10 px-3 py-1 text-[10px] font-semibold uppercase tracking-widest text-club-red self-start">
-              Top Goleadores
-            </span>
-            <div className="mt-6 flex-1 space-y-2">
-              {topScorers.map((player) => (
-                <div key={player.name} className="flex items-center gap-3 rounded-xl border border-white/[0.04] bg-white/[0.01] px-4 py-3 transition-all hover:bg-white/[0.03]">
-                  <div className="flex size-8 items-center justify-center rounded-full bg-club-red text-xs font-bold text-white">
-                    {player.pos}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="text-sm font-medium text-white truncate">{player.name}</div>
-                    <div className="text-[10px] text-muted-foreground">{player.assists} asistencias</div>
-                  </div>
-                  <div className="font-display text-xl text-club-red">{player.goals}</div>
+              <div key="pos" className="p-5 flex flex-col justify-center min-h-[120px]">
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">Posición Actual</div>
+                <div className="flex items-baseline gap-2">
+                  <span className="font-display text-7xl italic text-club-gold">1°</span>
+                  <span className="text-sm text-muted-foreground">de 12 equipos</span>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
+                <div className="mt-2 w-full h-1.5 rounded-full bg-white/5 overflow-hidden">
+                  <div className="h-full w-3/4 rounded-full bg-gradient-to-r from-club-red to-club-gold" />
+                </div>
+              </div>,
 
-      {/* HONORES */}
-      <section className="py-20 border-t border-white/[0.04]">
-        <div className="px-5 md:px-10 max-w-7xl mx-auto">
+              <div key="form" className="p-5 flex flex-col justify-center min-h-[120px]">
+                <div className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-3">Últimos 5</div>
+                <div className="flex gap-2">
+                  {["W", "W", "D", "W", "L"].map((r, i) => (
+                    <span key={i} className={`w-9 h-9 rounded-xl flex items-center justify-center text-sm font-bold font-mono border ${
+                      r === "W" ? "bg-emerald-500/20 text-emerald-400 border-emerald-500/30" :
+                      r === "D" ? "bg-amber-500/20 text-amber-400 border-amber-500/30" :
+                      "bg-red-500/20 text-red-400 border-red-500/30"
+                    }`}>{r}</span>
+                  ))}
+                </div>
+              </div>,
+
+              <div key="cta" className="p-5 flex flex-col justify-center items-center text-center min-h-[120px]">
+                <p className="text-[10px] font-semibold uppercase tracking-widest text-muted-foreground mb-2">Sigue toda la temporada</p>
+                <Link href="/partidos">
+                  <Button variant="glass" size="sm" hoverGlow rightIcon={<ArrowRight size={14} />}>
+                    Ver Calendario Completo
+                  </Button>
+                </Link>
+              </div>,
+            ]}
+          </BentoGridPattern>
+        </section>
+      </ScrollReveal>
+
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
+
+      <ScrollReveal>
+        <section className="py-20 px-5 md:px-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-10">
-            <div className="size-1.5 rounded-full bg-club-red" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Palmarés</span>
-            <div className="h-px flex-1 bg-white/[0.06]" />
+            <div className="w-1 h-5 rounded-full bg-club-gold" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Palmarés
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-club-gold/20 to-transparent" />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            {honors.map((h) => (
-              <div key={h.title} className="group rounded-xl border border-white/[0.06] bg-white/[0.01] p-8 text-center transition-all duration-300 hover:border-club-gold/20 hover:bg-white/[0.03]">
-                <span className="text-3xl md:text-4xl">{h.icon}</span>
-                <div className="mt-3 font-display text-4xl md:text-5xl italic text-club-gold group-hover:text-club-red transition-colors">{h.count}</div>
-                <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{h.title}</div>
-              </div>
+
+          <BentoGrid columns={4} gap="md">
+            {honors.map((h, i) => (
+              <BentoGridItem key={h.title} index={i} hover3D>
+                <CardCompound variant="glass" padding="lg" className="text-center">
+                  <h.icon size={28} className="mx-auto text-club-gold/60" />
+                  <div className="mt-3 font-display text-4xl md:text-5xl italic text-club-gold group-hover:text-club-red transition-colors duration-300">
+                    {h.count}
+                  </div>
+                  <div className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    {h.title}
+                  </div>
+                </CardCompound>
+              </BentoGridItem>
             ))}
-          </div>
-        </div>
-      </section>
+          </BentoGrid>
+        </section>
+      </ScrollReveal>
 
-      {/* PARTNERS */}
-      <section className="py-16 border-t border-white/[0.04]">
-        <div className="px-5 md:px-10 max-w-7xl mx-auto">
-          <div className="flex items-center gap-4 mb-10">
-            <div className="size-1.5 rounded-full bg-club-red" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Patrocinadores</span>
-            <div className="h-px flex-1 bg-white/[0.06]" />
-          </div>
-          <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
-            {partners.map((p) => (
-              <div key={p} className="text-sm font-semibold uppercase tracking-widest text-white/20 hover:text-white/40 transition-colors">
-                {p}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
 
-      {/* NAVEGACIÓN */}
-      <section className="py-20 border-t border-white/[0.04]">
-        <div className="px-5 md:px-10 max-w-7xl mx-auto">
+      <ScrollReveal>
+        <section className="py-16 px-5 md:px-10 max-w-7xl mx-auto">
           <div className="flex items-center gap-4 mb-10">
-            <div className="size-1.5 rounded-full bg-club-red" />
-            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">Navegación</span>
-            <div className="h-px flex-1 bg-white/[0.06]" />
+            <div className="w-1 h-5 rounded-full bg-club-red" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Patrocinadores
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-            {[
-              { title: "Partidos", href: "/partidos", desc: "Calendario", icon: "⚽" },
-              { title: "Plantilla", href: "/plantilla", desc: "Equipo", icon: "👥" },
-              { title: "Club", href: "/club", desc: "Historia", icon: "🏛️" },
-              { title: "Jugadores", href: "/jugadores", desc: "Estadísticas", icon: "📊" },
-              { title: "Noticias", href: "/blog", desc: "Novedades", icon: "📰" },
-              { title: "Contacto", href: "/contacto", desc: "Escríbenos", icon: "✉️" },
-            ].map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 text-center transition-all duration-300 hover:border-club-red/20 hover:bg-white/[0.04]"
+          <div className="flex flex-wrap items-center justify-center gap-x-14 gap-y-10">
+            {partners.map((p, i) => (
+              <motion.span
+                key={p}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.08, ease: [0.34, 1.56, 0.64, 1] }}
+                className="text-sm font-semibold uppercase tracking-widest text-white/15 hover:text-white/30 transition-colors duration-300 cursor-default"
               >
-                <span className="text-2xl">{item.icon}</span>
-                <h3 className="mt-3 font-display text-xl uppercase tracking-wide text-white group-hover:text-club-red transition-colors">
-                  {item.title}
-                </h3>
-                <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">{item.desc}</p>
-              </a>
+                {p}
+              </motion.span>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
+
+      <div className="max-w-7xl mx-auto px-5 md:px-10">
+        <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+      </div>
+
+      <ScrollReveal>
+        <section className="py-20 px-5 md:px-10 max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-10">
+            <div className="w-1 h-5 rounded-full bg-club-red" />
+            <span className="text-[10px] font-semibold uppercase tracking-[0.25em] text-muted-foreground">
+              Navegación
+            </span>
+            <div className="h-px flex-1 bg-gradient-to-r from-white/10 to-transparent" />
+          </div>
+
+          <BentoGrid columns={3} gap="md">
+            {navItems.map((item, i) => (
+              <BentoGridItem key={item.title} index={i} hover3D>
+                <Link href={item.href} className="flex flex-col items-center text-center p-6">
+                  <item.icon size={24} className="text-club-red/50 group-hover:text-club-red transition-colors duration-300" />
+                  <h3 className="mt-3 font-display text-xl uppercase tracking-wide text-white group-hover:text-club-red transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="mt-1 text-[10px] font-semibold uppercase tracking-widest text-muted-foreground">
+                    {item.desc}
+                  </p>
+                </Link>
+              </BentoGridItem>
+            ))}
+          </BentoGrid>
+        </section>
+      </ScrollReveal>
     </>
   );
 }
