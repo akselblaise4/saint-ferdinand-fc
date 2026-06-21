@@ -41,12 +41,12 @@ export default function PlantillaPage() {
         <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
           <div className="mb-12 md:mb-16">
             <h2 className="font-headline-lg text-headline-lg uppercase mb-2">Team Overview</h2>
-            <p className="text-on-surface-variant max-w-xl">
+            <p className="font-body-md text-body-md text-on-surface-variant max-w-xl">
               Temporada {data.event?.title}. Datos de rendimiento actualizados.
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-            {/* Stat Card: Goals */}
+            {/* Goals */}
             <div className="md:col-span-4 bg-surface-container-lowest border border-surface-container p-8 flex flex-col justify-between h-56 md:h-64 hover:border-primary transition-colors">
               <div className="flex justify-between items-start">
                 <span className="material-symbols-outlined text-primary text-3xl">sports_soccer</span>
@@ -61,7 +61,7 @@ export default function PlantillaPage() {
                 </div>
               </div>
             </div>
-            {/* Stat Card: Clean Sheets (approximated as wins with 0 goals against) */}
+            {/* Wins */}
             <div className="md:col-span-4 bg-surface-container-lowest border border-surface-container p-8 flex flex-col justify-between h-56 md:h-64 hover:border-primary transition-colors">
               <div className="flex justify-between items-start">
                 <span className="material-symbols-outlined text-primary text-3xl">shield</span>
@@ -74,7 +74,7 @@ export default function PlantillaPage() {
                 </div>
               </div>
             </div>
-            {/* Stat Card: Efficiency */}
+            {/* Efficiency */}
             <div className="md:col-span-4 bg-surface-container-lowest border border-surface-container p-8 flex flex-col justify-between h-56 md:h-64 hover:border-primary transition-colors">
               <div className="flex justify-between items-start">
                 <span className="material-symbols-outlined text-primary text-3xl">trending_up</span>
@@ -83,7 +83,7 @@ export default function PlantillaPage() {
               <div>
                 <div className="font-display-lg text-display-lg leading-none">{stats?.efficiency ?? 0}%</div>
                 <div className="text-primary font-label-lg uppercase tracking-wider mt-2">
-                  Pts: {stats?.points ?? 0} · DG: {stats?.goalDiff ?? 0 > 0 ? "+" : ""}{stats?.goalDiff ?? 0}
+                  Pts: {stats?.points ?? 0} · DG: {stats?.goalDiff != null ? (stats.goalDiff > 0 ? "+" : "") + stats.goalDiff : "0"}
                 </div>
               </div>
             </div>

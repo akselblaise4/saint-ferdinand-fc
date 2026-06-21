@@ -3,24 +3,7 @@
 @import "shadcn/tailwind.css";
 
 @theme {
-  /* Design System Colors — Exact match from Saint Ferdinand FC */
-  --color-surface: #f9f9fa;
-  --color-surface-dim: #dadadb;
-  --color-surface-bright: #f9f9fa;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #f3f3f4;
-  --color-surface-container: #eeeeef;
-  --color-surface-container-high: #e8e8e9;
-  --color-surface-container-highest: #e2e2e3;
-  --color-on-surface: #1a1c1d;
-  --color-on-surface-variant: #5e3f3b;
-  --color-inverse-surface: #2f3132;
-  --color-inverse-on-surface: #f0f1f2;
-  --color-outline: #936e69;
-  --color-outline-variant: #e9bcb6;
-  --color-surface-tint: #c0000c;
-
-  /* Brand colors */
+  /* ── Brand Colors ── */
   --color-primary: #b5000b;
   --color-on-primary: #ffffff;
   --color-primary-container: #e30613;
@@ -34,6 +17,25 @@
 
   --color-background: #f9f9fa;
   --color-on-background: #1a1c1d;
+
+  --color-surface: #f9f9fa;
+  --color-on-surface: #1a1c1d;
+  --color-on-surface-variant: #5e3f3b;
+  --color-surface-dim: #dadadb;
+  --color-surface-bright: #f9f9fa;
+
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f3f3f4;
+  --color-surface-container: #eeeeef;
+  --color-surface-container-high: #e8e8e9;
+  --color-surface-container-highest: #e2e2e3;
+
+  --color-inverse-surface: #2f3132;
+  --color-inverse-on-surface: #f0f1f2;
+
+  --color-outline: #936e69;
+  --color-outline-variant: #e9bcb6;
+  --color-surface-tint: #c0000c;
 
   /* Shadcn compatibility */
   --color-foreground: #1a1c1d;
@@ -57,11 +59,36 @@
   --color-club-red-bright: #e30613;
   --color-club-charcoal: #1A1A1B;
 
-  /* Typography */
+  /* ── Font Families ── */
+  --font-display-xl: "Archivo Narrow", sans-serif;
+  --font-headline-lg: "Archivo Narrow", sans-serif;
+  --font-headline-md: "Archivo Narrow", sans-serif;
+  --font-display-lg: "Archivo Narrow", sans-serif;
+  --font-label-lg: "Archivo Narrow", sans-serif;
+  --font-label-sm: "Archivo Narrow", sans-serif;
+  --font-body-md: "Inter", sans-serif;
+  --font-body-lg: "Inter", sans-serif;
   --font-display: "Archivo Narrow", sans-serif;
   --font-body: "Inter", sans-serif;
 
-  /* Animations */
+  /* ── Font Sizes (with line-height via slash) ── */
+  --text-display-xl: 80px / 84px;
+  --text-display-lg: 56px / 60px;
+  --text-headline-lg: 32px / 40px;
+  --text-headline-md: 24px / 32px;
+  --text-label-lg: 14px / 20px;
+  --text-label-sm: 12px / 16px;
+  --text-body-md: 16px / 24px;
+  --text-body-lg: 18px / 28px;
+
+  /* ── Spacing ── */
+  --spacing-section-gap: 120px;
+  --spacing-unit: 4px;
+  --spacing-margin-mobile: 16px;
+  --spacing-margin-desktop: 64px;
+  --spacing-gutter: 24px;
+
+  /* ── Animations ── */
   --animate-fade-in: fade-in 0.5s ease-out;
   --animate-slide-up: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-marquee: marquee 30s linear infinite;
@@ -87,7 +114,7 @@
 * { border-color: #e2e2e3; }
 
 body {
-  font-family: var(--font-body);
+  font-family: "Inter", sans-serif;
   background-color: #f9f9fa;
   color: #1a1c1d;
   -webkit-font-smoothing: antialiased;
@@ -109,35 +136,7 @@ body {
   max-width: 1440px;
 }
 
-:root {
-  --background: #f9f9fa;
-  --foreground: #1a1c1d;
-  --card: #ffffff;
-  --card-foreground: #1a1c1d;
-  --popover: #ffffff;
-  --popover-foreground: #1a1c1d;
-  --primary: #b5000b;
-  --primary-foreground: #ffffff;
-  --secondary: #5d5f5f;
-  --secondary-foreground: #ffffff;
-  --muted: #eeeeef;
-  --muted-foreground: #5e3f3b;
-  --accent: #e2e2e3;
-  --accent-foreground: #1a1c1d;
-  --destructive: #ba1a1a;
-  --destructive-foreground: #ffffff;
-  --border: #e2e2e3;
-  --input: #e2e2e3;
-  --ring: #936e69;
-  --radius: 0px;
-}
-
-@layer base {
-  * { @apply border-border outline-ring/50; }
-  body { @apply bg-background text-foreground; }
-}
-
-/* Design System Utilities */
+/* ── Design System Utilities ── */
 .hero-clip {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }

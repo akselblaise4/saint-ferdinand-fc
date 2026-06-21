@@ -61,6 +61,7 @@ export default function Home() {
     <>
       {/* ─── HERO ─── */}
       <header ref={heroRef} className="relative w-full h-[95vh] overflow-hidden bg-on-background">
+        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
         <div className="absolute inset-0 bg-on-surface" />
         <div className="absolute inset-0 z-0">
@@ -100,9 +101,10 @@ export default function Home() {
         <div className="bg-surface-container-lowest border border-secondary-container p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-12 zero-gravity-shadow">
           {nextMatch ? (
             <>
+              {/* Home Team */}
               <div className="flex flex-col items-center md:items-end gap-4">
-                <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
-                  <span className="material-symbols-outlined text-[60px] md:text-[80px] text-primary">shield</span>
+                <div className="w-24 h-24 flex items-center justify-center p-2">
+                  <span className="material-symbols-outlined text-[80px] text-primary">shield</span>
                 </div>
                 <div className="text-center md:text-right">
                   <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Local</p>
@@ -110,14 +112,15 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* VS / Countdown */}
               <div className="flex flex-col items-center justify-center border-x-0 md:border-x border-secondary-container px-6 md:px-12 text-center">
                 <p className="font-label-lg text-label-lg text-primary uppercase mb-2 tracking-widest">Kick Off</p>
-                <div className="font-display-lg text-display-lg tracking-tighter text-on-surface mb-1">
+                <div className="font-display-lg text-display-lg tracking-tighter text-on-surface mb-4">
                   {nextMatch.date
                     ? new Date(nextMatch.date).toLocaleDateString("es-ES", { day: "numeric", month: "short" }).toUpperCase()
                     : "PRÓXIMAMENTE"}
                 </div>
-                <div className="flex gap-4 md:gap-6 font-label-sm text-label-sm text-on-surface-variant uppercase mt-3">
+                <div className="flex gap-4 font-label-sm text-label-sm text-on-surface-variant uppercase">
                   <div className="flex flex-col items-center">
                     <span className="text-on-surface font-bold text-lg">{countdown.days}</span>
                     <span>DÍAS</span>
@@ -133,9 +136,10 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Away Team */}
               <div className="flex flex-col items-center md:items-start gap-4">
-                <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
-                  <span className="material-symbols-outlined text-[60px] md:text-[80px] text-secondary">shield</span>
+                <div className="w-24 h-24 flex items-center justify-center p-2">
+                  <span className="material-symbols-outlined text-[80px] text-secondary">shield</span>
                 </div>
                 <div className="text-center md:text-left">
                   <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Visitante</p>
@@ -147,7 +151,7 @@ export default function Home() {
             </>
           ) : (
             <div className="col-span-3 text-center py-8">
-              <p className="font-headline-md text-headline-md text-on-surface-variant">No hay próximos partidos</p>
+              <p className="font-headline-md text-headline-md text-on-surface-variant">No hay próximos partidos programados</p>
             </div>
           )}
         </div>
@@ -166,6 +170,7 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-gutter h-auto md:h-[800px]">
+          {/* Main Featured — Last Match or Default */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -173,7 +178,7 @@ export default function Home() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="md:col-span-8 md:row-span-2 group relative overflow-hidden bg-surface-container-high"
           >
-            <div className="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             {lastMatch ? (
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full">
                 <span className="bg-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-wider mb-4 inline-block">
@@ -206,7 +211,7 @@ export default function Home() {
                 )}
               </div>
             ) : (
-              <div className="absolute bottom-0 left-0 p-12 text-white">
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white">
                 <span className="bg-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-wider mb-4 inline-block">Primer Equipo</span>
                 <h3 className="font-display-lg text-display-lg uppercase leading-[1.1] max-w-xl">Saint Ferdinand FC</h3>
                 <p className="font-body-lg text-body-lg text-surface-variant mt-4 max-w-lg">La excelencia en el terreno de juego.</p>
@@ -214,6 +219,7 @@ export default function Home() {
             )}
           </motion.div>
 
+          {/* Scorers Panel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -225,7 +231,7 @@ export default function Home() {
             {scorers.length === 0 ? (
               <p className="font-body-md text-body-md text-on-surface-variant">Sin datos</p>
             ) : (
-              <div className="space-y-2">
+              <div className="space-y-0">
                 {scorers.slice(0, 5).map((p: any, i: number) => (
                   <div key={(p.playerName || i) + ""} className="flex items-center gap-3 border-b border-surface-container py-3 last:border-b-0">
                     <span className="flex h-6 w-6 items-center justify-center bg-surface-container text-[10px] font-semibold text-on-surface-variant font-display">
@@ -244,6 +250,7 @@ export default function Home() {
             )}
           </motion.div>
 
+          {/* Stats Panel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -285,7 +292,7 @@ export default function Home() {
             <p className="font-body-lg text-body-lg text-surface-variant mb-12">
               Acceso exclusivo a entradas, contenido solo para miembros y beneficios premium. Sé más que un espectador—forma parte de la institución.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-12">
               <div className="flex gap-4">
                 <span className="material-symbols-outlined text-primary text-3xl">confirmation_number</span>
                 <div>

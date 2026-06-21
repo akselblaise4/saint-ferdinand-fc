@@ -73,7 +73,7 @@ export default function PlantillaClient({ players, scorersMap }: Props) {
       </div>
 
       {/* Player Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-gutter">
         {displayed.map((p, i) => {
           const goals = scorersMap.get(p.name) || 0;
           return (
@@ -83,7 +83,7 @@ export default function PlantillaClient({ players, scorersMap }: Props) {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: (i % 8) * 0.04, ease: [0.16, 1, 0.3, 1] }}
-              className="player-card group relative aspect-[3/4] bg-surface-container-lowest border border-surface-container overflow-hidden"
+              className="group relative aspect-[3/4] bg-surface-container-lowest border border-surface-container overflow-hidden"
             >
               {p.photo ? (
                 <img
@@ -99,7 +99,7 @@ export default function PlantillaClient({ players, scorersMap }: Props) {
                 </div>
               )}
               {/* Hover overlay */}
-              <div className="player-overlay absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 text-surface">
+              <div className="absolute inset-x-0 bottom-0 p-6 bg-gradient-to-t from-black/80 to-transparent opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-400 text-surface">
                 <span className="text-primary-container font-label-sm uppercase mb-1 block">
                   {goals > 0 ? `${goals} goles` : "Sin goles"}
                 </span>

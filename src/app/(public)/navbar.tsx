@@ -28,7 +28,6 @@ export default function Navbar() {
   useGSAP(() => {
     const ctx = gsap.context(() => {
       gsap.fromTo(brandRef.current, { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "power3.out", delay: 0.1 });
-
       if (linksRef.current) {
         gsap.fromTo(
           linksRef.current.children,
@@ -54,7 +53,9 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-secondary-container transition-all duration-200 ${scrolled ? "h-16 zero-gravity-shadow" : "h-20"}`}
+        className={`fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-secondary-container transition-all duration-200 ease-in-out ${
+          scrolled ? "h-16 zero-gravity-shadow" : "h-20"
+        }`}
       >
         <div className="flex justify-between items-center max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop h-full">
           <Link
@@ -65,7 +66,7 @@ export default function Navbar() {
             SAINT FERDINAND FC
           </Link>
 
-          <div ref={linksRef} className="hidden md:flex items-center gap-8">
+          <div ref={linksRef} className="hidden md:flex items-center space-x-8">
             {links.map((l) => {
               const isActive = pathname === l.href;
               return (
@@ -85,9 +86,15 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-6">
-            <button className="hidden md:block bg-primary text-on-primary font-label-lg uppercase px-6 py-2 tracking-widest transition-all hover:brightness-110">
+            <Link
+              href="/contacto"
+              className="hidden md:block bg-primary-container text-on-primary font-label-lg uppercase px-6 py-2 tracking-wider hover:opacity-90 transition-all"
+            >
               Entradas
-            </button>
+            </Link>
+            <div className="hidden md:flex items-center gap-4 text-on-surface-variant">
+              <span className="material-symbols-outlined cursor-pointer hover:text-primary">account_circle</span>
+            </div>
             <button
               className="md:hidden inline-flex items-center justify-center p-2 text-on-surface-variant"
               onClick={() => setMobileOpen(!mobileOpen)}
@@ -99,11 +106,12 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile Menu */}
       {mobileOpen && (
         <div className="fixed inset-0 z-40 md:hidden">
           <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <div className="absolute top-20 right-0 bottom-0 w-72 bg-surface-container-lowest p-8 shadow-2xl">
-            <nav className="flex flex-col gap-2">
+          <div className="absolute top-20 right-0 bottom-0 w-72 bg-surface-container-lowest p-8 shadow-2xl border-l border-secondary-container">
+            <nav className="flex flex-col gap-1">
               {links.map((l) => {
                 const isActive = pathname === l.href;
                 return (
@@ -111,16 +119,21 @@ export default function Navbar() {
                     key={l.href}
                     href={l.href}
                     className={`px-4 py-3 font-label-lg uppercase tracking-wider transition-colors ${
-                      isActive ? "text-primary bg-primary/5" : "text-on-surface-variant hover:text-primary"
+                      isActive
+                        ? "text-primary bg-primary-container/5 border-l-2 border-primary"
+                        : "text-on-surface-variant hover:text-primary hover:bg-surface-container-low"
                     }`}
                   >
                     {l.label}
                   </Link>
                 );
               })}
-              <button className="mt-4 bg-primary text-on-primary font-label-lg uppercase py-3 tracking-widest">
+              <Link
+                href="/contacto"
+                className="mt-4 bg-primary-container text-on-primary font-label-lg uppercase py-3 tracking-widest text-center"
+              >
                 Entradas
-              </button>
+              </Link>
             </nav>
           </div>
         </div>
