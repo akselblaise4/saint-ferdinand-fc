@@ -1,6 +1,7 @@
 import type {
   Standing,
   Match,
+  MatchEvent,
   TopScorer,
   SaintsInfo,
   MediaItem,
@@ -81,6 +82,21 @@ function mapStanding(s: RawTeamEntry): Standing {
   };
 }
 
+function mapEvent(ev: { id: string; matchId: string; ac?: number; pl_id1?: string; team1?: string; val1?: number; val2?: number; val3?: number; playerName?: string }): MatchEvent {
+  return {
+    id: ev.id,
+    matchId: ev.matchId,
+    playerId: ev.pl_id1 || "",
+    teamId: ev.team1 || "",
+    playerName: ev.playerName || ev.pl_id1 || "",
+    minute: 0,
+    type: (ev.ac === 7 ? "goal" : ev.ac === 9 ? "card" : ev.ac === 1 ? "substitution" : "goal") as MatchEvent["type"],
+    ac: ev.ac,
+    val2: ev.val2,
+    val3: ev.val3,
+  };
+}
+
 function mapMatch(m: RawMatch): Match {
   return {
     id: m.id,
@@ -102,7 +118,7 @@ function mapMatch(m: RawMatch): Match {
     isPlayoff: m.isPlayoff,
     isSaints: m.isSaints,
     walkover: m.walkover,
-    details: m.details,
+    details: m.details ? { list: m.details.list?.map(mapEvent), info: m.details.info, best: m.details.best } : undefined,
   };
 }
 

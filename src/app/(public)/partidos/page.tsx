@@ -1,25 +1,11 @@
-import Image from "next/image";
 import { getCopaData } from "@/lib/loadData";
 import { buildBracket } from "@/lib/buildBracket";
 import Bracket from "@/components/visuals/Bracket";
 import PageEnter from "@/components/animations/PageEnter";
 import ScrollReveal from "@/components/animations/ScrollReveal";
-import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
+import { StaggerItem } from "@/components/animations/StaggerGrid";
 import PageHero from "@/components/sections/PageHero";
-
-const monthNames = ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"];
-function fmt(d: string | null) { if (!d) return ""; const [y, m, dd] = d.split("-").map(Number); return `${dd} ${monthNames[m - 1]} ${y}`; }
-
-function getTeamPhoto(data: any, name: string): string | null {
-  return data.standings?.find((s: any) => s.name === name)?.photo || null;
-}
-
-const resultStyles: Record<string, string> = {
-  win: "border-emerald-200 bg-emerald-50 text-emerald-700",
-  loss: "border-red-200 bg-red-50 text-red-700",
-  draw: "border-zinc-200 bg-zinc-50 text-zinc-600",
-  upcoming: "border-zinc-200 bg-white text-zinc-500",
-};
+import MatchListClient from "@/components/MatchListClient";
 
 export default function PartidosPage() {
   const data = getCopaData();
@@ -77,70 +63,7 @@ export default function PartidosPage() {
               <h2 className="font-display text-3xl text-foreground md:text-4xl">Fase Regular</h2>
               <p className="text-sm text-muted-foreground">{regularMatches.length} partidos</p>
             </div>
-            <StaggerGrid className="space-y-2">
-              {regularMatches.map((m, i) => {
-                const isHome = m.team1.id === saints?.id;
-                const sc = m.score1 !== null ? (isHome ? m.score1 : m.score2) : null;
-                const oc = m.score1 !== null ? (isHome ? m.score2 : m.score1) : null;
-                const result = sc !== null && oc !== null ? sc > oc ? "win" : sc < oc ? "loss" : "draw" : null;
-                const isFuture = m.score1 === null;
-                const oppName = isHome ? m.team2.name : m.team1.name;
-                const homeLogo = getTeamPhoto(data, m.team1.name);
-                const awayLogo = getTeamPhoto(data, m.team2.name);
-
-                return (
-                  <StaggerItem key={m.id + i}>
-                    <div className="rounded-xl border bg-card shadow-sm transition-all hover:shadow-md">
-                      <div className="flex items-center justify-between gap-4 p-4 md:px-6">
-                        <div className="flex min-w-0 items-center gap-3">
-                          <span className="w-16 shrink-0 text-right text-xs tabular-nums text-muted-foreground">{fmt(m.date)}</span>
-                          <span className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-[11px] font-semibold ${result ? resultStyles[result] : resultStyles.upcoming}`}>
-                            {isFuture ? "Próximo" : result === "win" ? "Victoria" : result === "loss" ? "Derrota" : "Empate"}
-                          </span>
-                        </div>
-                        <div className="flex items-center justify-center gap-3 md:gap-6">
-                          <div className="flex items-center gap-2">
-                            {homeLogo && (
-                              <div className="flex h-6 w-6 items-center justify-center overflow-hidden rounded bg-muted">
-                                <Image src={homeLogo} alt="" width={24} height={24} className="h-full w-full object-contain p-0.5" />
-                              </div>
-                            )}
-                            <span className={`truncate text-sm font-medium ${!isHome ? "text-muted-foreground" : ""}`}>
-                              {isHome ? "SFFC" : m.team1.name}
-                            </span>
-                          </div>
-                          <div className="flex w-16 items-center justify-center gap-1">
-                            {sc !== null ? (
-                              <>
-                                <span className={`font-display text-xl leading-none ${result === "win" ? "text-emerald-600" : result === "loss" ? "text-red-500" : "text-muted-foreground"}`}>{sc}</span>
-                                <span className="text-xs text-muted-foreground">-</span>
-                                <span className={`font-display text-xl leading-none ${result === "loss" ? "text-emerald-600" : result === "win" ? "text-red-500" : "text-muted-foreground"}`}>{oc}</span>
-                              </>
-                            ) : (
-                              <span className="text-xs font-semibold text-muted-foreground">VS</span>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-2">
-                            <span className={`truncate text-sm font-medium ${isHome ? "text-muted-foreground" : ""}`}>
-                              {isHome ? m.team2.name : "SFFC"}
-                            </span>
-                            {awayLogo && (
-                              <div className="flex h-6 w-6 items-center justify-center overflow-hidden rounded bg-muted">
-                                <Image src={awayLogo} alt="" width={24} height={24} className="h-full w-full object-contain p-0.5" />
-                              </div>
-                            )}
-                          </div>
-                        </div>
-                        <div className="flex shrink-0 items-center gap-2">
-                          {m.venue && <span className="hidden text-xs text-muted-foreground md:block">{m.venue}</span>}
-                          <span className="text-xs text-muted-foreground">T{m.turno}</span>
-                        </div>
-                      </div>
-                    </div>
-                  </StaggerItem>
-                );
-              })}
-            </StaggerGrid>
+            <MatchListClient matches={regularMatches} saintsId={saints?.id || null} standings={data.standings} />
           </div>
         </section>
       </ScrollReveal>
@@ -154,17 +77,15 @@ export default function PartidosPage() {
                 <h2 className="font-display text-3xl text-white md:text-4xl">Playoffs</h2>
                 <p className="text-sm text-white/30">{bracketTrees[0].rounds.length} fases</p>
               </div>
-              <StaggerGrid stagger={0.1}>
+              <div className="space-y-4">
                 {bracketTrees.map((tree, i) => (
-                  <StaggerItem key={i}>
-                    <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
-                      <div className="p-6">
-                        <Bracket tree={tree} />
-                      </div>
+                  <div key={i} className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm">
+                    <div className="p-6">
+                      <Bracket tree={tree} />
                     </div>
-                  </StaggerItem>
+                  </div>
                 ))}
-              </StaggerGrid>
+              </div>
             </div>
           </section>
         </ScrollReveal>
