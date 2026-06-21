@@ -97,8 +97,8 @@ for (const [matchId, detail] of Object.entries(rawDetails)) {
   const teams = matchTeamMap[matchId];
   
   for (const [evId, ev] of Object.entries(list)) {
-    if (ev.ac === 7 && ev.pl_id1) {
-      // Goal event
+    if (ev.ac === 1 && ev.pl_id1) {
+      // Goal event (ac:1 = goal in Copa Fácil)
       const pid = ev.pl_id1;
       const teamId = ev.team1;
       

@@ -83,14 +83,23 @@ function mapStanding(s: RawTeamEntry): Standing {
 }
 
 function mapEvent(ev: { id: string; matchId: string; ac?: number; pl_id1?: string; team1?: string; val1?: number; val2?: number; val3?: number; playerName?: string }): MatchEvent {
+  const ac = ev.ac;
+  let type: MatchEvent["type"] = "goal";
+  let cardColor: MatchEvent["cardColor"] = undefined;
+  if (ac === 1) type = "goal";
+  else if (ac === 9) { type = "card"; cardColor = "yellow"; }
+  else if (ac === 4) { type = "card"; cardColor = "red"; }
+  else if (ac === 3) { type = "card"; cardColor = "second_yellow"; }
+  else if (ac === 10) type = "substitution";
   return {
     id: ev.id,
     matchId: ev.matchId,
     playerId: ev.pl_id1 || "",
     teamId: ev.team1 || "",
     playerName: ev.playerName || ev.pl_id1 || "",
-    minute: 0,
-    type: (ev.ac === 7 ? "goal" : ev.ac === 9 ? "card" : ev.ac === 1 ? "substitution" : "goal") as MatchEvent["type"],
+    minute: ev.val1 ?? 0,
+    type,
+    cardColor,
     ac: ev.ac,
     val2: ev.val2,
     val3: ev.val3,

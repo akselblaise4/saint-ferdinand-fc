@@ -100,20 +100,24 @@ export default function MatchListClient({ matches, saintsId, standings }: { matc
         match={(() => {
           if (!selectedMatch) return null;
           const d = selectedMatch.details;
-          const mappedEvents = d?.list?.map(ev => ({
-            id: ev.id,
-            matchId: ev.matchId,
-            playerId: ev.pl_id1 || "",
-            teamId: ev.team1 || "",
-            playerName: ev.playerName || ev.pl_id1 || "",
-            minute: 0,
-            stoppageTime: undefined,
-            type: (ev.ac === 7 ? "goal" : ev.ac === 9 ? "card" : ev.ac === 1 ? "substitution" : "goal") as "goal" | "card" | "substitution" | "penalty" | "own_goal",
-            cardColor: undefined,
-            ac: ev.ac,
-            val2: ev.val2,
-            val3: ev.val3,
-          })) || undefined;
+          const mappedEvents = d?.list?.map(ev => {
+            const ac = ev.ac;
+            let type: "goal" | "card" | "substitution" | "penalty" | "own_goal" = "goal";
+            let cardColor: "yellow" | "red" | "second_yellow" | undefined;
+            if (ac === 1) type = "goal";
+            else if (ac === 9) { type = "card"; cardColor = "yellow"; }
+            else if (ac === 4) { type = "card"; cardColor = "red"; }
+            else if (ac === 3) { type = "card"; cardColor = "second_yellow"; }
+            else if (ac === 10) type = "substitution";
+            return {
+              id: ev.id, matchId: ev.matchId,
+              playerId: ev.pl_id1 || "", teamId: ev.team1 || "",
+              playerName: ev.playerName || ev.pl_id1 || "",
+              minute: ev.val1 ?? 0, stoppageTime: undefined,
+              type, cardColor, ac: ev.ac,
+              val2: ev.val2, val3: ev.val3,
+            };
+          }) || undefined;
           return {
             id: selectedMatch.id,
             date: selectedMatch.date,

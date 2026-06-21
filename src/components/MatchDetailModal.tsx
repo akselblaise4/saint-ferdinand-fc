@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { Match, MatchEvent } from "@/types/football";
 
-const AC_GOAL = 7;
+const AC_GOAL = 1;
 const AC_CARD = 9;
 const AC_SUB_IN = 1;
 
@@ -65,8 +65,44 @@ function TimelineEvent({ event, isHome }: { event: MatchEvent; isHome: boolean }
         </div>
         <div className={`flex flex-col ${isHome ? "items-start" : "items-end"}`}>
           <span className="font-label-caps text-label-caps text-on-surface">{event.playerName}</span>
-          {event.val3 ? <span className="font-stats-num text-[10px] text-on-surface-variant">Sale #{event.val3}</span> : null}
-          <span className="font-stats-num text-[11px] text-on-surface-variant">{event.minute}&apos;</span>
+          <span className="font-stats-num text-[11px] text-on-surface-variant">Ingresa {event.minute}&apos;</span>
+        </div>
+      </div>
+    );
+  }
+  if (event.ac === 10) {
+    return (
+      <div className={`flex items-center gap-3 ${isHome ? "flex-row" : "flex-row-reverse"}`}>
+        <div className="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-on-surface-variant">
+            <path d="M12 5v14M5 12h14" />
+          </svg>
+        </div>
+        <div className={`flex flex-col ${isHome ? "items-start" : "items-end"}`}>
+          <span className="font-label-caps text-label-caps text-on-surface">{event.playerName}</span>
+          <span className="font-stats-num text-[11px] text-on-surface-variant">Sale {event.minute}&apos;</span>
+        </div>
+      </div>
+    );
+  }
+  if (event.ac === 4) {
+    return (
+      <div className={`flex items-center gap-3 ${isHome ? "flex-row" : "flex-row-reverse"}`}>
+        <div className="w-3 h-4 shrink-0 bg-red-600" />
+        <div className={`flex flex-col ${isHome ? "items-start" : "items-end"}`}>
+          <span className="font-label-caps text-label-caps text-on-surface">{event.playerName}</span>
+          <span className="font-stats-num text-[11px] text-on-surface-variant">Expulsado {event.minute}&apos;</span>
+        </div>
+      </div>
+    );
+  }
+  if (event.ac === 3) {
+    return (
+      <div className={`flex items-center gap-3 ${isHome ? "flex-row" : "flex-row-reverse"}`}>
+        <div className="w-3 h-4 shrink-0 bg-orange-400" />
+        <div className={`flex flex-col ${isHome ? "items-start" : "items-end"}`}>
+          <span className="font-label-caps text-label-caps text-on-surface">{event.playerName}</span>
+          <span className="font-stats-num text-[11px] text-on-surface-variant">Amonestado {event.minute}&apos;</span>
         </div>
       </div>
     );
