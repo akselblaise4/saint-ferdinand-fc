@@ -3,11 +3,29 @@ name: Copa Fácil Bot
 on:
   schedule:
     # Chile Standard Time (UTC-4) in June:
-    #   11:00 UTC = 7:00 CLT
-    #   03:30 UTC = 23:30 CLT previous day
-    - cron: '0 11 * * *'
-    - cron: '30 3 * * *'
+    #   11:00 UTC = 7:00 CLT (morning)
+    #   22:00 UTC = 18:00 CLT (evening, after matches)
+    #   03:30 UTC = 23:30 CLT (late night final update)
+    - cron: '0 11 * * *'     # 07:00 CLT
+    - cron: '0 22 * * *'     # 18:00 CLT
+    - cron: '30 3 * * *'     # 23:30 CLT
   workflow_dispatch:
+    inputs:
+      mode:
+        description: 'Bot mode'
+        required: true
+        default: 'full'
+        type: choice
+        options:
+          - full
+          - quick
+          - validate-only
+          - discover
+      force:
+        description: 'Force write even if no changes'
+        required: false
+        default: false
+        type: boolean
 
 jobs:
   fetch:
@@ -28,25 +46,48 @@ jobs:
         run: npx playwright install chromium
 
       - name: Run Copa Fácil Bot
-        run: node scripts/copa-bot-ultimate.mjs
-
-      - name: Copy data for site
-        run: cp data/copa-data-ultimate.json data/copa-data.json
+        run: |
+          args="--${{ inputs.mode || 'full' }}"
+          if [[ "${{ inputs.force || 'false' }}" == "true" ]]; then
+            args="$args --force"
+          fi
+          node scripts/copa-bot-pro.mjs $args
 
       - name: Check for changes
         id: changes
         run: |
           if git status --porcelain data/ | grep -q .; then
             echo "changed=true" >> $GITHUB_OUTPUT
+            echo "files=$(git status --porcelain data/ | wc -l)" >> $GITHUB_OUTPUT
           else
             echo "changed=false" >> $GITHUB_OUTPUT
           fi
+
+      - name: Show diff summary
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          echo "### 📊 Changes detected" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "Files changed:" >> $GITHUB_STEP_SUMMARY
+          git diff --stat data/ >> $GITHUB_STEP_SUMMARY
 
       - name: Commit & push fresh data
         if: steps.changes.outputs.changed == 'true'
         run: |
           git config user.name "Copa Fácil Bot"
           git config user.email "bot@copafacil"
-          git add data/copa-data.json data/copa-data-ultimate.json
-          git commit -m "bot: actualizar datos desde Copa Fácil [$(date -u '+%Y-%m-%d %H:%M UTC')]"
+          git add data/
+          DIFF_STATS=$(git diff --cached --stat data/ | tail -1)
+          git commit -m "bot: actualizar datos desde Copa Fácil [$(date -u '+%Y-%m-%d %H:%M UTC')]
+
+          ${DIFF_STATS}"
           git push
+
+      - name: Log outcome
+        if: always()
+        run: |
+          if [[ "${{ steps.changes.outputs.changed }}" == "true" ]]; then
+            echo "✅ Bot completed with changes" >> $GITHUB_STEP_SUMMARY
+          else
+            echo "⏭️ Bot completed — no changes" >> $GITHUB_STEP_SUMMARY
+          fi
