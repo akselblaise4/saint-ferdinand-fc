@@ -59,8 +59,6 @@ async function main() {
   const rtdbPaths = [
     `events/${EVENT_ID}@${GROUP}/info`,
     `events/${EVENT_ID}@${GROUP}/teams`,
-    `events/${EVENT_ID}@${GROUP}/inf_up`,
-    `events/${EVENT_ID}@${GROUP}/m_set`,
     `events/${EVENT_ID}/attachevents`,
     `events/${EVENT_ID}/midia`,
     `events/${EVENT_ID}/ptr`,
@@ -107,22 +105,9 @@ async function main() {
   } catch { /* first run */ }
 
   // =============================================================
-  // FIRESTORE (skip if quick or validate-only)
-  // =============================================================
-  let firestoreData = {};
-  if (!flags["quick"] && !flags["validate-only"]) {
-    logger.info("\n[2] Reading Firestore...");
-    firestoreData = await bot.queryFirestore([
-      "matches", "games", "events", "tournaments",
-      `events/${EVENT_ID}/matches`, `events/${EVENT_ID}@${GROUP}/matches`,
-      "results", "fixtures", "players",
-    ]);
-  }
-
-  // =============================================================
   // PROCESS DATA
   // =============================================================
-  logger.info("\n[3] Processing data...");
+  logger.info("\n[2] Processing data...");
 
   const teamsRaw = rtdbData[`events/${EVENT_ID}@${GROUP}/teams`];
   const info = rtdbData[`events/${EVENT_ID}@${GROUP}/info`];
@@ -142,6 +127,25 @@ async function main() {
 
   // --- Process matches ---
   const { all: allMatchesProcessed, saints: saintsMatches } = bot.processMatches(allMatches, `${EVENT_ID}@${GROUP}`, SAINTS_ID, teamNames);
+
+  // --- Calculate form for standings ---
+  const teamForm = {};
+  standings.forEach(t => teamForm[t.id] = []);
+  allMatchesProcessed.forEach(m => {
+    if (m.finished && m.score1 !== null) {
+      [m.team1.id, m.team2.id].forEach(tid => {
+        if (teamForm[tid]) {
+          const isHome = m.team1.id === tid;
+          const sc = isHome ? m.score1 : m.score2;
+          const oc = isHome ? m.score2 : m.score1;
+          teamForm[tid].push(sc > oc ? "W" : sc < oc ? "L" : "D");
+        }
+      });
+    }
+  });
+  Object.keys(teamForm).forEach(id => {
+    teamForm[id] = teamForm[id].slice(-5);
+  });
 
   // --- Process media ---
   const { all: allMediaProcessed, filtered: saintsMedia } = bot.processMedia(allMedia, GROUP);
@@ -224,7 +228,48 @@ async function main() {
   // Enriched media with venue info
   const placesLookup = {};
 Object.entries(allPlaces).forEach(([id, p]) => { placesLookup[id] = p; });
-const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, placesLookup);
+  const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, placesLookup);
+
+  // Resolve Drive subfolders: from parent folder → specific match subfolder by turno+cancha
+  const enrichedWithSubfolders = await bot.resolveDriveSubfolders(enrichedMedia.filtered || []);
+
+  // Fetch actual Drive photos from each resolved subfolder
+  for (const m of enrichedWithSubfolders) {
+    if (m.driveSubfolder) {
+      const subId = m.driveSubfolder.match(/folders\/([a-zA-Z0-9_-]+)/)?.[1];
+      if (subId) {
+        const photos = await bot.fetchDriveFolderImages(subId);
+        if (photos.length > 0) {
+          m.drivePhotos = photos.slice(0, 12);
+        }
+      }
+    }
+  }
+
+  // Link media items to saints matches by Fecha number
+  const mediaByFecha = {};
+  enrichedWithSubfolders.forEach(m => {
+    const fm = m.title.match(/Fecha[_\s]*(\d+)/i);
+    if (fm) mediaByFecha[parseInt(fm[1])] = m;
+  });
+  const enrichedFilteredFinal = enrichedWithSubfolders;
+  saintsMatches.forEach((m, i) => {
+    const fecha = i + 1;
+    const mediaItem = mediaByFecha[fecha] || enrichedFilteredFinal.find(em => em.matchedDate === m.date && em.cancha === m.venue);
+    if (mediaItem) {
+      m.media = [{
+        url: mediaItem.drivePhotos?.[0]?.thumbnail || mediaItem.drivePhotos?.[0]?.url || mediaItem.url,
+        urlDrive: mediaItem.driveSubfolder || mediaItem.urlDrive,
+        urlParentDrive: mediaItem.urlDrive,
+        title: mediaItem.title,
+        type: mediaItem.type,
+        matchedDate: mediaItem.matchedDate,
+        cancha: mediaItem.cancha,
+        turno: mediaItem.turno,
+        drivePhotos: mediaItem.drivePhotos || [],
+      }];
+    }
+  });
 
   // --- Saints data ---
   const saintsTeam = allTeams.find(t => t.id === SAINTS_ID);
@@ -275,8 +320,12 @@ const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, plac
       latest: saintsTeam?.latest || null,
       statsHistory: saintsHistory,
     },
-    standings,
-    standingsByGroup,
+    standings: standings.map(s => ({ ...s, form: teamForm[s.id] || [] })),
+    standingsByGroup: standingsByGroup.map(g => ({
+      ...g,
+      teams: g.teams.map(t => ({ ...t, form: teamForm[t.id] || [] }))
+    })),
+    teams: allTeams.map(t => ({ ...t, form: teamForm[t.id] || [] })),
     media: { all: allMediaProcessed, saintsGroup: saintsMedia, enriched: enrichedMedia },
     matches: {
       total: allMatchesProcessed.length,
@@ -300,8 +349,6 @@ const enrichedMedia = bot.enrichMediaWithVenue(allMedia, allMatches, GROUP, plac
     },
     attachments: Object.entries(allAttachments).map(([id, a]) => ({ id, title: a.title, url: a.url })),
     partners: Object.entries(allPartners).map(([id, p]) => ({ id, name: p.title, phone: p.numb, url: p.urlP || p.url_l })),
-    playerNames: playerNamesMap,
-    firestore: firestoreData,
   };
 
   // =============================================================

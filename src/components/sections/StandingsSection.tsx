@@ -76,8 +76,8 @@ export default function StandingsSection({ standings, scorers, eventTitle }: Sta
                     <div className="flex items-center gap-2 min-w-0">
                       <span className="text-[10px] font-bold text-muted-foreground w-5 flex-shrink-0">{scorer.overallRank || i + 1}º</span>
                       <div className="min-w-0">
-                        <p className="text-sm font-bold text-[#001838] truncate">{scorer.player || "—"}</p>
-                        <p className="text-[10px] text-muted-foreground truncate">{scorer.team || ""}</p>
+                        <p className="text-sm font-bold text-[#001838] truncate">{scorer.playerName || "—"}</p>
+                        <p className="text-[10px] text-muted-foreground truncate">{scorer.teamName || ""}</p>
                       </div>
                     </div>
                     <span className="text-sm font-bold text-red flex-shrink-0">{scorer.goals ?? 0}</span>

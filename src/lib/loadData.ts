@@ -42,6 +42,7 @@ export interface MatchEntry {
   isPlayoff: boolean;
   isSaints: boolean;
   walkover?: boolean;
+  media?: { url: string; urlDrive: string | null; urlParentDrive?: string|null; title: string; type: string; matchedDate?: string; cancha?: string; turno?: string; drivePhotos?: { fileId: string; thumbnail: string|null; title: string; url: string }[] }[];
   details?: {
     list?: {
       id: string;
@@ -78,7 +79,7 @@ export interface CopaData {
     statsHistory: StatHistoryEntry[];
   } | null;
   standings: TeamEntry[];
-  standingsByGroup: Record<string, TeamEntry[]>;
+  standingsByGroup: { group: string; teams: TeamEntry[] }[];
   teams: TeamEntry[];
   matches: {
     total: number;
@@ -90,7 +91,7 @@ export interface CopaData {
     saints: any[];
     lastUpdated: string | null;
   };
-  media: { all: { id: string; type: string; title: string; url: string; urlDrive: string | null; thumbnail: string | null; evt: string; timestamp: number | null; date: string | null; dateOnly: string | null; matchDriveUrl: string | null }[]; saintsGroup: any[] };
+  media: { all: { id: string; type: string; title: string; url: string; urlDrive: string | null; thumbnail: string | null; event: string; timestamp: number | null; date: string | null; dateOnly: string | null; matchDriveUrl: string | null }[]; saintsGroup: any[]; enriched?: any };
   partners: { id: string; name: string; phone: string; url: string }[];
   attachments: { id: string; title: string; url: string }[];
   players?: any;
@@ -108,7 +109,7 @@ export function getCopaData(): CopaData {
       divisions: [],
       saints: null,
       standings: [],
-      standingsByGroup: {},
+      standingsByGroup: [],
       teams: [],
       matches: { total: 0, items: [], saints: [] },
       topScorers: { overall: [], saints: [], lastUpdated: null },

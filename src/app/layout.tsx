@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-import { Bebas_Neue } from "next/font/google";
+import { Archivo_Narrow, Inter } from "next/font/google";
 import { Providers } from "@/components/providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivoNarrow = Archivo_Narrow({
+  variable: "--font-display",
+  weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
-const bebasNeue = Bebas_Neue({
-  variable: "--font-bebas",
-  weight: "400",
+const inter = Inter({
+  variable: "--font-body",
+  weight: ["300", "400", "500", "600", "700"],
   subsets: ["latin"],
 });
 
@@ -29,8 +29,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="es" className={`${geistSans.variable} ${bebasNeue.variable}`}>
-      <body className="min-h-full overflow-x-hidden bg-background font-sans antialiased">
+    <html lang="es" className={`${archivoNarrow.variable} ${inter.variable}`}>
+      <body className="min-h-full overflow-x-hidden bg-background font-body antialiased">
         <Providers>{children}</Providers>
       </body>
     </html>

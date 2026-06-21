@@ -77,6 +77,7 @@ export interface Match {
   isPlayoff: boolean;
   isSaints: boolean;
   walkover?: boolean;
+  media?: { url: string; urlDrive: string | null; urlParentDrive?: string|null; title: string; type: string; matchedDate?: string; cancha?: string; turno?: string; drivePhotos?: { fileId: string; thumbnail: string|null; title: string; url: string }[] }[];
   details?: {
     list?: MatchEvent[];
     info?: Record<string, string | number>;
@@ -156,7 +157,7 @@ export interface MatchEvent {
   id: string;
   matchId: string;
   type: "goal" | "card" | "substitution" | "penalty" | "own_goal";
-  minute: number;
+  minute: number | null;
   stoppageTime?: number;
   playerId: string;
   playerName: string;
@@ -172,11 +173,14 @@ export interface MatchEvent {
 }
 
 export interface TopScorer {
-  player: string;
-  team: string;
+  playerId: string;
+  playerName: string;
+  teamId: string;
+  teamName: string;
   goals: number;
-  position?: number;
   overallRank?: number;
+  ownGoals?: number;
+  goalsByMatch?: { matchId: string; date: string; opponentId: string; opponentName: string; minute: number | null; isOwnGoal: boolean }[];
 }
 
 export interface MediaItem {
@@ -191,6 +195,9 @@ export interface MediaItem {
   date: string | null;
   dateOnly: string | null;
   matchDriveUrl: string | null;
+  matchedDate?: string;
+  turno?: number;
+  cancha?: string;
 }
 
 export interface Partner {

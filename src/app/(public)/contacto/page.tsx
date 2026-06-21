@@ -16,7 +16,7 @@ export default function ContactoPage() {
 
   return (
     <PageEnter>
-      <PageHero icon="✉️" title="Contacto" subtitle="Ponte en contacto con Saint Ferdinand FC" />
+      <PageHero title="Contacto" subtitle="Ponte en contacto con Saint Ferdinand FC" />
 
       <section className="py-16 md:py-24">
         <div className="mx-auto max-w-5xl px-6">

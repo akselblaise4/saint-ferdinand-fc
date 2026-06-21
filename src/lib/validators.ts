@@ -88,11 +88,13 @@ export const MatchItemSchema = z.object({
 });
 
 export const TopScorerItemSchema = z.object({
-  player: z.string(),
-  team: z.string(),
+  playerId: z.string(),
+  playerName: z.string(),
+  teamId: z.string(),
+  teamName: z.string(),
   goals: z.number(),
-  position: z.number().optional(),
   overallRank: z.number().optional(),
+  ownGoals: z.number().optional(),
 });
 
 export const MediaItemSchema = z.object({

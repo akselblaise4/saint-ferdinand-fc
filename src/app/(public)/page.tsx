@@ -1,312 +1,467 @@
 "use client";
 
-import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
+import { motion } from "framer-motion";
+import { gsap } from "gsap";
+import { useGSAP } from "@gsap/react";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import {
-  ArrowRight, Zap, Crosshair, Flame, Trophy, TvIcon as Tv,
-} from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { BorderBeam } from "@/components/football/border-beam";
+import { ArrowRight, Shield, Trophy, Users, Goal, CalendarDays } from "lucide-react";
 import { useSaints, useSaintsScorers, useNextMatch, useSaintsMatches } from "@/hooks/useCopaData";
 
-function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rx = useSpring(x, { stiffness: 200, damping: 20 });
-  const ry = useSpring(y, { stiffness: 200, damping: 20 });
-  const transform = useTransform(() => `perspective(800px) rotateY(${ry.get()}deg) rotateX(${-rx.get()}deg) scale(1.02)`);
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
-  const handleMove = (e: React.MouseEvent) => {
-    if (!ref.current) return;
-    const rect = ref.current.getBoundingClientRect();
-    x.set((e.clientY - rect.top - rect.height / 2) / 20);
-    y.set((e.clientX - rect.left - rect.width / 2) / 20);
-  };
-  const handleLeave = () => { x.set(0); y.set(0); };
+function StatCounter({ value, label, suffix = "" }: { value: string | number; label: string; suffix?: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const counterRef = useRef<HTMLSpanElement>(null);
+
+  useGSAP(() => {
+    const el = counterRef.current;
+    if (!el) return;
+    const num = typeof value === "string" ? parseInt(value.replace(/\D/g, ""), 10) : value;
+    if (isNaN(num)) return;
+
+    ScrollTrigger.create({
+      trigger: ref.current,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        gsap.fromTo(el, { textContent: 0 }, {
+          textContent: num,
+          duration: 1.8,
+          ease: "power4.out",
+          snap: { textContent: 1 },
+          onUpdate: () => {
+            if (suffix) {
+              el.textContent = String(Math.round(Number(el.textContent))) + suffix;
+            }
+          },
+        });
+      },
+    });
+  }, [value]);
 
   return (
-    <motion.div ref={ref} onMouseMove={handleMove} onMouseLeave={handleLeave} style={{ transform }} className={className}>
-      {children}
-    </motion.div>
+    <div ref={ref} className="text-center md:text-left">
+      <span ref={counterRef} className="block font-display text-5xl md:text-6xl font-bold text-club-red leading-none tracking-tight">
+        0
+      </span>
+      <span className="block text-[10px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant mt-2">
+        {label}
+      </span>
+    </div>
   );
 }
 
-function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
-  const [val, setVal] = useState(0);
-  useEffect(() => {
-    if (end === 0) return;
-    let start = 0;
-    const dur = 40;
-    const step = Math.ceil(end / dur);
-    const t = setInterval(() => {
-      start += step;
-      if (start >= end) { setVal(end); clearInterval(t); }
-      else setVal(start);
-    }, 30);
-    return () => clearInterval(t);
-  }, [end]);
-  return <>{val}{suffix}</>;
-}
+const easeOutExpo = [0.19, 1, 0.22, 1] as const;
+const easeSmooth = [0.65, 0, 0.35, 1] as const;
 
 export default function Home() {
-  const { data: saints, isLoading: saintsLoading } = useSaints();
+  const { data: saints } = useSaints();
   const { data: scorers = [] } = useSaintsScorers();
   const { data: nextMatch } = useNextMatch();
   const { data: matches = [] } = useSaintsMatches();
 
-  const stats_ = saints?.latest?.stats;
+  const stats = saints?.latest?.stats;
   const points = saints?.latest?.pts ?? 0;
   const pos = saints?.latest?.pos ?? 0;
-  const played = stats_?.played ?? 0;
-  const wins = stats_?.wins ?? 0;
-  const goalsFor = stats_?.goalsFor ?? 0;
+  const played = stats?.played ?? 0;
+  const wins = stats?.wins ?? 0;
+  const goalsFor = stats?.goalsFor ?? 0;
 
   const finished = matches.filter((m) => m.finished);
   const lastMatch = finished[finished.length - 1];
 
-  const navItems = [
-    { label: "Partidos", href: "/partidos", icon: "⚽" },
-    { label: "Plantilla", href: "/plantilla", icon: "👥" },
-    { label: "Club", href: "/club", icon: "🏛️" },
-    { label: "Jugadores", href: "/jugadores", icon: "📊" },
-    { label: "Noticias", href: "/blog", icon: "📰" },
-    { label: "Contacto", href: "/contacto", icon: "✉️" },
-  ];
+  const heroRef = useRef<HTMLDivElement>(null);
+  const heroContentRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(() => {
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 1 } });
+
+      tl.fromTo(".hero-line", { y: 120, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.08, duration: 1.2, ease: "power4.out" }, 0.2)
+        .fromTo(".hero-meta", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.7 }, 0.9)
+        .fromTo(".hero-buttons", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 1.1)
+        .fromTo(".hero-indicator", { opacity: 0, y: -10 }, { opacity: 1, y: 0, duration: 0.4 }, 1.4);
+
+      // Marquee
+      gsap.to(marqueeRef.current, {
+        xPercent: -50,
+        ease: "none",
+        duration: 25,
+        repeat: -1,
+      });
+
+      // Parallax stats
+      gsap.to(".stats-row", {
+        scrollTrigger: { trigger: ".stats-row", start: "top 80%", toggleActions: "play none none none" },
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power3.out",
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
 
   return (
     <>
-      {/* HERO */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,32,48,0.12)_0%,transparent_60%)]" />
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-club-red/5 rounded-full blur-[120px]" />
+      {/* ─── HERO ─── */}
+      <section
+        ref={heroRef}
+        className="relative min-h-[92vh] flex items-center overflow-hidden bg-on-surface"
+      >
+        {/* Hero background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-on-surface via-on-surface to-club-red/20" />
+        <div className="absolute top-1/2 right-0 w-[600px] h-[600px] -translate-y-1/2 bg-club-red/10 blur-[160px] rounded-full" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-club-red/5 blur-[100px] rounded-full" />
 
-        <div className="relative w-full px-6 md:px-16">
-          <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center max-w-7xl mx-auto">
-            <div className="space-y-6">
-              <motion.div
-                initial={{ opacity: 0, x: -60 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              >
-                <span className="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.3em] text-club-red/80 mb-4">
-                  <span className="w-2 h-2 rounded-full bg-club-red animate-pulse" />
-                  TEMP 2026 · USS LP
-                </span>
-                <h1 className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[140px] leading-[0.78] text-white">
-                  SAINT
-                  <br />
-                  <span className="text-club-red italic [text-shadow:0_0_60px_rgba(212,32,48,0.4)]">
-                    FERDINAND
-                  </span>
-                </h1>
-              </motion.div>
+        {/* Decorative red bar */}
+        <div className="absolute top-32 md:top-48 left-0 w-1 md:w-1.5 h-32 bg-club-red" />
 
-              <motion.p
-                initial={{ opacity: 0, x: -40 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                className="text-sm text-muted-foreground/80 max-w-md leading-relaxed"
-              >
-                Madrid. Precisión, pasión y excelencia en la USS Liga Premier. Posición actual: #{pos} con {points} pts.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.35 }}
-                className="flex gap-3"
-              >
-                <Link href="/partidos">
-                  <Button variant="primary" size="lg" hoverGlow>
-                    Calendario <ArrowRight size={16} />
-                  </Button>
-                </Link>
-                <Link href="/plantilla">
-                  <Button variant="glass" size="lg">Plantilla</Button>
-                </Link>
-              </motion.div>
+        <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-8 pt-24 md:pt-32 pb-16">
+          <div ref={heroContentRef} className="max-w-4xl">
+            <div className="overflow-hidden mb-3">
+              <p className="hero-meta inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-club-red/80">
+                <span className="inline-block h-2 w-2 bg-club-red" />
+                USS Liga Premier · 2026
+              </p>
             </div>
 
+            <h1 className="font-display text-[18vw] md:text-[14vw] lg:text-[160px] font-bold leading-[0.78] tracking-[-0.03em] text-surface">
+              <div className="overflow-hidden"><span className="hero-line block">SAINT</span></div>
+              <div className="overflow-hidden"><span className="hero-line block text-club-red">FERDINAND</span></div>
+            </h1>
+
+            <div className="overflow-hidden mt-4 md:mt-6">
+              <p className="hero-meta max-w-md text-sm md:text-base leading-relaxed text-surface/60">
+                Madrid. Excelencia, pasión y precisión en el terreno de juego.
+                Un club construido para la grandeza.
+              </p>
+            </div>
+
+            <div className="hero-buttons flex flex-wrap gap-3 mt-8">
+              <Link
+                href="/partidos"
+                className="group inline-flex items-center gap-2 bg-club-red px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-white transition-all duration-300 hover:bg-club-red/90"
+              >
+                Calendario
+                <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/plantilla"
+                className="inline-flex items-center gap-2 border-2 border-surface/30 px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.15em] text-surface/80 transition-all duration-300 hover:border-surface hover:text-surface"
+              >
+                Plantilla
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="hero-indicator absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+          <span className="text-[8px] font-semibold uppercase tracking-[0.25em] text-surface/30">Scroll</span>
+          <div className="h-8 w-[1px] bg-gradient-to-b from-surface/40 to-transparent animate-scroll-indicator" />
+        </div>
+      </section>
+
+      {/* ─── MARQUEE TICKER ─── */}
+      <div className="relative overflow-hidden bg-club-red py-4 border-y border-club-red/20">
+        <div ref={marqueeRef} className="flex w-max gap-12 whitespace-nowrap">
+          {Array.from({ length: 4 }).map((_, i) => (
+            <span key={i} className="flex items-center gap-12 text-surface font-display text-sm md:text-base font-semibold uppercase tracking-[0.15em]">
+              <span>Saint Ferdinand FC</span>
+              <span className="text-surface/40">✦</span>
+              <span>Est. 2024</span>
+              <span className="text-surface/40">✦</span>
+              <span>Madrid</span>
+              <span className="text-surface/40">✦</span>
+              <span>USS Liga Premier</span>
+              <span className="text-surface/40">✦</span>
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* ─── STATS ROW ─── */}
+      <section className="stats-row opacity-0 translate-y-6 bg-surface-container-low border-y border-border">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 py-12 md:py-14">
+            <div className="md:border-r border-border md:pr-12">
+              <StatCounter value={played} label="Partidos" />
+            </div>
+            <div className="md:border-r border-border md:px-12">
+              <StatCounter value={goalsFor} label="Goles" />
+            </div>
+            <div className="md:border-r border-border md:px-12">
+              <StatCounter value={wins} label="Victorias" />
+            </div>
+            <div className="md:px-12">
+              <StatCounter value={`#${pos}`} label="Posición" suffix="" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── LAST MATCH + TOP SCORERS ─── */}
+      <section className="bg-surface-container-lowest">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-20 md:py-28">
+          <div className="grid md:grid-cols-12 gap-8">
+            {/* Last Match — editorial card */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              className="hidden md:block"
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, ease: easeSmooth }}
+              className="md:col-span-7"
             >
-              <TiltCard>
-                <div className="relative aspect-square rounded-3xl border border-white/10 bg-gradient-to-br from-card/60 to-card/20 backdrop-blur-xl p-8 flex items-center justify-center overflow-hidden">
-                  <BorderBeam size={300} colorFrom="#D42030" colorTo="#CEAB5D" />
-                  <div className="text-center relative z-10">
-                    <div className="font-display text-[180px] leading-none text-white/5 select-none absolute -top-10 -right-10">SFC</div>
-                    <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-club-red to-club-gold/60 flex items-center justify-center shadow-[0_0_60px_rgba(212,32,48,0.3)]">
-                      <span className="font-display text-5xl text-white">SF</span>
-                    </div>
-                    <p className="mt-4 text-xs text-muted-foreground font-mono uppercase tracking-widest">USS Liga Premier</p>
-                  </div>
+              <div className="h-full border border-border bg-surface-container-lowest p-8 md:p-12">
+                <div className="flex items-center gap-2 mb-8">
+                  <Trophy size={14} className="text-club-red" />
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-club-red">
+                    Último Resultado
+                  </span>
                 </div>
-              </TiltCard>
+
+                {lastMatch ? (
+                  <div>
+                    {/* Teams + Score */}
+                    <div className="flex items-center justify-between gap-4 mb-6">
+                      <div className="flex-1">
+                        <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant/60 mb-2">
+                          LOCAL
+                        </p>
+                        <p className="font-display text-2xl md:text-3xl font-bold text-on-surface uppercase leading-tight">
+                          {lastMatch.homeTeam.name === "SAINT FERDINAND" ? "Saint Ferdinand" : lastMatch.homeTeam.name}
+                        </p>
+                      </div>
+
+                      <div className="text-center shrink-0">
+                        <div className="font-display text-6xl md:text-7xl font-bold text-club-red leading-none tracking-tight">
+                          {lastMatch.score?.home ?? "?"}
+                          <span className="text-on-surface/20 mx-2">:</span>
+                          {lastMatch.score?.away ?? "?"}
+                        </div>
+                        <span className="block text-[9px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant/60 mt-2">
+                          Final
+                        </span>
+                      </div>
+
+                      <div className="flex-1 text-right">
+                        <p className="text-[9px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant/60 mb-2">
+                          VISITANTE
+                        </p>
+                        <p className="font-display text-2xl md:text-3xl font-bold text-on-surface uppercase leading-tight">
+                          {lastMatch.awayTeam.name === "SAINT FERDINAND" ? "Saint Ferdinand" : lastMatch.awayTeam.name}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-center gap-4 text-xs text-on-surface-variant mt-8 pt-6 border-t border-border">
+                      {lastMatch.venue && (
+                        <span className="flex items-center gap-1.5">
+                          <Shield size={12} />
+                          {lastMatch.venue}
+                        </span>
+                      )}
+                      {lastMatch.phase && (
+                        <span className="flex items-center gap-1.5">
+                          <CalendarDays size={12} />
+                          {lastMatch.phase}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="flex items-center justify-center h-40">
+                    <p className="text-sm text-on-surface-variant">Sin partidos disputados aún</p>
+                  </div>
+                )}
+              </div>
+            </motion.div>
+
+            {/* Top Scorers — bento list */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.7, delay: 0.1, ease: easeSmooth }}
+              className="md:col-span-5"
+            >
+              <div className="h-full border border-border bg-surface-container-lowest p-8 md:p-10">
+                <div className="flex items-center gap-2 mb-6">
+                  <Goal size={14} className="text-club-red" />
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.15em] text-club-red">
+                    Goleadores
+                  </span>
+                </div>
+
+                {scorers.length === 0 ? (
+                  <p className="text-sm text-on-surface-variant">Sin datos</p>
+                ) : (
+                  <div className="space-y-1">
+                    {scorers.slice(0, 6).map((p: any, i: number) => (
+                      <motion.div
+                        key={(p.playerName || i) + ""}
+                        initial={{ opacity: 0, y: 12 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.05, duration: 0.3, ease: easeSmooth }}
+                        className="group flex items-center gap-4 px-4 py-3 transition-colors duration-200 hover:bg-surface-container"
+                      >
+                        <span
+                          className={`flex h-7 w-7 shrink-0 items-center justify-center text-[10px] font-bold tracking-wider
+                            ${i === 0 ? "bg-club-red text-white" : "bg-surface-container text-on-surface-variant"}
+                          `}
+                        >
+                          {i + 1}
+                        </span>
+                        <span className="flex-1 text-sm font-medium text-on-surface capitalize truncate">
+                          {p.playerName || "?"}
+                        </span>
+                        <span className="font-display text-xl font-bold text-club-red tabular-nums">
+                          {p.goals}
+                        </span>
+                      </motion.div>
+                    ))}
+                  </div>
+                )}
+
+                {scorers.length > 0 && (
+                  <Link
+                    href="/plantilla"
+                    className="mt-6 inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant transition-colors duration-200 hover:text-club-red"
+                  >
+                    Ver plantilla completa <ArrowRight size={12} />
+                  </Link>
+                )}
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
-      {/* STATS */}
-      <section className="px-6 md:px-16 max-w-7xl mx-auto -mt-20 relative z-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {[
-            { label: "PARTIDOS", end: played, icon: Zap },
-            { label: "GOLES", end: goalsFor, icon: Crosshair },
-            { label: "VICTORIAS", end: wins, icon: Flame },
-            { label: "PTS", end: points, icon: Trophy },
-          ].map((s, i) => (
-            <motion.div
-              key={s.label}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="glass rounded-2xl p-6 text-center border border-white/5 hover:border-club-red/30 transition-all duration-500 group"
-            >
-              <s.icon size={18} className="mx-auto text-club-red/40 group-hover:text-club-red transition-colors mb-2" />
-              <div className="font-display text-5xl md:text-6xl italic text-club-red">
-                {saintsLoading ? "—" : <Counter end={s.end} />}
-              </div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground mt-1">{s.label}</div>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+      {/* ─── NEXT MATCH / CTA BANNER ─── */}
+      <section className="relative overflow-hidden">
+        {/* Dark background with red gradient */}
+        <div className="absolute inset-0 bg-gradient-to-r from-on-surface via-on-surface to-club-red/30" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-club-red/10 blur-[160px] rounded-full" />
 
-      {/* ÚLTIMO RESULTADO + GOLEADORES */}
-      <section className="px-6 md:px-16 max-w-7xl mx-auto py-24">
-        <div className="grid md:grid-cols-5 gap-4">
+        <div className="relative z-10 max-w-[1440px] mx-auto px-6 md:px-8 py-16 md:py-24">
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="md:col-span-3 glass rounded-3xl p-8 md:p-10 relative overflow-hidden border border-white/5 min-h-[300px] flex flex-col justify-end"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.7, ease: easeSmooth }}
+            className="flex flex-col md:flex-row items-center justify-between gap-8"
           >
-            <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1459865264687-595d652de67e?w=1200')] bg-cover bg-center opacity-[0.07]" />
-            <BorderBeam size={400} colorFrom="#D42030" colorTo="#D42030" />
-            <div className="relative z-10">
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-club-red mb-3 block">Último Resultado</span>
-              {lastMatch ? (
-                <>
-                  <div className="flex items-end gap-4 md:gap-8">
-                    <div>
-                      <p className="text-[10px] font-mono text-muted-foreground mb-1">LOCAL</p>
-                      <p className="font-display text-4xl md:text-5xl text-white">{lastMatch.homeTeam.name === "SAINT FERDINAND FC" ? "SFC" : lastMatch.homeTeam.name.slice(0, 3).toUpperCase()}</p>
-                    </div>
-                    <div className="font-display text-7xl md:text-8xl italic text-club-red [text-shadow:0_0_40px_rgba(212,32,48,0.5)]">
-                      {lastMatch.score?.home ?? "?"} - {lastMatch.score?.away ?? "?"}
-                    </div>
-                    <div>
-                      <p className="text-[10px] font-mono text-muted-foreground mb-1">VISITANTE</p>
-                      <p className="font-display text-4xl md:text-5xl text-white">{lastMatch.awayTeam.name === "SAINT FERDINAND FC" ? "SFC" : lastMatch.awayTeam.name.slice(0, 3).toUpperCase()}</p>
-                    </div>
-                  </div>
-                  <p className="mt-4 text-sm text-muted-foreground/70 max-w-lg">
-                    {lastMatch.venue ? `En ${lastMatch.venue}` : ""}
-                    {lastMatch.phase ? ` · ${lastMatch.phase}` : ""}
-                  </p>
-                </>
-              ) : (
-                <p className="text-lg text-muted-foreground/50 font-mono">Sin partidos disputados aún</p>
-              )}
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="md:col-span-2 glass rounded-3xl p-6 border border-white/5 flex flex-col"
-          >
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-club-red mb-5">
-              <Trophy size={14} className="inline mr-1 mb-0.5" />
-              Top Goleadores
-            </span>
-            <div className="flex-1 space-y-2">
-              {scorers.length === 0 ? (
-                <p className="text-sm text-muted-foreground/50 font-mono">Sin datos de goleadores</p>
-              ) : (
-                scorers.slice(0, 5).map((p, i) => (
-                  <div key={p.player + i} className="flex items-center gap-3 rounded-xl bg-white/[0.03] px-4 py-3 hover:bg-white/[0.06] transition-all">
-                    <span className="w-7 h-7 rounded-full bg-club-red/20 text-club-red text-xs font-mono font-bold flex items-center justify-center">
-                      {i + 1}
-                    </span>
-                    <span className="flex-1 text-sm text-white/80">{p.player}</span>
-                    <span className="font-mono text-xs text-muted-foreground">{p.team.slice(0, 3).toUpperCase()}</span>
-                    <span className="font-display text-xl text-club-red">{p.goals}</span>
-                  </div>
-                ))
-              )}
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* PRÓXIMO PARTIDO */}
-      <section className="px-6 md:px-16 max-w-7xl mx-auto pb-24">
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="relative overflow-hidden rounded-3xl border border-white/5 bg-gradient-to-r from-card/80 to-card/40 backdrop-blur-xl p-8 md:p-12"
-        >
-          <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_center,rgba(212,32,48,0.08)_0%,transparent_70%)]" />
-          <BorderBeam size={500} colorFrom="#CEAB5D" colorTo="#D42030" />
-          <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div>
-              <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-club-gold">
-                <Tv size={14} className="inline mr-1 mb-0.5" />
-                PRÓXIMO PARTIDO
+            <div className="flex-1">
+              <span className="inline-flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-club-red/80 mb-4">
+                <span className="h-1.5 w-1.5 bg-club-red" />
+                Próximo Partido
               </span>
+
               {nextMatch ? (
                 <>
-                  <h2 className="font-display text-4xl md:text-6xl text-white mt-2">
-                    vs {nextMatch.awayTeam.name === "SAINT FERDINAND FC" ? nextMatch.homeTeam.name : nextMatch.awayTeam.name}
+                  <h2 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold uppercase tracking-[-0.01em] text-surface leading-none">
+                    vs{" "}
+                    {nextMatch.awayTeam.name === "SAINT FERDINAND"
+                      ? nextMatch.homeTeam.name
+                      : nextMatch.awayTeam.name}
                   </h2>
-                  <p className="text-sm text-muted-foreground/70 mt-2 font-mono">
-                    {nextMatch.date ? new Date(nextMatch.date).toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }) : "Fecha por definir"}
-                    {nextMatch.localHour ? ` · ${nextMatch.localHour}:00` : ""}
-                    {nextMatch.venue ? ` · ${nextMatch.venue}` : ""}
-                  </p>
+                  <div className="flex flex-wrap items-center gap-4 mt-4 text-sm text-surface/60">
+                    <span className="flex items-center gap-1.5">
+                      <CalendarDays size={14} />
+                      {nextMatch.date
+                        ? new Date(nextMatch.date).toLocaleDateString("es-ES", {
+                            weekday: "long",
+                            day: "numeric",
+                            month: "long",
+                          })
+                        : "Fecha por definir"}
+                    </span>
+                    {nextMatch.venue && (
+                      <>
+                        <span className="text-surface/20">·</span>
+                        <span>{nextMatch.venue}</span>
+                      </>
+                    )}
+                  </div>
                 </>
               ) : (
-                <p className="text-lg text-muted-foreground/50 font-mono mt-2">No hay próximos partidos</p>
+                <p className="text-lg text-surface/50 mt-1">No hay próximos partidos programados</p>
               )}
             </div>
-            <div className="flex gap-4">
-              <Link href="/partidos"><Button variant="primary" hoverGlow>Ver Partido</Button></Link>
-              <Link href="/jugadores"><Button variant="glass">Estadísticas</Button></Link>
-            </div>
-          </div>
-        </motion.div>
+
+            <Link
+              href="/partidos"
+              className="group inline-flex items-center gap-3 border-2 border-surface/30 px-10 py-5 text-[10px] font-semibold uppercase tracking-[0.15em] text-surface transition-all duration-300 hover:border-surface shrink-0"
+            >
+              Ver Partido
+              <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
+            </Link>
+          </motion.div>
+        </div>
       </section>
 
-      {/* NAV */}
-      <section className="border-t border-white/5 py-16 px-6 md:px-16 max-w-7xl mx-auto">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {navItems.map((item, i) => (
-            <motion.div
-              key={item.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.05 }}
-            >
-              <Link
-                href={item.href}
-                className="glass rounded-2xl p-5 flex flex-col items-center text-center gap-2 border border-white/5 hover:border-club-red/30 hover:-translate-y-1 transition-all duration-300 group"
+      {/* ─── CLUB VALUES ─── */}
+      <section className="bg-surface-container-lowest border-b border-border">
+        <div className="max-w-[1440px] mx-auto px-6 md:px-8 py-20 md:py-28">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: easeSmooth }}
+            className="text-center mb-16"
+          >
+            <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-club-red">
+              Nuestra Identidad
+            </span>
+            <h2 className="font-display text-4xl md:text-5xl font-bold uppercase tracking-[-0.01em] text-on-surface mt-3">
+              Hechos para la élite
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              {
+                icon: <Trophy size={20} />,
+                title: "Excelencia",
+                desc: "Cada entrenamiento, cada partido, cada detalle está orientado a la búsqueda incansable de la perfección deportiva.",
+              },
+              {
+                icon: <Users size={20} />,
+                title: "Unidad",
+                desc: "Somos más que un equipo. Una familia que comparte la pasión por el fútbol y el compromiso con nuestra comunidad.",
+              },
+              {
+                icon: <Shield size={20} />,
+                title: "Legado",
+                desc: "Construyendo una historia de grandeza desde Madrid. Nuestro nombre es sinónimo de respeto y determinación.",
+              },
+            ].map((v, i) => (
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-40px" }}
+                transition={{ delay: i * 0.1, duration: 0.5, ease: easeSmooth }}
+                className="group border border-border bg-surface-container-lowest p-8 md:p-10 transition-all duration-300 hover:border-club-red/30 hover:bg-surface-container-low"
               >
-                <span className="text-2xl">{item.icon}</span>
-                <span className="font-display text-lg text-white/80 group-hover:text-club-red transition-colors">{item.label}</span>
-              </Link>
-            </motion.div>
-          ))}
+                <div className="flex h-10 w-10 items-center justify-center bg-club-red/10 text-club-red mb-6 transition-colors duration-300 group-hover:bg-club-red group-hover:text-white">
+                  {v.icon}
+                </div>
+                <h3 className="font-display text-xl font-bold uppercase tracking-wide text-on-surface mb-3">
+                  {v.title}
+                </h3>
+                <p className="text-sm leading-relaxed text-on-surface-variant">
+                  {v.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
     </>

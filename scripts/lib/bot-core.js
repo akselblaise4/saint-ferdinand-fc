@@ -2,6 +2,12 @@ import { chromium } from "playwright";
 import { CONFIG } from "./config.js";
 import { logger } from "./logger.js";
 
+function extractDriveFolderId(url) {
+  if (!url) return null;
+  const m = url.match(/folders\/([a-zA-Z0-9_-]+)/);
+  return m ? m[1] : null;
+}
+
 /**
  * CORE BOT ENGINE
  * Precision: retry/backoff, validation, data quality scoring
@@ -183,7 +189,7 @@ export class CopaBot {
         .map(([ts, e]) => ({
           at: parseInt(ts),
           date: new Date(parseInt(ts)).toISOString(),
-          pos: e.colg ?? null,
+          pos: e.colg != null ? e.colg + 1 : null,
           pts: e.col ?? null,
           groupPts: e.col != null ? e.col : null,
           group: e.g || null,
@@ -201,12 +207,12 @@ export class CopaBot {
         season: {
           group: regular?.group || null,
           pos: regular?.pos ?? null,
-          pts: regular?.pts ?? null,
+          pts: regular?.stats?.points ?? (regular?.pts ?? null),
           stats: regular?.stats || null,
         },
         latest: {
           pos: latestOverall?.pos ?? null,
-          pts: latestOverall?.pts ?? null,
+          pts: latestOverall?.stats?.points ?? (latestOverall?.pts ?? null),
           stats: latestOverall?.stats || null,
         },
         entries: entriesSorted,
@@ -221,7 +227,7 @@ export class CopaBot {
     const groups = this._buildStandings(all);
     const standingsByGroup = groups.map(g => ({
       group: g.letter,
-      teams: g.teams.sort((a, b) => (a.season.pos || 999) - (b.season.pos || 999)),
+      teams: g.teams.sort((a, b) => (a.season.pos ?? 999) - (b.season.pos ?? 999)),
     }));
     const flatStandings = standingsByGroup.flatMap(g => g.teams.map(t => ({ ...t, group: g.group })));
 
@@ -254,8 +260,8 @@ export class CopaBot {
         localHour, turno,
         team1: { id: m.team1, name: teamNames.get(m.team1) || m.team1 },
         team2: { id: m.team2, name: teamNames.get(m.team2) || m.team2 },
-        score1: m.dt?.qt_g1 ?? null,
-        score2: m.dt?.qt_g2 ?? null,
+        score1: m.dt?.qt_g1 ?? 0,
+        score2: m.dt?.qt_g2 ?? 0,
         penalties1: m.dt?.qt_p1 ?? null,
         penalties2: m.dt?.qt_p2 ?? null,
         title: m.title || null, round: m.round || "",
@@ -462,47 +468,75 @@ export class CopaBot {
   enrichMediaWithVenue(allMedia, allMatches, groupId, placesMap) {
     if (!allMedia) return { all: [], filtered: [] };
 
-    // Build a date-to-matches lookup for this group
-    const dateMatchMap = {};
-    Object.entries(allMatches).forEach(([id, m]) => {
-      if (m.evt !== `-5qp1c@${groupId}`) return;
-      const d = m.d_i ? new Date(m.d_i).toISOString().split("T")[0] : null;
-      if (!d) return;
-      if (!dateMatchMap[d]) dateMatchMap[d] = [];
-      dateMatchMap[d].push(m);
-    });
+    const SAINTS_ID = "-OqC_DyMZey8vTF5Shq5";
+
+    // Build saints matches sorted by date (index 0 = Fecha 1)
+    const saintsMatches = Object.entries(allMatches)
+      .filter(([, m]) => m.evt === `-5qp1c@${groupId}` && (m.team1 === SAINTS_ID || m.team2 === SAINTS_ID))
+      .map(([id, m]) => ({ id, ...m }))
+      .sort((a, b) => (a.d_i || 0) - (b.d_i || 0));
+
+    const getMatchInfo = (match) => {
+      if (!match) return { matchedDate: null, turno: null, cancha: null };
+      const localHour = match.d_i ? new Date(match.d_i - (match.gmt || 14400000)).getUTCHours() : null;
+      let turno = null;
+      if (localHour === 20 || localHour === 8) turno = 1;
+      else if (localHour === 21 || localHour === 9) turno = 2;
+      else if (localHour === 22 || localHour === 10) turno = 3;
+      else if (localHour !== null) turno = localHour;
+      const placeId = match.l;
+      const cancha = (placeId && placesMap[placeId]) ? (placesMap[placeId].title || placesMap[placeId].name || null) : null;
+      const matchedDate = match.d_i ? new Date(match.d_i).toISOString().split("T")[0] : null;
+      return { matchedDate, turno, cancha };
+    };
 
     const all = [];
     Object.entries(allMedia).forEach(([id, m]) => {
       const ts = m.i?.m || null;
       const leg = m.leg || "";
+      const evt = m.evt || groupId;
 
-      // Extract date from leg text (e.g., "Fotos Fecha 8 Martes 16/6")
-      let matchedDate = null;
-      let turno = null;
-      let cancha = null;
+      let matchedDate = null, turno = null, cancha = null;
 
-      // Try to find a matching match by checking dates mentioned in leg
-      const dateMatch = leg.match(/(\d{1,2})\/(\d{1,2})/);
-      if (dateMatch) {
-        const day = parseInt(dateMatch[1]);
-        const month = parseInt(dateMatch[2]);
-        // Find matches around that date
-        for (const [dStr, matchesOnDate] of Object.entries(dateMatchMap)) {
-          const md = new Date(dStr);
-          if (md.getDate() === day && (md.getMonth() + 1) === month) {
-            matchedDate = dStr;
-            const firstMatch = matchesOnDate[0];
-            if (firstMatch) {
-              const localHour = firstMatch.d_i ? new Date(firstMatch.d_i - (firstMatch.gmt || 14400000)).getUTCHours() : null;
-              if (localHour === 20 || localHour === 8) turno = 1;
-              else if (localHour === 21 || localHour === 9) turno = 2;
-              else if (localHour === 22 || localHour === 10) turno = 3;
-              else if (localHour !== null) turno = localHour;
-              const placeId = firstMatch.l;
-              if (placeId && placesMap[placeId]) cancha = placesMap[placeId].title || placesMap[placeId].name || null;
+      // Try matching by "Fecha N" number (e.g., "Fotos Fecha 3 Martes 5/5")
+      const fechaMatch = leg.match(/Fecha[_\s]*(\d+)/i);
+      if (fechaMatch) {
+        const idx = parseInt(fechaMatch[1]) - 1;
+        const match = saintsMatches[idx];
+        if (match) {
+          const info = getMatchInfo(match);
+          matchedDate = info.matchedDate;
+          turno = info.turno;
+          cancha = info.cancha;
+        }
+      }
+
+      // Fallback: try date matching from leg (with +/- 1 day offset)
+      if (!matchedDate) {
+        const dateMatch = leg.match(/(\d{1,2})\/(\d{1,2})/);
+        if (dateMatch) {
+          const day = parseInt(dateMatch[1]);
+          const month = parseInt(dateMatch[2]);
+          const allMatchesArr = Object.entries(allMatches)
+            .filter(([, ma]) => ma.evt === `-5qp1c@${groupId}`)
+            .map(([, ma]) => ma);
+          for (const offset of [0, 1, -1]) {
+            const targetDate = new Date(2026, month - 1, day + offset);
+            const targetStr = targetDate.toISOString().split("T")[0];
+            const matchOnDate = allMatchesArr.find(ma => {
+              const md = ma.d_i ? new Date(ma.d_i).toISOString().split("T")[0] : null;
+              return md === targetStr && (ma.team1 === SAINTS_ID || ma.team2 === SAINTS_ID);
+            }) || allMatchesArr.find(ma => {
+              const md = ma.d_i ? new Date(ma.d_i).toISOString().split("T")[0] : null;
+              return md === targetStr;
+            });
+            if (matchOnDate) {
+              const info = getMatchInfo(matchOnDate);
+              matchedDate = info.matchedDate;
+              turno = info.turno;
+              cancha = info.cancha;
+              break;
             }
-            break;
           }
         }
       }
@@ -512,15 +546,94 @@ export class CopaBot {
         title: leg,
         url: m.i?.url || m.url,
         urlDrive: m.i?.urlP || m.urlP || null,
-        evt: m.evt, timestamp: ts,
+        event: m.evt, timestamp: ts,
         date: ts ? new Date(ts).toISOString() : null,
+        dateOnly: ts ? new Date(ts).toISOString().split("T")[0] : null,
         matchedDate, turno, cancha,
       });
     });
 
-    const filtered = all.filter(m => m.evt === groupId);
+    const filtered = all.filter(m => m.event === groupId);
     filtered.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     return { all, filtered };
+  }
+
+  /**
+   * Scrape Drive subfolders for each media item and resolve match-specific folder.
+   * The embeddedfolderview shows subfolders like "Turno {N} Cancha {N}" —
+   * we match by turno + cancha from enriched media.
+   */
+  async resolveDriveSubfolders(mediaItems) {
+    const cache = {};
+    const results = [];
+    for (const m of mediaItems) {
+      const folderId = extractDriveFolderId(m.urlDrive);
+      if (!folderId) { results.push(m); continue; }
+      if (!cache[folderId]) {
+        try {
+          const url = `https://drive.google.com/embeddedfolderview?id=${folderId}`;
+          const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
+          const html = await res.text();
+          const subfolders = [];
+          const entryRegex = /flip-entry[^>]*>[\s\S]*?<a[^>]*href="https:\/\/drive\.google\.com\/drive\/folders\/([a-zA-Z0-9_-]+)[^>]*>[\s\S]*?flip-entry-title[^>]*>([^<]+)<\/div>/gi;
+          let match;
+          while ((match = entryRegex.exec(html)) !== null) {
+            const name = match[2].trim();
+            if (/Turno\s*\d+/i.test(name)) {
+              const t = parseInt(name.match(/Turno\s*(\d+)/i)?.[1] || "0");
+              const c = parseInt(name.match(/Cancha\s*(\d+)/i)?.[1] || "0");
+              subfolders.push({ id: match[1], name, turno: t, cancha: c });
+            }
+          }
+          cache[folderId] = subfolders;
+        } catch (e) {
+          logger.warn(`Drive folder scrape failed for ${folderId}: ${e.message}`);
+          cache[folderId] = [];
+        }
+      }
+      const subfolders = cache[folderId];
+      const canchaNum = m.cancha ? parseInt(m.cancha.match(/\d+/)?.[0] || "0") : 0;
+      const matched = subfolders.find(s => s.turno === m.turno && s.cancha === canchaNum);
+      if (matched) {
+        m.driveSubfolder = `https://drive.google.com/drive/folders/${matched.id}`;
+      }
+      results.push(m);
+    }
+    return results;
+  }
+
+  async fetchDriveFolderImages(folderId) {
+    try {
+      const url = `https://drive.google.com/embeddedfolderview?id=${folderId}`;
+      const res = await fetch(url, { signal: AbortSignal.timeout(10000) });
+      const html = await res.text();
+      const photos = [];
+      const fileRegex = /flip-entry[^>]*data-id="([a-zA-Z0-9_-]+)"[^>]*>[\s\S]*?<a[^>]*href="https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*>[\s\S]*?flip-entry-title[^>]*>([^<]+)<\/div>/gi;
+      let m;
+      while ((m = fileRegex.exec(html)) !== null) {
+        photos.push({
+          fileId: m[1] || m[2],
+          thumbnail: m[3].startsWith("http") ? m[3] : null,
+          title: m[4].trim(),
+          url: `https://drive.google.com/uc?export=view&id=${m[1] || m[2]}`,
+        });
+      }
+      if (photos.length === 0) {
+        const altRegex = /<a[^>]*href="https:\/\/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)[^>]*>[\s\S]*?<img[^>]*src="([^"]+)"[^>]*>/gi;
+        while ((m = altRegex.exec(html)) !== null) {
+          photos.push({
+            fileId: m[1],
+            thumbnail: m[2].startsWith("http") ? m[2] : null,
+            title: "",
+            url: `https://drive.google.com/uc?export=view&id=${m[1]}`,
+          });
+        }
+      }
+      return photos;
+    } catch (e) {
+      logger.warn(`Drive images fetch failed for ${folderId}: ${e.message}`);
+      return [];
+    }
   }
 
   processMedia(allMedia, groupId) {
@@ -534,12 +647,13 @@ export class CopaBot {
         title: m.leg || "",
         url: m.i?.url || m.url,
         urlDrive: m.i?.urlP || m.urlP || null,
-        evt: m.evt, timestamp: ts,
+        event: m.evt, timestamp: ts,
         date: ts ? new Date(ts).toISOString() : null,
+        dateOnly: ts ? new Date(ts).toISOString().split("T")[0] : null,
       });
     });
 
-    const filtered = all.filter(m => m.evt === groupId);
+    const filtered = all.filter(m => m.event === groupId);
     filtered.sort((a, b) => (b.timestamp || 0) - (a.timestamp || 0));
     return { all, filtered };
   }
