@@ -6,8 +6,8 @@ import { BentoGrid, BentoGridItem } from "@/components/ui/bento-grid";
 
 export interface Tile {
   id: string;
-  colSpan?: "1" | "2" | "3";
-  rowSpan?: "1" | "2" | "3";
+  colSpan?: 1 | 2 | 3;
+  rowSpan?: 1 | 2 | 3;
   children: ReactNode;
   className?: string;
 }
