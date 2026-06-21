@@ -4,8 +4,65 @@ import fs from "fs";
 const copa = JSON.parse(fs.readFileSync("data/copa-data.json", "utf8"));
 const allData = JSON.parse(fs.readFileSync("data/copa-all-data.json", "utf8"));
 
-const details = allData.details || {};
-const playerNames = allData.players || {};
+const rawDetails = allData.details || {};
+const rawPlayers = allData.players || {};
+const rawPlayerNames = allData.playerNames || {};
+
+// Build player name lookup
+const playerNames = { ...rawPlayerNames, ...rawPlayers };
+
+// ── 0. MERGE MATCH EVENTS INTO COPA-DATA ──
+const saintsId = copa.saints?.id;
+const sfcPlayerSet = new Set();
+let mergedCount = 0;
+let totalEvents = 0;
+
+for (const match of copa.matches.items) {
+  const detail = rawDetails[match.id];
+  if (!detail) continue;
+
+  const events = detail.list;
+  if (events) {
+    const eventList = [];
+    for (const [evId, ev] of Object.entries(events)) {
+      const pid = ev.pl_id1 || "";
+      const name = playerNames[pid] || pid;
+      // Track SFC players
+      if (ev.team1 === saintsId && pid) {
+        sfcPlayerSet.add(JSON.stringify({ id: pid, name: name.replace(/\t/g, " ").trim() }));
+      }
+      const event = { id: evId, matchId: match.id };
+      event.ac = ev.ac;
+      if (ev.pl_id1) event.pl_id1 = ev.pl_id1;
+      if (ev.team1) event.team1 = ev.team1;
+      if (ev.val1 != null) event.val1 = ev.val1;
+      if (ev.val2 != null) event.val2 = ev.val2;
+      if (ev.val3 != null) event.val3 = ev.val3;
+      if (name) event.playerName = name.replace(/\t/g, " ").trim();
+      eventList.push(event);
+      totalEvents++;
+    }
+    match.details = { list: eventList };
+  }
+  if (detail.info) match.details = { ...match.details, info: detail.info };
+  if (detail.best) match.details = { ...match.details, best: detail.best };
+  mergedCount++;
+}
+
+// Build SFC player roster
+const sfcPlayers = Array.from(sfcPlayerSet).map(s => JSON.parse(s));
+// Deduplicate by ID
+const sfcPlayersDedup = [];
+const seen = new Set();
+for (const p of sfcPlayers) {
+  if (!seen.has(p.id)) {
+    seen.add(p.id);
+    sfcPlayersDedup.push(p);
+  }
+}
+
+console.log(`Merged details into ${mergedCount} matches (${totalEvents} events)`);
+console.log(`SFC player roster: ${sfcPlayersDedup.length} players`);
 
 // ── 1. COMPUTE TOP SCORERS ──
 // Match ID -> teams mapping from copa-data matches
@@ -30,13 +87,11 @@ for (const s of copa.standings) {
 // Also from saints
 if (copa.saints) teamNames[copa.saints.id] = copa.saints.name;
 
-const saintsId = copa.saints?.id;
-
 // Count goals per player
 const goalCounts = {}; // playerId -> { goals, teamId }
 const saintsGoalCounts = {}; // playerId -> { goals, overallRank }
 
-for (const [matchId, detail] of Object.entries(details)) {
+for (const [matchId, detail] of Object.entries(rawDetails)) {
   const list = detail.list;
   if (!list) continue;
   const teams = matchTeamMap[matchId];
@@ -103,9 +158,17 @@ copa.topScorers = {
   lastUpdated: new Date().toISOString(),
 };
 
-// Also fix first saints match score2 if possible (it's missing from source)
-// The raw Firebase data doesn't have qt_g2 for match 1776197236368
-// So we leave it as null
+// Add SFC player roster
+copa.players = sfcPlayersDedup;
+
+// Re-derive saints matches (events may have been added)
+const saintsMatches = copa.matches.items.filter(m => {
+  if (m.team1?.id === saintsId || m.team2?.id === saintsId) return true;
+  return copa.matches.saints.some(sm => sm.id === m.id);
+});
+copa.matches.saints = saintsMatches;
+
+console.log(`Saints matches count: ${copa.matches.saints.length}`);
 
 fs.writeFileSync("data/copa-data.json", JSON.stringify(copa, null, 2));
 fs.writeFileSync("data/copa-data-ultimate.json", JSON.stringify(copa, null, 2));
@@ -114,6 +177,8 @@ console.log("\n=== SUMMARY ===");
 console.log(`Saints: ${copa.saints?.name || "N/A"}`);
 console.log(`Standings: ${copa.standings.length} teams`);
 console.log(`Matches: ${copa.matches.total} total, ${copa.matches.saints.length} saints`);
+console.log(`Events: ${totalEvents} merged into ${mergedCount} matches`);
+console.log(`SFC Roster: ${sfcPlayersDedup.length} players`);
 console.log(`Top scorers: ${overall.length} players tracked`);
 console.log(`  Top 3 overall:`);
 overall.slice(0, 3).forEach(p => console.log(`    ${p.position}. ${p.player} (${p.team}) - ${p.goals} goles`));

@@ -41,6 +41,22 @@ export interface MatchEntry {
   status: number;
   isPlayoff: boolean;
   isSaints: boolean;
+  walkover?: boolean;
+  details?: {
+    list?: {
+      id: string;
+      matchId: string;
+      ac?: number;
+      pl_id1?: string;
+      team1?: string;
+      val1?: number;
+      val2?: number;
+      val3?: number;
+      playerName?: string;
+    }[];
+    info?: Record<string, string | number>;
+    best?: Record<string, { num_val?: number }>;
+  };
 }
 
 interface StatHistoryEntry {
@@ -77,6 +93,7 @@ export interface CopaData {
   media: { all: { id: string; type: string; title: string; url: string; urlDrive: string | null; thumbnail: string | null; evt: string; timestamp: number | null; date: string | null; dateOnly: string | null; matchDriveUrl: string | null }[]; saintsGroup: any[] };
   partners: { id: string; name: string; phone: string; url: string }[];
   attachments: { id: string; title: string; url: string }[];
+  players?: { id: string; name: string }[];
 }
 
 let cached: CopaData | null = null;

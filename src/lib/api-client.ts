@@ -28,6 +28,17 @@ interface RawMatch {
   penalties1: number | null; penalties2: number | null;
   title: string | null; next1: string | null;
   finished: boolean; status: number; isPlayoff: boolean; isSaints: boolean;
+  walkover?: boolean;
+  details?: {
+    list?: {
+      id: string; matchId: string; ac?: number;
+      pl_id1?: string; team1?: string;
+      val1?: number; val2?: number; val3?: number;
+      playerName?: string;
+    }[];
+    info?: Record<string, string | number>;
+    best?: Record<string, { num_val?: number }>;
+  };
 }
 
 interface RawMedia {
@@ -53,6 +64,7 @@ interface RawData {
   media: { all: RawMedia[]; saintsGroup: any[] };
   partners: { id: string; name: string; phone: string; url: string }[];
   attachments: { id: string; title: string; url: string }[];
+  players?: { id: string; name: string }[];
 }
 
 function mapStanding(s: RawTeamEntry): Standing {
@@ -89,6 +101,8 @@ function mapMatch(m: RawMatch): Match {
     status: m.status,
     isPlayoff: m.isPlayoff,
     isSaints: m.isSaints,
+    walkover: m.walkover,
+    details: m.details,
   };
 }
 
@@ -188,6 +202,11 @@ class ApiClient {
   async getPhotoForTeam(name: string): Promise<string | null> {
     const standings = await this.getStandings();
     return standings.find((s) => s.name === name)?.photo ?? null;
+  }
+
+  async getSquad(): Promise<{ id: string; name: string }[]> {
+    const raw = await this.fetchRaw();
+    return raw.players || [];
   }
 }
 

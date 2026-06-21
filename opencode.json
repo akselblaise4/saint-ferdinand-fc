@@ -6,8 +6,5 @@
       "url": "https://mcp.vercel.com",
       "enabled": true
     }
-  },
-  "buildCommand": "npm run build",
-  "lintCommand": "npm run lint",
-  "startCommand": "npm run dev"
+  }
 }
