@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
 import { useSaints, useSaintsScorers, useNextMatch, useSaintsMatches } from "@/hooks/useCopaData";
 
 gsap.registerPlugin(useGSAP);
@@ -30,7 +29,6 @@ export default function Home() {
   const heroTagRef = useRef<HTMLParagraphElement>(null);
   const heroBtnsRef = useRef<HTMLDivElement>(null);
 
-  // Countdown timer
   const [countdown, setCountdown] = useState({ days: "00", hours: "00", mins: "00" });
 
   useEffect(() => {
@@ -49,7 +47,6 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [nextMatch]);
 
-  // Hero entrance animation
   useGSAP(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -99,11 +96,10 @@ export default function Home() {
       </header>
 
       {/* ─── NEXT MATCH WIDGET ─── */}
-      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop -mt-24 relative z-30">
+      <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop -mt-24 relative z-30">
         <div className="bg-surface-container-lowest border border-secondary-container p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-12 zero-gravity-shadow">
           {nextMatch ? (
             <>
-              {/* Home Team */}
               <div className="flex flex-col items-center md:items-end gap-4">
                 <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
                   <span className="material-symbols-outlined text-[60px] md:text-[80px] text-primary">shield</span>
@@ -114,9 +110,8 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Center: Score / Time / Countdown */}
               <div className="flex flex-col items-center justify-center border-x-0 md:border-x border-secondary-container px-6 md:px-12 text-center">
-                <p className="font-label-lg text-label-lg text-primary uppercase mb-2 tracking-widest">Próximo Partido</p>
+                <p className="font-label-lg text-label-lg text-primary uppercase mb-2 tracking-widest">Kick Off</p>
                 <div className="font-display-lg text-display-lg tracking-tighter text-on-surface mb-1">
                   {nextMatch.date
                     ? new Date(nextMatch.date).toLocaleDateString("es-ES", { day: "numeric", month: "short" }).toUpperCase()
@@ -124,21 +119,20 @@ export default function Home() {
                 </div>
                 <div className="flex gap-4 md:gap-6 font-label-sm text-label-sm text-on-surface-variant uppercase mt-3">
                   <div className="flex flex-col items-center">
-                    <span className="text-on-surface font-headline-md text-headline-md">{countdown.days}</span>
+                    <span className="text-on-surface font-bold text-lg">{countdown.days}</span>
                     <span>DÍAS</span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-on-surface font-headline-md text-headline-md">{countdown.hours}</span>
+                    <span className="text-on-surface font-bold text-lg">{countdown.hours}</span>
                     <span>HRS</span>
                   </div>
                   <div className="flex flex-col items-center">
-                    <span className="text-on-surface font-headline-md text-headline-md">{countdown.mins}</span>
+                    <span className="text-on-surface font-bold text-lg">{countdown.mins}</span>
                     <span>MIN</span>
                   </div>
                 </div>
               </div>
 
-              {/* Away Team */}
               <div className="flex flex-col items-center md:items-start gap-4">
                 <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
                   <span className="material-symbols-outlined text-[60px] md:text-[80px] text-secondary">shield</span>
@@ -160,7 +154,7 @@ export default function Home() {
       </div>
 
       {/* ─── FEATURED BENTO GRID ─── */}
-      <section className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+      <section className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
         <div className="flex justify-between items-end mb-12">
           <div>
             <span className="font-label-lg text-label-lg text-primary uppercase tracking-widest">En Foco</span>
@@ -172,7 +166,6 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-gutter h-auto md:h-[800px]">
-          {/* Main Featured — Last Match */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -221,7 +214,6 @@ export default function Home() {
             )}
           </motion.div>
 
-          {/* Side — Top Scorers */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -247,12 +239,11 @@ export default function Home() {
             )}
             {scorers.length > 0 && (
               <Link href="/plantilla" className="mt-4 font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-widest inline-flex items-center gap-1 transition-colors">
-                Ver todos <ArrowRight size={12} />
+                Ver todos
               </Link>
             )}
           </motion.div>
 
-          {/* Side — Stats quick view */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -287,7 +278,7 @@ export default function Home() {
       <section className="relative py-section-gap overflow-hidden bg-on-background text-surface">
         <div className="absolute -top-1/4 -right-1/4 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-primary/10 organic-curve blur-3xl opacity-30" />
         <div className="absolute -bottom-1/4 -left-1/4 w-[450px] md:w-[600px] h-[450px] md:h-[600px] bg-primary organic-curve blur-3xl opacity-10" />
-        <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
           <div className="max-w-3xl">
             <span className="font-label-lg text-label-lg text-primary uppercase tracking-[0.3em]">Hazte Leyenda</span>
             <h2 className="font-display-lg text-display-lg uppercase mt-4 mb-8">Únete al Saint Ferdinand</h2>
@@ -312,7 +303,7 @@ export default function Home() {
             </div>
             <Link
               href="/contacto"
-              className="inline-block bg-primary text-on-primary px-12 md:px-16 py-4 md:py-5 font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300"
+              className="inline-block bg-primary text-on-primary px-16 py-5 font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300"
             >
               Unirse
             </Link>

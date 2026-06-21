@@ -1,126 +1,274 @@
-import Emblem from "@/components/Emblem";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import PageHero from "@/components/sections/PageHero";
+"use client";
 
-const values = [
-  { title: "PASIÓN", desc: "Entregamos todo en cada partido, cada entrenamiento, cada momento. La pasión es nuestro motor." },
-  { title: "HONOR", desc: "Defendemos el escudo con respeto. Nuestro compromiso es con el club, la afición y nuestros compañeros." },
-  { title: "UNIÓN", desc: "Somos más que un equipo. La familia Saint Ferdinand crece con cada temporada." },
-  { title: "EXCELENCIA", desc: "Buscamos la mejora constante. En el campo, en la gestión y en cada detalle del club." },
-];
-
-const historyTimeline = [
-  { year: "2024", event: "Fundación del Saint Ferdinand FC", desc: "El club nace con la visión de crear un proyecto deportivo sólido basado en la cantera y el juego ofensivo." },
-  { year: "2024", event: "Primera temporada en USS Liga Premier", desc: "Debut en la categoría compitiendo en el Grupo C con una plantilla de 17 jugadores." },
-  { year: "2025", event: "Consolidación del proyecto", desc: "Segunda temporada con refuerzos clave y asentamiento del estilo de juego." },
-  { year: "2026", event: "Tercera temporada", desc: "El club sigue creciendo con nuevos talentos y mayor estructura deportiva." },
-];
+import { motion } from "framer-motion";
 
 export default function ClubPage() {
+  const values = [
+    {
+      icon: "favorite",
+      title: "Pasión",
+      desc: "El fuego interno que impulsa a nuestros atletas a trascender sus límites físicos en cada partido.",
+    },
+    {
+      icon: "shield",
+      title: "Honor",
+      desc: "Mantener el prestigio del club mediante una conducta impecable e integridad inquebrantable dentro y fuera de la cancha.",
+    },
+    {
+      icon: "diversity_3",
+      title: "Unión",
+      desc: "La fuerza colectiva de nuestra plantilla y comunidad global, forjada en una sola e indivisible.",
+    },
+    {
+      icon: "diamond",
+      title: "Excelencia",
+      desc: "Una búsqueda incansable de la perfección técnica y la maestría estratégica en cada aspecto del juego.",
+    },
+  ];
+
+  const timeline = [
+    {
+      year: "2024",
+      label: "El Génesis",
+      title: "Fundación 2024",
+      desc: "El club se inaugura oficialmente con la visión de redefinir el panorama deportivo de lujo. Se presenta el escudo, símbolo de fuerza y herencia.",
+    },
+    {
+      year: "2024",
+      label: "El Debut",
+      title: "Primera Temporada Profesional",
+      desc: "Saint Ferdinand FC pisa el césped por primera vez, estableciendo de inmediato una reputación de fútbol disciplinado de élite.",
+    },
+    {
+      year: "2025",
+      label: "Consolidación",
+      title: "Consolidación 2025",
+      desc: "Refuerzos estratégicos y la maduración de nuestra filosofía conducen a una posición de privilegio en el campeonato y clasificación europea.",
+    },
+    {
+      year: "2026",
+      label: "La Era",
+      title: "Tercera Temporada 2026",
+      desc: "Consolidación como potencia global. Expansión del complejo deportivo para acoger el creciente talento de la cantera.",
+    },
+  ];
+
   return (
     <>
-      <PageHero title="El Club" subtitle="Historia, valores y alma del Saint Ferdinand FC" />
+      {/* ─── HERO ─── */}
+      <header className="relative h-[85vh] flex items-end overflow-hidden pt-20 bg-on-surface">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-surface via-transparent to-transparent z-10" />
+          <div className="w-full h-full bg-on-surface" />
+        </div>
+        <div className="relative z-20 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-24">
+          <div className="max-w-2xl">
+            <span className="font-label-lg text-label-lg uppercase tracking-[0.2em] text-primary mb-4 block">Identidad</span>
+            <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
+              Más allá del <br />
+              <span className="text-primary">Juego Hermoso</span>
+            </h1>
+            <p className="font-body-lg text-body-lg text-secondary max-w-md leading-relaxed">
+              Saint Ferdinand FC representa la cúspide de la disciplina deportiva y el lujo minimalista. Un club fundado sobre los principios de la excelencia atlética y la pureza estética.
+            </p>
+          </div>
+        </div>
+      </header>
 
-      <section className="border-b border-border bg-surface-container-lowest py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="grid items-center gap-10 md:grid-cols-2">
-            <div className="flex justify-center">
-              <Emblem className="h-64 w-auto md:h-80" />
-            </div>
-            <div>
-              <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-club-red">Quiénes somos</span>
-              <h2 className="mt-2 font-display text-4xl font-bold uppercase leading-[0.9] tracking-[-0.02em] text-on-surface md:text-5xl">
-                SAINT FERDINAND FC
+      {/* ─── DNA & VALUES ─── */}
+      <section className="py-section-gap bg-surface">
+        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter mb-16 md:mb-20">
+            <div className="md:col-span-6">
+              <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">
+                Nuestro ADN & Valores Fundamentales
               </h2>
-              <p className="mt-4 text-sm leading-relaxed text-on-surface-variant">
-                Fundado en 2024, Saint Ferdinand FC es un club de fútbol con sede en Madrid que compite en la
-                USS Liga Premier. Nacido desde la pasión por el deporte rey, el club se ha consolidado como
-                una institución que promueve el talento, el trabajo en equipo y la excelencia deportiva.
-              </p>
-              <p className="mt-3 text-sm leading-relaxed text-on-surface-variant">
-                Con una filosofía basada en el juego ofensivo y la formación de jugadores, Saint Ferdinand
-                busca dejar huella en cada competición.
+            </div>
+            <div className="md:col-span-6 flex items-center">
+              <p className="font-body-md text-body-md text-secondary border-t border-secondary-container pt-4 w-full">
+                No solo competimos; curamos un legado. Nuestros valores son los pilares arquitectónicos de nuestra institución, guiando cada pase, cada gol y cada decisión dentro del ecosistema Saint Ferdinand.
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="border-b border-border bg-surface-container-low py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="mb-8 text-center">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-club-red">Nuestra esencia</span>
-            <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-[-0.02em] text-on-surface md:text-4xl">
-              VALORES
-            </h2>
-            <div className="mx-auto mt-3 h-px w-12 bg-club-red" />
-          </div>
-          <div className="grid gap-4 md:grid-cols-4">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
             {values.map((v, i) => (
-              <div key={v.title} className="border border-border bg-surface-container-lowest p-6">
-                <div className="flex h-10 w-10 items-center justify-center border border-border bg-surface-container text-xs font-bold text-on-surface-variant mb-4">
-                  {i + 1}
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                className="group p-8 md:p-10 bg-surface-container-lowest border border-surface-container-high transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5"
+              >
+                <div className="mb-8 w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+                  <span className="material-symbols-outlined text-3xl">{v.icon}</span>
                 </div>
-                <h3 className="font-display text-lg font-bold uppercase tracking-[-0.01em] text-on-surface">{v.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-on-surface-variant">{v.desc}</p>
-              </div>
+                <h3 className="font-headline-md text-headline-md uppercase mb-4 tracking-tight">{v.title}</h3>
+                <p className="font-body-md text-body-md text-secondary leading-relaxed">{v.desc}</p>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="border-b border-border bg-club-red py-12 md:py-16">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="mb-8 text-center">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/70">Nuestra historia</span>
-            <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-[-0.02em] text-white md:text-4xl">
-              LÍNEA DE TIEMPO
-            </h2>
-            <div className="mx-auto mt-3 h-px w-12 bg-white/50" />
-          </div>
-          <div className="relative">
-            <div className="absolute left-4 top-0 h-full w-px bg-white/30 md:left-1/2 md:-translate-x-px" />
-            {historyTimeline.map((item, i) => (
-              <div key={i} className={`relative mb-10 last:mb-0 md:mb-12 ${i % 2 === 0 ? "md:text-right md:pr-10 md:ml-auto md:w-1/2 md:pl-0" : "md:pl-10 md:ml-0 md:w-1/2"}`}>
-                <div className={`absolute left-0 top-1 flex h-6 w-6 items-center justify-center border-2 md:left-auto md:right-auto ${
-                  i % 2 === 0 ? "md:right-0 md:translate-x-1/2" : "md:left-0 md:-translate-x-1/2"
-                } border-white bg-club-red`}>
-                  <div className="h-2 w-2 bg-white" />
+      {/* ─── TECHNICAL SHEET BENTO ─── */}
+      <section className="py-section-gap bg-surface-container-low overflow-hidden relative">
+        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+          <h2 className="font-headline-lg text-headline-lg uppercase mb-12 md:mb-16 text-center">
+            Ficha Institucional
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            {/* Main Identity Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-2 bg-surface-container-lowest p-8 md:p-12 border border-surface-container-high flex flex-col justify-between"
+            >
+              <div>
+                <span className="font-label-sm text-label-sm uppercase text-primary tracking-[0.3em] mb-4 block">
+                  Identidad Oficial
+                </span>
+                <h3 className="font-display-lg text-display-lg uppercase mb-8 leading-none">
+                  Saint Ferdinand <br />Football Club
+                </h3>
+              </div>
+              <div className="grid grid-cols-2 gap-8 md:gap-12 border-t border-surface-container-high pt-8 md:pt-12">
+                <div>
+                  <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Fundación</p>
+                  <p className="font-headline-md text-headline-md">MARZO 2024</p>
                 </div>
-                <div className="ml-10 md:ml-0">
-                  <span className="font-display text-2xl font-bold text-white md:text-3xl">{item.year}</span>
-                  <h3 className="mt-1 text-sm font-bold text-white">{item.event}</h3>
-                  <p className="mt-1 text-sm leading-relaxed text-white/70">{item.desc}</p>
+                <div>
+                  <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Ubicación</p>
+                  <p className="font-headline-md text-headline-md">MADRID</p>
                 </div>
               </div>
-            ))}
+            </motion.div>
+
+            {/* Colors Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-primary p-8 md:p-12 flex flex-col justify-between text-on-primary"
+            >
+              <span className="font-label-sm text-label-sm uppercase tracking-[0.3em] opacity-70 mb-4 block">
+                Paleta del Club
+              </span>
+              <div className="space-y-6 md:space-y-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-surface border border-white/20" />
+                  <div>
+                    <p className="font-label-lg text-label-lg uppercase">Blanco Puro</p>
+                    <p className="text-sm opacity-60 font-body-md">#FFFFFF</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 bg-[#b5000b] border border-white/20" />
+                  <div>
+                    <p className="font-label-lg text-label-lg uppercase">Rojo Heritage</p>
+                    <p className="text-sm opacity-60 font-body-md">#B5000B</p>
+                  </div>
+                </div>
+              </div>
+              <h4 className="font-headline-md text-headline-md uppercase mt-8 md:mt-12 leading-tight">
+                La Sangre y La Luz
+              </h4>
+            </motion.div>
+
+            {/* Stadium Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high"
+            >
+              <div className="w-full aspect-square bg-surface-container flex items-center justify-center mb-6 overflow-hidden">
+                <span className="material-symbols-outlined text-6xl text-on-surface-variant/20">stadium</span>
+              </div>
+              <p className="font-label-sm text-label-sm uppercase text-primary mb-2">Capacidad del Estadio</p>
+              <p className="font-headline-md text-headline-md mb-2">45,000 ASIENTOS</p>
+              <p className="font-body-md text-body-md text-secondary">
+                Un santuario de excelencia deportiva, diseñado con estética minimalista futurista.
+              </p>
+            </motion.div>
+
+            {/* President & Staff */}
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-gutter"
+            >
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high flex flex-col justify-center">
+                <p className="font-label-sm text-label-sm uppercase text-secondary mb-1">Presidente</p>
+                <p className="font-headline-md text-headline-md uppercase">Ferdinand von Lux</p>
+              </div>
+              <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high flex flex-col justify-center">
+                <p className="font-label-sm text-label-sm uppercase text-secondary mb-1">Director Deportivo</p>
+                <p className="font-headline-md text-headline-md uppercase">Marco Ferrera</p>
+              </div>
+              <div className="md:col-span-2 bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high flex items-center justify-between">
+                <div>
+                  <p className="font-label-sm text-label-sm uppercase text-secondary">Complejo Deportivo</p>
+                  <p className="font-headline-md text-headline-md uppercase">La Ciudadela Blanca</p>
+                </div>
+                <span className="material-symbols-outlined text-4xl text-primary">location_on</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      <section className="bg-surface-container-lowest py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6 text-center">
-          <div className="mb-8">
-            <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-club-red">Datos del club</span>
-            <h2 className="mt-2 font-display text-3xl font-bold uppercase tracking-[-0.02em] text-on-surface md:text-4xl">FICHA</h2>
-            <div className="mx-auto mt-3 h-px w-12 bg-club-red" />
+      {/* ─── TIMELINE ─── */}
+      <section className="py-section-gap bg-surface overflow-hidden">
+        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="text-center mb-16 md:mb-24">
+            <span className="font-label-lg text-label-lg uppercase tracking-[0.4em] text-primary mb-4 block">Crónicas</span>
+            <h2 className="font-display-lg text-display-lg uppercase">Camino a la Gloria</h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              { label: "Fundación", value: "2024" },
-              { label: "Sede", value: "Madrid" },
-              { label: "Liga", value: "USS Liga Premier" },
-              { label: "Grupo", value: "C" },
-              { label: "Colores", value: "Rojo · Blanco · Negro" },
-              { label: "Estadio", value: "Campo Municipal" },
-              { label: "Capacidad", value: "1,500" },
-              { label: "Jugadores", value: "17" },
-            ].map((d) => (
-              <div key={d.label} className="border border-border bg-surface-container-lowest p-5">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.1em] text-on-surface-variant">{d.label}</p>
-                <p className="mt-1 font-display text-xl font-bold text-on-surface">{d.value}</p>
-              </div>
-            ))}
+          <div className="relative max-w-4xl mx-auto">
+            {/* Vertical Line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-primary/20 -translate-x-1/2" />
+            <div className="space-y-16 md:space-y-32">
+              {timeline.map((item, i) => (
+                <div
+                  key={i}
+                  className={`relative flex items-center justify-between md:justify-normal ${
+                    i % 2 === 0 ? "md:flex-row-reverse" : ""
+                  }`}
+                >
+                  {/* Year */}
+                  <div className={`hidden md:block w-1/2 ${
+                    i % 2 === 0 ? "pr-12 text-right pl-0" : "pl-12 text-left pr-0"
+                  }`}>
+                    <h3 className="font-display-lg text-display-lg text-primary opacity-10">{item.year}</h3>
+                  </div>
+                  {/* Dot */}
+                  <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full z-10 border-4 border-surface ring-8 ring-primary/5" />
+                  {/* Content */}
+                  <div className={`w-full md:w-12/12 md:max-w-[50%] pl-12 md:pl-0 ${
+                    i % 2 === 0 ? "md:pl-0 md:pr-12 md:text-left" : "md:pl-12 md:text-left"
+                  }`}>
+                    <motion.div
+                      initial={{ opacity: 0, y: 16 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                      className="bg-surface-container-lowest p-6 md:p-10 border border-surface-container-high"
+                    >
+                      <span className="font-label-sm text-label-sm text-primary uppercase mb-2 block">{item.label}</span>
+                      <h4 className="font-headline-md text-headline-md uppercase mb-4">{item.title}</h4>
+                      <p className="font-body-md text-body-md text-secondary leading-relaxed">{item.desc}</p>
+                    </motion.div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
