@@ -76,6 +76,12 @@ export interface Match {
   status: number;
   isPlayoff: boolean;
   isSaints: boolean;
+  walkover?: boolean;
+  details?: {
+    list?: MatchEvent[];
+    info?: Record<string, string | number>;
+    best?: Record<string, { num_val?: number }>;
+  };
 }
 
 export interface TeamRef {
@@ -160,6 +166,9 @@ export interface MatchEvent {
   cardColor?: "yellow" | "red" | "second_yellow";
   substitutionOff?: string;
   substitutionOn?: string;
+  ac?: number;
+  val2?: number;
+  val3?: number;
 }
 
 export interface TopScorer {

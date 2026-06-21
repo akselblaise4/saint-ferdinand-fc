@@ -1,0 +1,33 @@
+{
+  "capturedAt": "2026-06-20T22:27:20.393Z",
+  "matchCount": 0,
+  "playerCount": 0,
+  "detailsCaptured": 0,
+  "playersCaptured": 0,
+  "details": {},
+  "players": {},
+  "teams": null,
+  "info": {
+    "admin": "ZBJs7taX2wbT7LuUmPIbeAWRmt63",
+    "blue": false,
+    "d_f": 1782230400000,
+    "d_i": 1776787200000,
+    "evt_data": {
+      "as_red": 1,
+      "as_yellow": 3
+    },
+    "first": 4,
+    "inf_g": 4,
+    "info": {
+      "sub_title": "Martes Uss Liga Premier "
+    },
+    "last": 4,
+    "new_inscription": true,
+    "parent": "-5qp1c",
+    "premium2": 10,
+    "sport": 11,
+    "tournament_plan": 20,
+    "url_c": "https://firebasestorage.googleapis.com/v0/b/copafacil-web.appspot.com/o/evts%2F-5qp1c1776222903091.png?alt=media"
+  },
+  "m_set": null
+}
