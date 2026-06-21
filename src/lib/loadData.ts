@@ -86,14 +86,14 @@ export interface CopaData {
     saints: MatchEntry[];
   };
   topScorers: {
-    overall: { player: string; team: string; goals: number; position: number }[];
-    saints: { player: string; team: string; goals: number; overallRank: number }[];
+    overall: any[];
+    saints: any[];
     lastUpdated: string | null;
   };
   media: { all: { id: string; type: string; title: string; url: string; urlDrive: string | null; thumbnail: string | null; evt: string; timestamp: number | null; date: string | null; dateOnly: string | null; matchDriveUrl: string | null }[]; saintsGroup: any[] };
   partners: { id: string; name: string; phone: string; url: string }[];
   attachments: { id: string; title: string; url: string }[];
-  players?: { id: string; name: string }[];
+  players?: any;
 }
 
 let cached: CopaData | null = null;

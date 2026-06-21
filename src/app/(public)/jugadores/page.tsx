@@ -4,14 +4,14 @@ import { Marquee } from "@/components/football/marquee";
 
 export default function JugadoresPage() {
   const data = getCopaData();
-  const players = data.players || [];
+  const players = (data.players as any)?.items || [];
   const scorersMap = new Map<string, number>();
   const rankingsMap = new Map<string, number>();
-  for (const s of data.topScorers.saints) {
-    scorersMap.set(s.player, s.goals);
-    rankingsMap.set(s.player, s.overallRank);
+  for (const s of (data as any).topScorers.saints) {
+    scorersMap.set(s.playerName, s.goals);
+    
   }
-  const sorted = [...players].sort((a, b) => (scorersMap.get(b.name) || 0) - (scorersMap.get(a.name) || 0));
+  const sorted = [...(players as any[])].sort((a, b) => (scorersMap.get(b.name) || 0) - (scorersMap.get(a.name) || 0));
 
   return (
     <>
@@ -39,7 +39,7 @@ export default function JugadoresPage() {
               name={player.name}
               number={i + 1}
               goals={scorersMap.get(player.name) || 0}
-              rank={rankingsMap.get(player.name)}
+              rank={undefined}
             />
           ))}
         </div>

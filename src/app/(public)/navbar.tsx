@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 
 const links = [
   { label: "Inicio", href: "/" },
+  { label: "Copa", href: "/copa" },
   { label: "Partidos", href: "/partidos" },
   { label: "Plantilla", href: "/plantilla" },
   { label: "Jugadores", href: "/jugadores" },

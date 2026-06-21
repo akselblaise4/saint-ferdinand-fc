@@ -22,10 +22,10 @@ function SquadBadge({ pos }: { pos: string }) {
 export default function PlantillaPage() {
   const data = getCopaData();
   const saints = data.saints;
-  const players = data.players || [];
+  const players = (data.players as any)?.items || [];
   const scorersMap = new Map<string, number>();
   for (const s of data.topScorers.saints) {
-    scorersMap.set(s.player, s.goals);
+    scorersMap.set(s.playerName, s.goals);
   }
   const sorted = [...players].sort((a, b) => (scorersMap.get(b.name) || 0) - (scorersMap.get(a.name) || 0));
 
