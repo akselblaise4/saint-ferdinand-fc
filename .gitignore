@@ -44,6 +44,7 @@ yarn-error.log*
 data/rtdb-raw.json
 data/ws-frames.json
 data/*.json
+!data/copa-data.json
 
 # typescript
 *.tsbuildinfo
