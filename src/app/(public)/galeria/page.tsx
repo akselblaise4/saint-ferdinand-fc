@@ -4,8 +4,8 @@ const HERO_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAG1zETlI
 
 const resultBadge: Record<string, string> = {
   win: "bg-primary text-on-primary border-primary",
-  loss: "bg-surface-container text-secondary border-surface-container-high",
-  draw: "bg-surface-container text-secondary border-surface-container-high",
+  loss: "bg-surface-container text-on-surface-variant border-surface-container-high",
+  draw: "bg-surface-container text-on-surface-variant border-surface-container-high",
 };
 
 export default function GaleriaPage() {
@@ -41,7 +41,7 @@ export default function GaleriaPage() {
           <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
             Galería <br /><span className="text-primary">Saint Ferdinand</span>
           </h1>
-          <p className="font-body-lg text-body-lg text-secondary">{albums.length} álbumes de la temporada</p>
+          <p className="font-body-lg text-body-lg text-on-surface-variant">{albums.length} álbumes de la temporada</p>
         </div>
       </header>
 
@@ -50,8 +50,8 @@ export default function GaleriaPage() {
           <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
             {albums.length === 0 ? (
               <div className="flex flex-col items-center justify-center border border-surface-container-high py-24 text-center">
-                <span className="material-symbols-outlined text-6xl text-secondary mb-4">photo_library</span>
-                <p className="font-body-lg text-body-lg text-secondary">No hay álbumes disponibles</p>
+                <span className="material-symbols-outlined text-6xl text-on-surface-variant mb-4">photo_library</span>
+                <p className="font-body-lg text-body-lg text-on-surface-variant">No hay álbumes disponibles</p>
               </div>
             ) : (
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-gutter">

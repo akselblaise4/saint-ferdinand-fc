@@ -33,7 +33,7 @@ export default function ClubPage() {
             <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
               Más allá del <br /><span className="text-primary">Juego Hermoso</span>
             </h1>
-            <p className="font-body-lg text-body-lg text-secondary max-w-md leading-relaxed">
+            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed">
               Saint Ferdinand FC representa la cúspide de la disciplina deportiva y el lujo minimalista. Un club fundado sobre los principios de la excelencia atlética y la pureza estética.
             </p>
           </div>
@@ -48,7 +48,7 @@ export default function ClubPage() {
                 <h2 className="font-headline-lg text-headline-lg uppercase mb-8 border-l-4 border-primary pl-6">Nuestro ADN & Valores Fundamentales</h2>
               </div>
               <div className="md:col-span-6 flex items-center">
-                <p className="font-body-md text-body-md text-secondary border-t border-secondary-container pt-4 w-full">
+                <p className="font-body-md text-body-md text-on-surface-variant border-t border-secondary-container pt-4 w-full">
                   No solo competimos; curamos un legado. Nuestros valores son los pilares arquitectónicos de nuestra institución, guiando cada pase, cada gol y cada decisión dentro del ecosistema Saint Ferdinand.
                 </p>
               </div>
@@ -63,11 +63,11 @@ export default function ClubPage() {
                   transition={{ duration: 0.5, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
                   className="group p-8 md:p-10 bg-surface-container-lowest border border-surface-container-high transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5"
                 >
-                  <div className="mb-8 w-16 h-16 border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
+                  <div className="mb-8 w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-on-primary transition-colors duration-500">
                     <span className="material-symbols-outlined text-3xl">{v.icon}</span>
                   </div>
                   <h3 className="font-headline-md text-headline-md uppercase mb-4 tracking-tight">{v.title}</h3>
-                  <p className="font-body-md text-body-md text-secondary leading-relaxed">{v.desc}</p>
+                  <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{v.desc}</p>
                 </motion.div>
               ))}
             </div>
@@ -91,11 +91,11 @@ export default function ClubPage() {
                 </div>
                 <div className="grid grid-cols-2 gap-8 md:gap-12 border-t border-surface-container-high pt-8 md:pt-12">
                   <div>
-                    <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Fundación</p>
+                    <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-2">Fundación</p>
                     <p className="font-headline-md text-headline-md">MARZO 2024</p>
                   </div>
                   <div>
-                    <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Ubicación</p>
+                    <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-2">Ubicación</p>
                     <p className="font-headline-md text-headline-md">MADRID</p>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function ClubPage() {
                 <img src={STADIUM_IMAGE} alt="" className="w-full aspect-square object-cover mb-6 grayscale hover:grayscale-0 transition-all duration-700" />
                 <p className="font-label-sm text-label-sm uppercase text-primary mb-2">Capacidad del Estadio</p>
                 <p className="font-headline-md text-headline-md mb-2">45,000 ASIENTOS</p>
-                <p className="font-body-md text-body-md text-secondary">Un santuario de excelencia deportiva, diseñado con estética minimalista futurista.</p>
+                <p className="font-body-md text-body-md text-on-surface-variant">Un santuario de excelencia deportiva, diseñado con estética minimalista futurista.</p>
               </motion.div>
 
               <motion.div
@@ -149,16 +149,16 @@ export default function ClubPage() {
                 className="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-gutter"
               >
                 <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high flex flex-col justify-center">
-                  <p className="font-label-sm text-label-sm uppercase text-secondary mb-1">Presidente</p>
+                  <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Presidente</p>
                   <p className="font-headline-md text-headline-md uppercase">Ferdinand von Lux</p>
                 </div>
                 <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high flex flex-col justify-center">
-                  <p className="font-label-sm text-label-sm uppercase text-secondary mb-1">Director Deportivo</p>
+                  <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-1">Director Deportivo</p>
                   <p className="font-headline-md text-headline-md uppercase">Marco Ferrera</p>
                 </div>
                 <div className="md:col-span-2 bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high flex items-center justify-between">
                   <div>
-                    <p className="font-label-sm text-label-sm uppercase text-secondary">Complejo Deportivo</p>
+                    <p className="font-label-sm text-label-sm uppercase text-on-surface-variant">Complejo Deportivo</p>
                     <p className="font-headline-md text-headline-md uppercase">La Ciudadela Blanca</p>
                   </div>
                   <span className="material-symbols-outlined text-4xl text-primary">location_on</span>
@@ -193,7 +193,7 @@ export default function ClubPage() {
                       >
                         <span className="font-label-sm text-label-sm text-primary uppercase mb-2 block">{item.label}</span>
                         <h4 className="font-headline-md text-headline-md uppercase mb-4">{item.title}</h4>
-                        <p className="font-body-md text-body-md text-secondary leading-relaxed">{item.desc}</p>
+                        <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">{item.desc}</p>
                       </motion.div>
                     </div>
                   </div>

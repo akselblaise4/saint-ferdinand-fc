@@ -37,7 +37,7 @@ export default function BlogPage() {
             <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
               Noticias <br /><span className="text-primary">del Club</span>
             </h1>
-            <p className="font-body-lg text-body-lg text-secondary max-w-md leading-relaxed">
+            <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md leading-relaxed">
               Lo último sobre Saint Ferdinand FC: partidos, fichajes, academia y más.
             </p>
           </div>
@@ -67,7 +67,7 @@ export default function BlogPage() {
                         <span className="font-label-sm text-label-sm uppercase text-primary mb-2">{p.category}</span>
                         <h2 className="font-headline-md text-headline-md uppercase mb-3 group-hover:text-primary transition-colors">{p.title}</h2>
                         <div className="mt-auto flex items-center justify-between pt-4 border-t border-surface-container-high">
-                          <span className="font-body-sm text-body-sm text-secondary">{p.date}</span>
+                          <span className="font-body-sm text-body-sm text-on-surface-variant">{p.date}</span>
                           <span className="material-symbols-outlined text-primary text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
                         </div>
                       </div>

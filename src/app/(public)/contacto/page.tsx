@@ -21,7 +21,7 @@ export default function ContactoPage() {
           <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
             Hablemos
           </h1>
-          <p className="font-body-lg text-body-lg text-secondary max-w-md">
+          <p className="font-body-lg text-body-lg text-on-surface-variant max-w-md">
             Ponte en contacto con Saint Ferdinand FC. Estaremos encantados de atenderte.
           </p>
         </div>
@@ -51,7 +51,7 @@ export default function ContactoPage() {
                         <span className="material-symbols-outlined">{c.icon}</span>
                       </div>
                       <div>
-                        <p className="font-label-sm text-label-sm uppercase text-secondary">{c.label}</p>
+                        <p className="font-label-sm text-label-sm uppercase text-on-surface-variant">{c.label}</p>
                         <p className="font-body-md text-body-md">{c.value}</p>
                       </div>
                     </div>
@@ -70,21 +70,21 @@ export default function ContactoPage() {
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-gutter">
                     <div>
-                      <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Nombre</label>
-                      <input required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors" placeholder="TU NOMBRE" />
+                      <label className="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Nombre</label>
+                      <input required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors" placeholder="TU NOMBRE" />
                     </div>
                     <div>
-                      <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Email</label>
-                      <input type="email" required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors" placeholder="TU EMAIL" />
+                      <label className="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Email</label>
+                      <input type="email" required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors" placeholder="TU EMAIL" />
                     </div>
                   </div>
                   <div>
-                    <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Asunto</label>
-                    <input required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors" placeholder="ASUNTO" />
+                    <label className="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Asunto</label>
+                    <input required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors" placeholder="ASUNTO" />
                   </div>
                   <div>
-                    <label className="font-label-sm text-label-sm uppercase text-secondary block mb-2">Mensaje</label>
-                    <textarea rows={5} required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-secondary/40 focus:outline-none focus:border-primary transition-colors resize-none" placeholder="ESCRIBE TU MENSAJE..." />
+                    <label className="font-label-sm text-label-sm uppercase text-on-surface-variant block mb-2">Mensaje</label>
+                    <textarea rows={5} required className="w-full bg-surface-container-lowest border border-surface-container-high px-4 py-3 font-body-md text-body-md uppercase placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary transition-colors resize-none" placeholder="ESCRIBE TU MENSAJE..." />
                   </div>
                   <button
                     type="submit"

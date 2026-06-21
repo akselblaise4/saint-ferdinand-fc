@@ -124,7 +124,7 @@ export default function Home() {
               </div>
               <div className="flex flex-col items-center md:items-start gap-4">
                 <div className="w-24 h-24 flex items-center justify-center p-2">
-                  <span className="material-symbols-outlined text-[80px] text-secondary">shield</span>
+                  <span className="material-symbols-outlined text-[80px] text-on-surface-variant">shield</span>
                 </div>
                 <div className="text-center md:text-left">
                   <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Visitante</p>

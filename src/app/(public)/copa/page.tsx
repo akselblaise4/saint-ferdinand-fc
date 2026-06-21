@@ -45,7 +45,7 @@ export default function CopaPage() {
         <div className="relative z-10 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-16">
           <span className="font-label-lg text-label-lg uppercase tracking-[0.2em] text-primary mb-4 block">Competición</span>
           <h1 className="font-display-xl text-display-xl text-on-surface uppercase leading-[0.9] mb-4">Copa Fácil</h1>
-          <p className="font-body-lg text-body-lg text-secondary">{ev?.title || "USS Liga Premier"}</p>
+          <p className="font-body-lg text-body-lg text-on-surface-variant">{ev?.title || "USS Liga Premier"}</p>
         </div>
       </header>
 
@@ -56,17 +56,17 @@ export default function CopaPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter mb-section-gap">
               <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
                 <span className="material-symbols-outlined text-primary text-3xl mb-4 block">emoji_events</span>
-                <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Torneo</p>
+                <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-2">Torneo</p>
                 <p className="font-headline-md text-headline-md uppercase">{ev?.title || "USS Liga Premier"}</p>
               </div>
               <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
                 <span className="material-symbols-outlined text-primary text-3xl mb-4 block">calendar_month</span>
-                <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Periodo</p>
+                <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-2">Periodo</p>
                 <p className="font-headline-md text-headline-md uppercase">{formatDate(ev?.startDate)} — {formatDate(ev?.endDate)}</p>
               </div>
               <div className="bg-surface-container-lowest p-6 md:p-8 border border-surface-container-high">
                 <span className="material-symbols-outlined text-primary text-3xl mb-4 block">groups</span>
-                <p className="font-label-sm text-label-sm uppercase text-secondary mb-2">Divisiones</p>
+                <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mb-2">Divisiones</p>
                 <p className="font-headline-md text-headline-md uppercase">{data.divisions?.length || 0} divisiones</p>
               </div>
             </div>
@@ -76,7 +76,7 @@ export default function CopaPage() {
               {statBoxes.map((s) => (
                 <div key={s.label} className="bg-surface-container-lowest p-4 md:p-6 border border-surface-container-high text-center">
                   <p className="font-display-lg text-display-lg text-primary">{s.value}</p>
-                  <p className="font-label-sm text-label-sm uppercase text-secondary mt-2">{s.label}</p>
+                  <p className="font-label-sm text-label-sm uppercase text-on-surface-variant mt-2">{s.label}</p>
                 </div>
               ))}
             </div>
@@ -95,8 +95,8 @@ export default function CopaPage() {
                     className="bg-surface-container-lowest border border-surface-container-high overflow-hidden"
                   >
                     <div className="flex items-center justify-between px-6 py-3 bg-surface-container border-b border-surface-container-high">
-                      <span className="font-body-sm text-body-sm text-secondary">{m.date}</span>
-                      <span className={`font-label-sm text-label-sm uppercase ${m.isPlayoff ? "text-primary" : "text-secondary"}`}>
+                      <span className="font-body-sm text-body-sm text-on-surface-variant">{m.date}</span>
+                      <span className={`font-label-sm text-label-sm uppercase ${m.isPlayoff ? "text-primary" : "text-on-surface-variant"}`}>
                         {m.isPlayoff ? m.title || "Playoff" : "Fase Regular"}
                       </span>
                     </div>
@@ -125,7 +125,7 @@ export default function CopaPage() {
                   <thead className="bg-surface-container-high">
                     <tr>
                       {["#", "Equipo", "PJ", "PG", "PE", "PP", "GF", "GC", "DIF", "PTS"].map((h) => (
-                        <th key={h} className="p-4 font-label-sm text-label-sm uppercase text-secondary whitespace-nowrap">{h}</th>
+                        <th key={h} className="p-4 font-label-sm text-label-sm uppercase text-on-surface-variant whitespace-nowrap">{h}</th>
                       ))}
                     </tr>
                   </thead>
@@ -161,10 +161,10 @@ export default function CopaPage() {
                   {topScorers.slice(0, 15).map((s: any, i: number) => (
                     <div key={s.playerId || i} className="flex items-center justify-between border-b border-surface-container-high pb-3 last:border-0 last:pb-0">
                       <div className="flex items-center gap-3">
-                        <span className="font-label-lg text-label-lg text-secondary w-6">{i + 1}</span>
+                        <span className="font-label-lg text-label-lg text-on-surface-variant w-6">{i + 1}</span>
                         <div>
                           <p className="font-body-md text-body-md">{s.playerName || "?"}</p>
-                          <p className="font-body-sm text-body-sm text-secondary">{s.teamName}</p>
+                          <p className="font-body-sm text-body-sm text-on-surface-variant">{s.teamName}</p>
                         </div>
                       </div>
                       <span className="font-headline-md text-headline-md text-primary">{s.goals}</span>
@@ -178,7 +178,7 @@ export default function CopaPage() {
                   {saintsScorers.map((s: any, i: number) => (
                     <div key={s.playerId || i} className="flex items-center justify-between border-b border-surface-container-high pb-3 last:border-0 last:pb-0">
                       <div className="flex items-center gap-3">
-                        <span className="font-label-lg text-label-lg text-secondary w-6">{i + 1}</span>
+                        <span className="font-label-lg text-label-lg text-on-surface-variant w-6">{i + 1}</span>
                         <p className="font-body-md text-body-md">{s.playerName || "?"}</p>
                       </div>
                       <span className="font-headline-md text-headline-md text-primary">{s.goals}</span>
@@ -197,11 +197,11 @@ export default function CopaPage() {
               {roster.map((p: any) => (
                 <div key={p.id} className="bg-surface-container-lowest p-4 md:p-6 border border-surface-container-high flex items-center gap-4">
                   <div className="w-12 h-12 border border-surface-container-high bg-surface-container flex items-center justify-center shrink-0">
-                    <span className="font-headline-md text-headline-md text-secondary">{(p.firstName?.[0] || "?").toUpperCase()}</span>
+                    <span className="font-headline-md text-headline-md text-on-surface-variant">{(p.firstName?.[0] || "?").toUpperCase()}</span>
                   </div>
                   <div className="min-w-0">
                     <p className="font-body-md text-body-md truncate">{p.firstName || p.name}</p>
-                    {p.lastName && <p className="font-body-sm text-body-sm text-secondary truncate">{p.lastName}</p>}
+                    {p.lastName && <p className="font-body-sm text-body-sm text-on-surface-variant truncate">{p.lastName}</p>}
                   </div>
                 </div>
               ))}
@@ -220,8 +220,8 @@ export default function CopaPage() {
                   >
                     <p className="font-headline-sm text-headline-sm uppercase mb-4">{m.title}</p>
                     <div className="flex flex-wrap gap-2">
-                      {m.cancha && <span className="font-label-sm text-label-sm text-secondary border border-surface-container-high px-3 py-1">{m.cancha}</span>}
-                      {m.turno && <span className="font-label-sm text-label-sm text-secondary border border-surface-container-high px-3 py-1">Turno {m.turno}</span>}
+                      {m.cancha && <span className="font-label-sm text-label-sm text-on-surface-variant border border-surface-container-high px-3 py-1">{m.cancha}</span>}
+                      {m.turno && <span className="font-label-sm text-label-sm text-on-surface-variant border border-surface-container-high px-3 py-1">Turno {m.turno}</span>}
                     </div>
                   </a>
                 ))}
@@ -238,7 +238,7 @@ export default function CopaPage() {
                 {data.partners.map((p: any) => (
                   <div key={p.id} className="bg-surface-container-lowest p-6 border border-surface-container-high">
                     <p className="font-headline-md text-headline-md uppercase mb-2">{p.name}</p>
-                    {p.phone && <p className="font-body-md text-body-md text-secondary mb-2">{p.phone}</p>}
+                    {p.phone && <p className="font-body-md text-body-md text-on-surface-variant mb-2">{p.phone}</p>}
                     {p.url && <a href={p.url} target="_blank" rel="noopener noreferrer" className="font-label-sm text-label-sm text-primary uppercase inline-flex items-center gap-2">Sitio Web <span className="material-symbols-outlined text-lg">open_in_new</span></a>}
                   </div>
                 ))}

@@ -24,7 +24,7 @@ export default function JugadoresPage() {
           <h1 className="font-display-xl text-display-xl text-on-surface uppercase mb-6 leading-[0.9]">
             Jugadores <br /><span className="text-primary">Saint Ferdinand</span>
           </h1>
-          <p className="font-body-lg text-body-lg text-secondary">{sorted.length} jugadores en plantilla</p>
+          <p className="font-body-lg text-body-lg text-on-surface-variant">{sorted.length} jugadores en plantilla</p>
         </div>
       </header>
 
@@ -46,7 +46,7 @@ export default function JugadoresPage() {
                       <span className="font-headline-lg text-headline-lg">{initial}</span>
                     </div>
                     <p className="font-headline-sm text-headline-sm uppercase mb-2 leading-tight">{name}</p>
-                    <div className="flex items-center gap-2 font-body-sm text-body-sm text-secondary">
+                    <div className="flex items-center gap-2 font-body-sm text-body-sm text-on-surface-variant">
                       {goals > 0 ? (
                         <>
                           <span className="text-primary font-headline-sm text-headline-sm">{goals}</span>
