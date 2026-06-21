@@ -7,6 +7,11 @@ import { useGSAP } from "@gsap/react";
 import Link from "next/link";
 import { useSaints, useSaintsScorers, useNextMatch, useSaintsMatches } from "@/hooks/useCopaData";
 
+const HERO_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuAtGgpt-RKNr_nEv_oDiMzJzmOjQWaXme4q85pQQeY1Llk9tbJzVNpCMr_TuXyDzj3d6V9DKgPWwzkyAToc5e8sXTN-N_0ol5ocWkFIRJ-ZE4BhPqbbLjUsFPaeQl-jHb9kO1fVKqGK2jCNI7uFDTVbrXKESO-8k1S3eKfnN5YmF9oSVin-Nc4mioZEy7fmMMRUJ4RSUGM6UBXndgVM6LS5SQ_lbMdIfXOGDWSCZiOsHG_ucbCwc7DuXvlQmDqdCaxnrLd5dLleT3g";
+const FEATURED_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuBI2DEF9yZxeNmpq2wA7IL5mVj7TQFoBalxSCDYddu2JsluThqtS4sko15dK4jP5faXEBjsBFntikZTQikyQvnugZH18SCevb0IjLZI8haIjTMsgmlgdQ2XGXJD2raiDDlnrpbTVslImRK0kIMwlXz5JKAnk2C011dHxb-3Vs8L8r44IVA68yz0GxU3LpkJQInv8-6wi0Gz1Leffce0gv8H9PMaa3uerL9LKAG8pZsLD_4WHc--xvCUW2wjPM-z9X1Qhwljn1ibkpE";
+const TRAINING_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuCifpRdjz5jKjrqUG_qzbed2z_tOo0zrXXEvinDEKxrpXj_y4Idta0nnacSqAAF_TxQdcqSLOycElOyneU1DmK1G1nCQXAEZEgBhlGLhBFcmm8qDfYF19JmjIIRYwL4rLMytwkPxuelgLD8Htm2Bx0wEtrQLX42szunQI9b9ZKZ3Wvul6iHGOIHfVyFxKmr0SGvk73h5gM6TkEQ-tAtkqMZkkcVbTNiMskTekdp5ytxCBScWlsENH1UiruG7sKD07WFARKox6dY9lw";
+const KIT_IMAGE = "https://lh3.googleusercontent.com/aida-public/AB6AXuCdVi1G8CUkRrD3d_wxMEHtmY0_OH-tvywxFfrJOnRmJCctTnhH0As8QxMf_gG2hBT9GcZ-3w_HZrwkjlJ1QIuVlvWpWEVtq-2YUoCIXokRXAG7ZNMZ7waU9PlgnC9avKeo-u93IluRI1_LMRBSI2_FXHFv4SuSBXD1r4QPVUMMNzICMUaaQJibtcW1rd0R62rVr3rMswvb8ulbYH9GJ6hpZzB5TeIJKkAuV4-nInnix3KO2epnX2vd9XjHoNbLFpivkgYhtnqj7lU";
+
 gsap.registerPlugin(useGSAP);
 
 export default function Home() {
@@ -59,15 +64,9 @@ export default function Home() {
 
   return (
     <>
-      {/* ─── HERO ─── */}
       <header ref={heroRef} className="relative w-full h-[95vh] overflow-hidden bg-on-background">
-        {/* Gradient Overlay */}
+        <img src={HERO_IMAGE} alt="" className="absolute inset-0 w-full h-full object-cover opacity-80 scale-105 transition-transform duration-10000 hover:scale-100" />
         <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
-        <div className="absolute inset-0 bg-on-surface" />
-        <div className="absolute inset-0 z-0">
-          <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(227,6,19,0.15)_0%,transparent_70%)]" />
-        </div>
-
         <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-margin-mobile md:px-margin-desktop">
           <div className="overflow-hidden">
             <h1 ref={heroTitleRef} className="font-display-xl text-display-xl text-surface mb-4 uppercase tracking-tighter">
@@ -80,28 +79,20 @@ export default function Home() {
             </p>
           </div>
           <div ref={heroBtnsRef} className="flex flex-col md:flex-row gap-6 mt-4">
-            <Link
-              href="/plantilla"
-              className="px-12 py-4 bg-primary text-on-primary font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300"
-            >
+            <Link href="/plantilla" className="px-12 py-4 bg-primary text-on-primary font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300">
               Explorar Equipo
             </Link>
-            <Link
-              href="/partidos"
-              className="px-12 py-4 bg-transparent border-2 border-surface text-surface font-label-lg uppercase tracking-widest hover:bg-surface hover:text-on-background transition-all duration-300"
-            >
+            <Link href="/partidos" className="px-12 py-4 bg-transparent border-2 border-surface text-surface font-label-lg uppercase tracking-widest hover:bg-surface hover:text-on-background transition-all duration-300">
               Ver Partidos
             </Link>
           </div>
         </div>
       </header>
 
-      {/* ─── NEXT MATCH WIDGET ─── */}
       <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop -mt-24 relative z-30">
         <div className="bg-surface-container-lowest border border-secondary-container p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-12 zero-gravity-shadow">
           {nextMatch ? (
             <>
-              {/* Home Team */}
               <div className="flex flex-col items-center md:items-end gap-4">
                 <div className="w-24 h-24 flex items-center justify-center p-2">
                   <span className="material-symbols-outlined text-[80px] text-primary">shield</span>
@@ -111,14 +102,10 @@ export default function Home() {
                   <h3 className="font-headline-md text-headline-md uppercase">ST. FERDINAND</h3>
                 </div>
               </div>
-
-              {/* VS / Countdown */}
               <div className="flex flex-col items-center justify-center border-x-0 md:border-x border-secondary-container px-6 md:px-12 text-center">
                 <p className="font-label-lg text-label-lg text-primary uppercase mb-2 tracking-widest">Kick Off</p>
                 <div className="font-display-lg text-display-lg tracking-tighter text-on-surface mb-4">
-                  {nextMatch.date
-                    ? new Date(nextMatch.date).toLocaleDateString("es-ES", { day: "numeric", month: "short" }).toUpperCase()
-                    : "PRÓXIMAMENTE"}
+                  {nextMatch.date ? new Date(nextMatch.date).toLocaleDateString("es-ES", { day: "numeric", month: "short" }).toUpperCase() : "PRÓXIMAMENTE"}
                 </div>
                 <div className="flex gap-4 font-label-sm text-label-sm text-on-surface-variant uppercase">
                   <div className="flex flex-col items-center">
@@ -135,8 +122,6 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-
-              {/* Away Team */}
               <div className="flex flex-col items-center md:items-start gap-4">
                 <div className="w-24 h-24 flex items-center justify-center p-2">
                   <span className="material-symbols-outlined text-[80px] text-secondary">shield</span>
@@ -157,7 +142,6 @@ export default function Home() {
         </div>
       </div>
 
-      {/* ─── FEATURED BENTO GRID ─── */}
       <section className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
         <div className="flex justify-between items-end mb-12">
           <div>
@@ -170,14 +154,14 @@ export default function Home() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-gutter h-auto md:h-[800px]">
-          {/* Main Featured — Last Match or Default */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-8 md:row-span-2 group relative overflow-hidden bg-surface-container-high"
+            className="md:col-span-8 md:row-span-2 group relative overflow-hidden bg-surface-container-high cursor-pointer"
           >
+            <img src={FEATURED_IMAGE} alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             {lastMatch ? (
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full">
@@ -206,9 +190,7 @@ export default function Home() {
                     </h3>
                   </div>
                 </div>
-                {lastMatch.venue && (
-                  <p className="font-body-md text-body-md text-white/60 mt-4">{lastMatch.venue}</p>
-                )}
+                {lastMatch.venue && <p className="font-body-md text-body-md text-white/60 mt-4">{lastMatch.venue}</p>}
               </div>
             ) : (
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white">
@@ -219,69 +201,38 @@ export default function Home() {
             )}
           </motion.div>
 
-          {/* Scorers Panel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-4 bg-surface-container-lowest border border-secondary-container p-6 md:p-8 overflow-y-auto"
+            className="md:col-span-4 group relative overflow-hidden bg-surface-container-high border border-secondary-container cursor-pointer"
           >
-            <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 block">Goleadores</span>
-            {scorers.length === 0 ? (
-              <p className="font-body-md text-body-md text-on-surface-variant">Sin datos</p>
-            ) : (
-              <div className="space-y-0">
-                {scorers.slice(0, 5).map((p: any, i: number) => (
-                  <div key={(p.playerName || i) + ""} className="flex items-center gap-3 border-b border-surface-container py-3 last:border-b-0">
-                    <span className="flex h-6 w-6 items-center justify-center bg-surface-container text-[10px] font-semibold text-on-surface-variant font-display">
-                      {i + 1}
-                    </span>
-                    <span className="flex-1 font-body-md text-body-md text-on-surface truncate">{p.playerName || "?"}</span>
-                    <span className="font-headline-md text-headline-md text-primary">{p.goals}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-            {scorers.length > 0 && (
-              <Link href="/plantilla" className="mt-4 font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-widest inline-flex items-center gap-1 transition-colors">
-                Ver todos
-              </Link>
-            )}
+            <img src={TRAINING_IMAGE} alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8 text-white">
+              <span className="font-label-sm text-label-sm uppercase tracking-widest opacity-80">Academia</span>
+              <h4 className="font-headline-md text-headline-md uppercase mt-2">Nuevas Instalaciones</h4>
+            </div>
           </motion.div>
 
-          {/* Stats Panel */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="md:col-span-4 bg-surface-container-lowest border border-secondary-container p-6 md:p-8 flex flex-col justify-center"
+            className="md:col-span-4 group relative overflow-hidden bg-surface-container-high border border-secondary-container cursor-pointer"
           >
-            <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 block">Estadísticas</span>
-            <div className="grid grid-cols-2 gap-6">
-              <div>
-                <div className="font-display-lg text-display-lg text-primary leading-none">{played}</div>
-                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Partidos</div>
-              </div>
-              <div>
-                <div className="font-display-lg text-display-lg text-primary leading-none">{wins}</div>
-                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Victorias</div>
-              </div>
-              <div>
-                <div className="font-display-lg text-display-lg text-primary leading-none">{goalsFor}</div>
-                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Goles</div>
-              </div>
-              <div>
-                <div className="font-display-lg text-display-lg text-primary leading-none">#{pos}</div>
-                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Posición</div>
-              </div>
+            <img src={KIT_IMAGE} alt="" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-0 left-0 p-8 text-white">
+              <span className="font-label-sm text-label-sm uppercase tracking-widest opacity-80">Tienda</span>
+              <h4 className="font-headline-md text-headline-md uppercase mt-2">Nueva Equipación 24/25</h4>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* ─── MEMBERSHIP CTA ─── */}
       <section className="relative py-section-gap overflow-hidden bg-on-background text-surface">
         <div className="absolute -top-1/4 -right-1/4 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-primary/10 organic-curve blur-3xl opacity-30" />
         <div className="absolute -bottom-1/4 -left-1/4 w-[450px] md:w-[600px] h-[450px] md:h-[600px] bg-primary organic-curve blur-3xl opacity-10" />
@@ -308,10 +259,7 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Link
-              href="/contacto"
-              className="inline-block bg-primary text-on-primary px-16 py-5 font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300"
-            >
+            <Link href="/contacto" className="inline-block bg-primary text-on-primary px-16 py-5 font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300">
               Unirse
             </Link>
           </div>

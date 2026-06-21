@@ -59,17 +59,15 @@
   --color-club-red-bright: #e30613;
   --color-club-charcoal: #1A1A1B;
 
-  /* ── Font Families ── */
-  --font-display-xl: "Archivo Narrow", sans-serif;
-  --font-headline-lg: "Archivo Narrow", sans-serif;
-  --font-headline-md: "Archivo Narrow", sans-serif;
-  --font-display-lg: "Archivo Narrow", sans-serif;
-  --font-label-lg: "Archivo Narrow", sans-serif;
-  --font-label-sm: "Archivo Narrow", sans-serif;
-  --font-body-md: "Inter", sans-serif;
-  --font-body-lg: "Inter", sans-serif;
-  --font-display: "Archivo Narrow", sans-serif;
-  --font-body: "Inter", sans-serif;
+  /* ── Font Families (reference Next.js font loader CSS vars) ── */
+  --font-display-xl: var(--font-display);
+  --font-headline-lg: var(--font-display);
+  --font-headline-md: var(--font-display);
+  --font-display-lg: var(--font-display);
+  --font-label-lg: var(--font-display);
+  --font-label-sm: var(--font-display);
+  --font-body-md: var(--font-body);
+  --font-body-lg: var(--font-body);
 
   /* ── Font Sizes (with line-height via slash) ── */
   --text-display-xl: 80px / 84px;
