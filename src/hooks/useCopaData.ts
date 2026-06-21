@@ -75,3 +75,13 @@ export function useMedia() {
     queryFn: () => apiClient.getMedia(),
   });
 }
+
+export function usePlayers() {
+  return useQuery({
+    queryKey: ["copa", "players"],
+    queryFn: async () => {
+      const raw = await apiClient.fetchRaw();
+      return raw.players ?? [];
+    },
+  });
+}

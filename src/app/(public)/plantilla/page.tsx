@@ -1,62 +1,93 @@
 ﻿import { getCopaData } from "@/lib/loadData";
-import ScrollReveal from "@/components/animations/ScrollReveal";
-import { StaggerGrid, StaggerItem } from "@/components/animations/StaggerGrid";
-import PageHero from "@/components/sections/PageHero";
+import PlantillaClient from "./PlantillaClient";
 
 export default function PlantillaPage() {
   const data = getCopaData();
+
   const saintsId = "-OqC_DyMZey8vTF5Shq5";
   const saints = data.saints;
-  const allPlayers = (data.players as any)?.items || [];
-  const saintsPlayers = (data.players as any)?.byTeam?.[saintsId]?.players || allPlayers.filter((p: any) => p.teamId === saintsId);
+  const allPlayers = (data as any).players?.items || [];
+  const saintsPlayers = allPlayers.filter((p: any) => p.teamId === saintsId);
   const scorersMap = new Map<string, number>();
   for (const s of (data as any).topScorers?.saints || []) {
     scorersMap.set(s.playerName, s.goals);
   }
-  const sorted = [...saintsPlayers].sort((a: any, b: any) => (scorersMap.get(b.name) || 0) - (scorersMap.get(a.name) || 0));
+
+  const stats = saints?.season?.stats || saints?.latest?.stats;
 
   return (
     <>
-      <PageHero
-        title="Equipo"
-        subtitle={`${saints?.playersCount || sorted.length} jugadores · ${data.event?.title}`}
-      />
+      {/* ─── HERO ─── */}
+      <section className="relative h-[614px] flex items-end bg-inverse-surface overflow-hidden">
+        <div className="absolute inset-0 z-0">
+          <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface via-transparent to-transparent z-10" />
+          <div className="w-full h-full bg-on-surface" />
+        </div>
+        <div className="relative z-20 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-section-gap">
+          <h1 className="font-display-lg text-display-lg text-surface mb-4 uppercase">
+            First Team <span className="text-primary-container">Plantilla</span>
+          </h1>
+          <p className="font-body-lg text-body-lg text-surface-variant max-w-2xl">
+            {saintsPlayers.length} jugadores · {data.event?.title} · {stats?.played || 0} partidos
+          </p>
+        </div>
+      </section>
 
-      <section className="py-12 md:py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <ScrollReveal>
-            <div className="mb-6 flex items-center gap-4">
-              <h2 className="font-display text-2xl font-bold uppercase tracking-[-0.01em] text-on-surface md:text-3xl">Plantilla 2026</h2>
-              <span className="inline-flex items-center justify-center bg-club-red px-3 py-0.5 text-[10px] font-semibold uppercase tracking-[0.06em] text-white">
-                {sorted.length}
-              </span>
-            </div>
-          </ScrollReveal>
-          <StaggerGrid className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {sorted.map((p, i) => (
-              <StaggerItem key={p.id}>
-                <div className="border border-border bg-surface-container-lowest p-5 transition-colors hover:bg-surface-container">
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-14 w-14 items-center justify-center border border-border bg-surface-container">
-                      <span className="font-display text-lg font-bold text-on-surface-variant">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="mt-4">
-                    <p className="text-sm font-semibold text-on-surface">
-                      {p.firstName || p.name}{p.lastName ? " " + p.lastName : ""}
-                    </p>
-                    <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-on-surface-variant">
-                      <span>{scorersMap.get(p.name) || 0} goles</span>
-                      <span className="h-1 w-1 bg-on-surface-variant" />
-                      <span>Rank #{(data as any).topScorers?.saints?.find((s: any) => s.playerName === p.name)?.overallRank || "—"}</span>
-                    </div>
-                  </div>
+      {/* ─── SQUAD GALLERY ─── */}
+      <PlantillaClient players={saintsPlayers} scorersMap={scorersMap} />
+
+      {/* ─── TEAM STATS OVERVIEW ─── */}
+      <section className="bg-surface-container-low py-section-gap border-t border-secondary-container">
+        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+          <div className="mb-12 md:mb-16">
+            <h2 className="font-headline-lg text-headline-lg uppercase mb-2">Team Overview</h2>
+            <p className="text-on-surface-variant max-w-xl">
+              Temporada {data.event?.title}. Datos de rendimiento actualizados.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
+            {/* Stat Card: Goals */}
+            <div className="md:col-span-4 bg-surface-container-lowest border border-surface-container p-8 flex flex-col justify-between h-56 md:h-64 hover:border-primary transition-colors">
+              <div className="flex justify-between items-start">
+                <span className="material-symbols-outlined text-primary text-3xl">sports_soccer</span>
+                <span className="text-on-surface-variant font-label-sm uppercase">Goles</span>
+              </div>
+              <div>
+                <div className="font-display-lg text-display-lg leading-none">{stats?.goalsFor ?? 0}</div>
+                <div className="text-primary font-label-lg uppercase tracking-wider mt-2">
+                  {stats?.goalsFor && stats?.played
+                    ? `${(stats.goalsFor / stats.played).toFixed(1)} por partido`
+                    : "—"}
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerGrid>
+              </div>
+            </div>
+            {/* Stat Card: Clean Sheets (approximated as wins with 0 goals against) */}
+            <div className="md:col-span-4 bg-surface-container-lowest border border-surface-container p-8 flex flex-col justify-between h-56 md:h-64 hover:border-primary transition-colors">
+              <div className="flex justify-between items-start">
+                <span className="material-symbols-outlined text-primary text-3xl">shield</span>
+                <span className="text-on-surface-variant font-label-sm uppercase">Victorias</span>
+              </div>
+              <div>
+                <div className="font-display-lg text-display-lg leading-none">{stats?.wins ?? 0}</div>
+                <div className="text-primary font-label-lg uppercase tracking-wider mt-2">
+                  {stats?.played ? `${((stats.wins / stats.played) * 100).toFixed(0)}% tasa de éxito` : "—"}
+                </div>
+              </div>
+            </div>
+            {/* Stat Card: Efficiency */}
+            <div className="md:col-span-4 bg-surface-container-lowest border border-surface-container p-8 flex flex-col justify-between h-56 md:h-64 hover:border-primary transition-colors">
+              <div className="flex justify-between items-start">
+                <span className="material-symbols-outlined text-primary text-3xl">trending_up</span>
+                <span className="text-on-surface-variant font-label-sm uppercase">Eficiencia</span>
+              </div>
+              <div>
+                <div className="font-display-lg text-display-lg leading-none">{stats?.efficiency ?? 0}%</div>
+                <div className="text-primary font-label-lg uppercase tracking-wider mt-2">
+                  Pts: {stats?.points ?? 0} · DG: {stats?.goalDiff ?? 0 > 0 ? "+" : ""}{stats?.goalDiff ?? 0}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
     </>
