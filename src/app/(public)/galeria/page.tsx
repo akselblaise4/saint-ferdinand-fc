@@ -88,7 +88,7 @@ export default function GaleriaPage() {
                               </span>
                             )}
                           </div>
-                          <h3 className="font-headline-sm text-headline-sm uppercase text-on-surface mb-1">{m.title || "Álbum"}</h3>
+                          <h3 className="font-headline-sm text-headline-sm uppercase text-white mb-1">{m.title || "Álbum"}</h3>
                           {matchInfo?.opponent && (
                             <p className="font-body-md text-body-md text-white/70">vs {matchInfo.opponent} {sc != null && `${sc}-${oc}`}</p>
                           )}

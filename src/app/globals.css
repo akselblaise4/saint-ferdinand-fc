@@ -63,10 +63,12 @@
   --font-display-xl: var(--font-display);
   --font-headline-lg: var(--font-display);
   --font-headline-md: var(--font-display);
+  --font-headline-sm: var(--font-display);
   --font-display-lg: var(--font-display);
   --font-label-lg: var(--font-display);
   --font-label-sm: var(--font-display);
   --font-body-md: var(--font-body);
+  --font-body-sm: var(--font-body);
   --font-body-lg: var(--font-body);
 
   /* ── Font Sizes (with line-height via slash) ── */
@@ -74,9 +76,11 @@
   --text-display-lg: 56px / 60px;
   --text-headline-lg: 32px / 40px;
   --text-headline-md: 24px / 32px;
+  --text-headline-sm: 20px / 28px;
   --text-label-lg: 14px / 20px;
   --text-label-sm: 12px / 16px;
   --text-body-md: 16px / 24px;
+  --text-body-sm: 14px / 20px;
   --text-body-lg: 18px / 28px;
 
   /* ── Spacing ── */
@@ -112,7 +116,7 @@
 * { border-color: #e2e2e3; }
 
 body {
-  font-family: "Inter", sans-serif;
+  font-family: var(--font-body), sans-serif;
   background-color: #f9f9fa;
   color: #1a1c1d;
   -webkit-font-smoothing: antialiased;

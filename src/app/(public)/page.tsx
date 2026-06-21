@@ -74,7 +74,7 @@ export default function Home() {
             </h1>
           </div>
           <div className="overflow-hidden">
-            <p ref={heroTagRef} className="font-headline-lg text-headline-lg text-surface-variant mb-12 uppercase tracking-[0.2em]">
+            <p ref={heroTagRef} className="font-headline-lg text-headline-lg text-surface/60 mb-12 uppercase tracking-[0.2em]">
               THE PITCH IS OUR STAGE
             </p>
           </div>
@@ -196,7 +196,7 @@ export default function Home() {
               <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white">
                 <span className="bg-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-wider mb-4 inline-block">Primer Equipo</span>
                 <h3 className="font-display-lg text-display-lg uppercase leading-[1.1] max-w-xl">Saint Ferdinand FC</h3>
-                <p className="font-body-lg text-body-lg text-surface-variant mt-4 max-w-lg">La excelencia en el terreno de juego.</p>
+                 <p className="font-body-lg text-body-lg text-surface/60 mt-4 max-w-lg">La excelencia en el terreno de juego.</p>
               </div>
             )}
           </motion.div>
@@ -240,22 +240,22 @@ export default function Home() {
           <div className="max-w-3xl">
             <span className="font-label-lg text-label-lg text-primary uppercase tracking-[0.3em]">Hazte Leyenda</span>
             <h2 className="font-display-lg text-display-lg uppercase mt-4 mb-8">Únete al Saint Ferdinand</h2>
-            <p className="font-body-lg text-body-lg text-surface-variant mb-12">
+            <p className="font-body-lg text-body-lg text-surface/60 mb-12">
               Acceso exclusivo a entradas, contenido solo para miembros y beneficios premium. Sé más que un espectador—forma parte de la institución.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-12">
               <div className="flex gap-4">
                 <span className="material-symbols-outlined text-primary text-3xl">confirmation_number</span>
                 <div>
-                  <h5 className="font-headline-md text-[20px] uppercase">Acceso Prioritario</h5>
-                  <p className="text-surface-variant mt-1 font-body-md text-body-md">Entradas anticipadas para los partidos más demandados.</p>
+                  <h5 className="font-headline-sm text-headline-sm uppercase">Acceso Prioritario</h5>
+                  <p className="text-surface/60 mt-1 font-body-md text-body-md">Entradas anticipadas para los partidos más demandados.</p>
                 </div>
               </div>
               <div className="flex gap-4">
                 <span className="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
                 <div>
-                  <h5 className="font-headline-md text-[20px] uppercase">Tienda Exclusiva</h5>
-                  <p className="text-surface-variant mt-1 font-body-md text-body-md">Ediciones limitadas disponibles solo para miembros.</p>
+                  <h5 className="font-headline-sm text-headline-sm uppercase">Tienda Exclusiva</h5>
+                  <p className="text-surface/60 mt-1 font-body-md text-body-md">Ediciones limitadas disponibles solo para miembros.</p>
                 </div>
               </div>
             </div>

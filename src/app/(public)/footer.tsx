@@ -13,12 +13,12 @@ export default function Footer() {
             La cúspide de la excelencia atlética y el lujo deportivo moderno. Desde 2024.
           </p>
           <div className="flex gap-4">
-            <Link href="#" className="w-10 h-10 border border-secondary-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+            <button className="w-10 h-10 border border-secondary-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer" aria-label="Compartir">
               <span className="material-symbols-outlined text-xl">share</span>
-            </Link>
-            <Link href="#" className="w-10 h-10 border border-secondary-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors">
+            </button>
+            <button className="w-10 h-10 border border-secondary-container flex items-center justify-center hover:bg-primary hover:text-white transition-colors cursor-pointer" aria-label="Idioma">
               <span className="material-symbols-outlined text-xl">language</span>
-            </Link>
+            </button>
           </div>
         </div>
 

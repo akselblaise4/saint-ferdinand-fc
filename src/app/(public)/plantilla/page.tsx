@@ -28,7 +28,7 @@ export default function PlantillaPage() {
           <h1 className="font-display-lg text-display-lg text-surface mb-4 uppercase">
             First Team <span className="text-primary-container">Plantilla</span>
           </h1>
-          <p className="font-body-lg text-body-lg text-surface-variant max-w-2xl">
+          <p className="font-body-lg text-body-lg text-surface/60 max-w-2xl">
             El corazón de Saint Ferdinand FC. {saintsPlayers.length} jugadores · {data.event?.title} · {stats?.played || 0} partidos
           </p>
         </div>

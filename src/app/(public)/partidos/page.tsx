@@ -60,11 +60,11 @@ export default function PartidosPage() {
               </div>
               <div className="flex flex-col md:flex-row items-center justify-between gap-12 md:gap-0">
                 <div className="flex flex-col items-center flex-1">
-                  <div className="w-32 h-32 md:w-48 md:h-48 mb-6 p-4 bg-white/10 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center">
-                    <div className="w-24 h-24 md:w-36 md:h-36 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url('${SAINTS_CREST}')` }} />
-                  </div>
-                  <h2 className="font-display-lg text-display-lg text-white uppercase tracking-tighter">
-                    {nextMatch.homeTeam.name === "SAINT FERDINAND" ? "Saint Ferdinand" : nextMatch.homeTeam.name}
+                    <div className="w-32 h-32 md:w-48 md:h-48 mb-6 p-4 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
+                      <div className="w-24 h-24 md:w-36 md:h-36 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url('${SAINTS_CREST}')` }} />
+                    </div>
+                    <h2 className="font-display-lg text-display-lg text-white uppercase tracking-tighter">
+                      {nextMatch.homeTeam.name === "SAINT FERDINAND" ? "Saint Ferdinand" : nextMatch.homeTeam.name}
                   </h2>
                 </div>
                 <div className="flex flex-col items-center">
@@ -79,7 +79,7 @@ export default function PartidosPage() {
                   </div>
                 </div>
                 <div className="flex flex-col items-center flex-1">
-                  <div className="w-32 h-32 md:w-48 md:h-48 mb-6 p-4 bg-white/10 backdrop-blur-md rounded-full border border-white/20 flex items-center justify-center">
+                  <div className="w-32 h-32 md:w-48 md:h-48 mb-6 p-4 bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center">
                     <div className="w-24 h-24 md:w-36 md:h-36 bg-contain bg-center bg-no-repeat" style={{ backgroundImage: `url('${SAINTS_CREST}')` }} />
                   </div>
                   <h2 className="font-display-lg text-display-lg text-white uppercase tracking-tighter">
@@ -102,7 +102,7 @@ export default function PartidosPage() {
                 Temporada {saints?.season?.stats?.played ?? 0} Partidos
               </div>
               <h1 className="font-display-xl text-display-xl text-surface uppercase tracking-tighter">Calendario Saint Ferdinand</h1>
-              <p className="font-headline-lg text-headline-lg text-surface-variant mt-6">{regularMatches.length} partidos registrados</p>
+              <p className="font-headline-lg text-headline-lg text-surface/60 mt-6">{regularMatches.length} partidos registrados</p>
             </>
           )}
         </div>
