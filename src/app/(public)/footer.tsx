@@ -1,112 +1,64 @@
 import Link from "next/link";
 
-const sections = [
-  {
-    title: "Club",
-    links: [
-      { label: "Sobre el club", href: "/club" },
-      { label: "Historia", href: "/club/historia" },
-      { label: "Instalaciones", href: "/club/instalaciones" },
-      { label: "Directiva", href: "/club/directiva" },
-    ],
-  },
-  {
-    title: "Equipo",
-    links: [
-      { label: "Plantilla", href: "/plantilla" },
-      { label: "Partidos", href: "/partidos" },
-      { label: "Clasificación", href: "/clasificacion" },
-      { label: "Estadísticas", href: "/estadisticas" },
-    ],
-  },
-  {
-    title: "Contenido",
-    links: [
-      { label: "Galería", href: "/galeria" },
-      { label: "Noticias", href: "/blog" },
-      { label: "Contacto", href: "/contacto" },
-    ],
-  },
-  {
-    title: "Legal",
-    links: [
-      { label: "Aviso Legal", href: "/aviso-legal" },
-      { label: "Privacidad", href: "/privacidad" },
-      { label: "Cookies", href: "/cookies" },
-    ],
-  },
-];
-
 export default function Footer() {
   return (
-    <footer className="relative border-t border-border bg-surface-container-low">
-      {/* Subtle red accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-[1px] bg-club-red/30" />
-
-      <div className="mx-auto max-w-[1440px] px-6 md:px-8 py-16 md:py-20">
-        {/* Top section: brand + social */}
-        <div className="grid gap-12 md:grid-cols-5 mb-16">
-          <div className="md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center bg-club-red">
-                <span className="font-display text-sm font-bold tracking-wider text-white">SF</span>
-              </div>
-              <div>
-                <p className="font-display text-lg font-bold tracking-wide text-on-surface leading-tight">
-                  SAINT FERDINAND
-                </p>
-                <p className="font-display text-sm font-semibold tracking-[0.12em] text-on-surface-variant/60">
-                  FC
-                </p>
-              </div>
-            </div>
-            <p className="max-w-sm text-sm leading-relaxed text-on-surface-variant mb-6">
-              Club de fútbol con sede en Madrid. Compitiendo en la USS Liga Premier
-              con excelencia, pasión y dedicación desde 2024.
-            </p>
-            <div className="flex gap-3">
-              {["Instagram", "Twitter", "YouTube", "TikTok"].map((s) => (
-                <a
-                  key={s}
-                  href="#"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex h-9 w-9 items-center justify-center border border-border text-on-surface-variant transition-all duration-300 hover:border-club-red hover:bg-club-red hover:text-white"
-                >
-                  <span className="text-[10px] font-bold uppercase tracking-wider">{s.charAt(0)}</span>
-                </a>
-              ))}
-            </div>
+    <footer className="bg-surface border-t border-secondary-container py-section-gap">
+      <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
+        <div className="md:col-span-4 mb-12 md:mb-0">
+          <h3 className="font-headline-lg text-headline-lg text-primary mb-6 tracking-tighter">
+            SAINT FERDINAND FC
+          </h3>
+          <p className="font-body-md text-body-md text-on-surface-variant max-w-xs mb-8">
+            Un club de élite comprometido con los más altos estándares de rendimiento deportivo y lujo minimalista.
+          </p>
+          <div className="flex gap-4">
+            <span className="material-symbols-outlined text-2xl text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+              share
+            </span>
+            <span className="material-symbols-outlined text-2xl text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+              language
+            </span>
+            <span className="material-symbols-outlined text-2xl text-on-surface-variant cursor-pointer hover:text-primary transition-colors">
+              play_circle
+            </span>
           </div>
-
-          {sections.map((sec) => (
-            <div key={sec.title}>
-              <h4 className="font-display text-[10px] font-semibold uppercase tracking-[0.15em] text-on-surface-variant mb-5">
-                {sec.title}
-              </h4>
-              <ul className="flex flex-col gap-2.5">
-                {sec.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-on-surface-variant transition-all duration-200 hover:text-on-surface hover:translate-x-0.5 inline-block"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
         </div>
 
-        {/* Bottom bar */}
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4 pt-8 border-t border-border">
-          <p className="text-[11px] text-on-surface-variant/60">
-            &copy; {new Date().getFullYear()} Saint Ferdinand FC. Todos los derechos reservados.
-          </p>
-          <p className="text-[11px] text-on-surface-variant/40">
-            Diseñado con precisión en Madrid
+        <div className="col-span-6 md:col-span-2">
+          <h5 className="font-label-lg text-label-lg uppercase mb-6 text-on-surface">Club</h5>
+          <ul className="space-y-4 font-body-md text-body-md text-on-surface-variant">
+            <li><Link href="/club" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Sobre el club</Link></li>
+            <li><Link href="/club/historia" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Historia</Link></li>
+            <li><Link href="/club/instalaciones" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Instalaciones</Link></li>
+            <li><Link href="/club/directiva" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Directiva</Link></li>
+          </ul>
+        </div>
+
+        <div className="col-span-6 md:col-span-2">
+          <h5 className="font-label-lg text-label-lg uppercase mb-6 text-on-surface">Equipo</h5>
+          <ul className="space-y-4 font-body-md text-body-md text-on-surface-variant">
+            <li><Link href="/plantilla" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Plantilla</Link></li>
+            <li><Link href="/partidos" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Partidos</Link></li>
+            <li><Link href="/galeria" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Galería</Link></li>
+            <li><Link href="/contacto" className="hover:text-primary transition-colors hover:underline decoration-primary underline-offset-4">Contacto</Link></li>
+          </ul>
+        </div>
+
+        <div className="md:col-span-4">
+          <h5 className="font-label-lg text-label-lg uppercase mb-6 text-on-surface">Newsletter</h5>
+          <p className="font-body-md text-body-md text-on-surface-variant mb-6">Mantente al día con lo último del club.</p>
+          <div className="flex border-b border-secondary-container pb-2 mb-4">
+            <input
+              className="bg-transparent border-none focus:ring-0 w-full font-label-lg uppercase tracking-wider outline-none"
+              placeholder="EMAIL"
+              type="email"
+            />
+            <button className="text-primary font-label-lg uppercase tracking-widest hover:text-primary-container transition-colors">
+              JOIN
+            </button>
+          </div>
+          <p className="font-label-sm text-label-sm text-on-surface-variant/60 uppercase tracking-widest">
+            &copy; 2026 SAINT FERDINAND FC. ALL RIGHTS RESERVED.
           </p>
         </div>
       </div>

@@ -3,6 +3,7 @@
 @import "shadcn/tailwind.css";
 
 @theme {
+  /* Design System Colors — Exact match from Saint Ferdinand FC */
   --color-surface: #f9f9fa;
   --color-surface-dim: #dadadb;
   --color-surface-bright: #f9f9fa;
@@ -19,45 +20,55 @@
   --color-outline-variant: #e9bcb6;
   --color-surface-tint: #c0000c;
 
-  --color-club-red: #E30613;
-  --color-club-red-light: #ffdad5;
+  /* Brand colors */
+  --color-primary: #b5000b;
+  --color-on-primary: #ffffff;
+  --color-primary-container: #e30613;
+  --color-on-primary-container: #fff5f3;
+  --color-inverse-primary: #ffb4aa;
+
+  --color-secondary: #5d5f5f;
+  --color-on-secondary: #ffffff;
+  --color-secondary-container: #dfe0e0;
+  --color-on-secondary-container: #616363;
+
+  --color-background: #f9f9fa;
+  --color-on-background: #1a1c1d;
+
+  /* Shadcn compatibility */
+  --color-foreground: #1a1c1d;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1c1d;
+  --color-popover: #ffffff;
+  --color-popover-foreground: #1a1c1d;
+  --color-primary-foreground: #ffffff;
+  --color-secondary-foreground: #ffffff;
+  --color-muted: #eeeeef;
+  --color-muted-foreground: #5e3f3b;
+  --color-accent: #e2e2e3;
+  --color-accent-foreground: #1a1c1d;
+  --color-destructive: #ba1a1a;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #e2e2e3;
+  --color-input: #e2e2e3;
+  --color-ring: #936e69;
+
+  --color-club-red: #b5000b;
+  --color-club-red-bright: #e30613;
   --color-club-charcoal: #1A1A1B;
 
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-border: var(--border);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
-
+  /* Typography */
   --font-display: "Archivo Narrow", sans-serif;
   --font-body: "Inter", sans-serif;
-  --font-mono: "JetBrains Mono", "Fira Code", monospace;
 
+  /* Animations */
   --animate-fade-in: fade-in 0.5s ease-out;
   --animate-slide-up: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   --animate-marquee: marquee 30s linear infinite;
-  --animate-ken-burns: ken-burns 12s ease-out forwards;
-  --animate-shimmer: shimmer 3s ease-in-out infinite;
   --animate-scroll-indicator: scroll-indicator 2s ease-in-out infinite;
-  --animate-count-up: count-up 2s ease-out forwards;
 
   @keyframes fade-in {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from { opacity: 0; } to { opacity: 1; }
   }
   @keyframes slide-up {
     from { opacity: 0; transform: translateY(24px); }
@@ -66,14 +77,6 @@
   @keyframes marquee {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
-  }
-  @keyframes ken-burns {
-    from { transform: scale(1.08); }
-    to { transform: scale(1); }
-  }
-  @keyframes shimmer {
-    0% { background-position: -200% 0; }
-    100% { background-position: 200% 0; }
   }
   @keyframes scroll-indicator {
     0%, 100% { opacity: 0.3; transform: translateY(0); }
@@ -102,6 +105,10 @@ body {
   &::-webkit-scrollbar { display: none; }
 }
 
+@utility max-w-desktop {
+  max-width: 1440px;
+}
+
 :root {
   --background: #f9f9fa;
   --foreground: #1a1c1d;
@@ -109,7 +116,7 @@ body {
   --card-foreground: #1a1c1d;
   --popover: #ffffff;
   --popover-foreground: #1a1c1d;
-  --primary: #E30613;
+  --primary: #b5000b;
   --primary-foreground: #ffffff;
   --secondary: #5d5f5f;
   --secondary-foreground: #ffffff;
@@ -122,11 +129,6 @@ body {
   --border: #e2e2e3;
   --input: #e2e2e3;
   --ring: #936e69;
-  --chart-1: #E30613;
-  --chart-2: #5d5f5f;
-  --chart-3: #936e69;
-  --chart-4: #e9bcb6;
-  --chart-5: #dadadb;
   --radius: 0px;
 }
 
@@ -135,14 +137,28 @@ body {
   body { @apply bg-background text-foreground; }
 }
 
-.clip-diagonal {
+/* Design System Utilities */
+.hero-clip {
   clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
 }
 
-.gradient-mask-r {
-  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+.organic-curve {
+  border-radius: 60% 40% 70% 30% / 30% 60% 40% 70%;
 }
 
-.gradient-mask-b {
-  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+.zero-gravity-shadow {
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.04);
+}
+
+.hero-gradient {
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(249,249,250,1) 100%);
+}
+
+.timeline-line {
+  background: repeating-linear-gradient(to bottom, #b5000b 0px, #b5000b 2px, transparent 2px, transparent 6px);
+}
+
+/* Material Symbols */
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
 }
