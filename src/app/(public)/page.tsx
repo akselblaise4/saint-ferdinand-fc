@@ -1,15 +1,14 @@
 "use client";
 
 import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import Link from "next/link";
 import {
-  ArrowRight, Zap, Crosshair, Flame, Trophy,
-  TvIcon as Tv,
+  ArrowRight, Zap, Crosshair, Flame, Trophy, TvIcon as Tv,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Marquee } from "@/components/football/marquee";
 import { BorderBeam } from "@/components/football/border-beam";
+import { useSaints, useSaintsScorers, useNextMatch, useSaintsMatches } from "@/hooks/useCopaData";
 
 function TiltCard({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -28,13 +27,7 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
   const handleLeave = () => { x.set(0); y.set(0); };
 
   return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMove}
-      onMouseLeave={handleLeave}
-      style={{ transform }}
-      className={className}
-    >
+    <motion.div ref={ref} onMouseMove={handleMove} onMouseLeave={handleLeave} style={{ transform }} className={className}>
       {children}
     </motion.div>
   );
@@ -43,6 +36,7 @@ function TiltCard({ children, className = "" }: { children: React.ReactNode; cla
 function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
   const [val, setVal] = useState(0);
   useEffect(() => {
+    if (end === 0) return;
     let start = 0;
     const dur = 40;
     const step = Math.ceil(end / dur);
@@ -56,26 +50,34 @@ function Counter({ end, suffix = "" }: { end: number; suffix?: string }) {
   return <>{val}{suffix}</>;
 }
 
-const stats = [
-  { label: "PARTIDOS", end: 15, icon: Zap },
-  { label: "GOLES", end: 42, icon: Crosshair },
-  { label: "VICTORIAS", end: 11, icon: Flame },
-  { label: "PTS", end: 34, icon: Trophy },
-];
-
-const scorers = [
-  { n: "M. López", g: 14, a: 5 },
-  { n: "R. Gómez", g: 11, a: 7 },
-  { n: "L. Fernández", g: 9, a: 10 },
-  { n: "P. Torres", g: 6, a: 14 },
-];
-
 export default function Home() {
+  const { data: saints, isLoading: saintsLoading } = useSaints();
+  const { data: scorers = [] } = useSaintsScorers();
+  const { data: nextMatch } = useNextMatch();
+  const { data: matches = [] } = useSaintsMatches();
+
+  const stats_ = saints?.latest?.stats;
+  const points = saints?.latest?.pts ?? 0;
+  const pos = saints?.latest?.pos ?? 0;
+  const played = stats_?.played ?? 0;
+  const wins = stats_?.wins ?? 0;
+  const goalsFor = stats_?.goalsFor ?? 0;
+
+  const finished = matches.filter((m) => m.finished);
+  const lastMatch = finished[finished.length - 1];
+
+  const navItems = [
+    { label: "Partidos", href: "/partidos", icon: "⚽" },
+    { label: "Plantilla", href: "/plantilla", icon: "👥" },
+    { label: "Club", href: "/club", icon: "🏛️" },
+    { label: "Jugadores", href: "/jugadores", icon: "📊" },
+    { label: "Noticias", href: "/blog", icon: "📰" },
+    { label: "Contacto", href: "/contacto", icon: "✉️" },
+  ];
+
   return (
     <>
-      <Marquee />
-
-      {/* HERO — full bleed, texto partido en dos */}
+      {/* HERO */}
       <section className="relative min-h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(212,32,48,0.12)_0%,transparent_60%)]" />
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-club-red/5 rounded-full blur-[120px]" />
@@ -107,7 +109,7 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 className="text-sm text-muted-foreground/80 max-w-md leading-relaxed"
               >
-                Madrid. Precisión, pasión y excelencia en la USS Liga Premier.
+                Madrid. Precisión, pasión y excelencia en la USS Liga Premier. Posición actual: #{pos} con {points} pts.
               </motion.p>
 
               <motion.div
@@ -116,12 +118,14 @@ export default function Home() {
                 transition={{ duration: 0.5, delay: 0.35 }}
                 className="flex gap-3"
               >
-                <Button variant="primary" size="lg" hoverGlow>
-                  Calendario <ArrowRight size={16} />
-                </Button>
-                <Button variant="glass" size="lg">
-                  Plantilla
-                </Button>
+                <Link href="/partidos">
+                  <Button variant="primary" size="lg" hoverGlow>
+                    Calendario <ArrowRight size={16} />
+                  </Button>
+                </Link>
+                <Link href="/plantilla">
+                  <Button variant="glass" size="lg">Plantilla</Button>
+                </Link>
               </motion.div>
             </div>
 
@@ -135,15 +139,11 @@ export default function Home() {
                 <div className="relative aspect-square rounded-3xl border border-white/10 bg-gradient-to-br from-card/60 to-card/20 backdrop-blur-xl p-8 flex items-center justify-center overflow-hidden">
                   <BorderBeam size={300} colorFrom="#D42030" colorTo="#CEAB5D" />
                   <div className="text-center relative z-10">
-                    <div className="font-display text-[180px] leading-none text-white/5 select-none absolute -top-10 -right-10">
-                      SFC
-                    </div>
+                    <div className="font-display text-[180px] leading-none text-white/5 select-none absolute -top-10 -right-10">SFC</div>
                     <div className="w-32 h-32 mx-auto rounded-full bg-gradient-to-br from-club-red to-club-gold/60 flex items-center justify-center shadow-[0_0_60px_rgba(212,32,48,0.3)]">
                       <span className="font-display text-5xl text-white">SF</span>
                     </div>
-                    <p className="mt-4 text-xs text-muted-foreground font-mono uppercase tracking-widest">
-                      USS Liga Premier
-                    </p>
+                    <p className="mt-4 text-xs text-muted-foreground font-mono uppercase tracking-widest">USS Liga Premier</p>
                   </div>
                 </div>
               </TiltCard>
@@ -152,10 +152,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* STATS — contadores animados con glassmorphism */}
+      {/* STATS */}
       <section className="px-6 md:px-16 max-w-7xl mx-auto -mt-20 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {stats.map((s, i) => (
+          {[
+            { label: "PARTIDOS", end: played, icon: Zap },
+            { label: "GOLES", end: goalsFor, icon: Crosshair },
+            { label: "VICTORIAS", end: wins, icon: Flame },
+            { label: "PTS", end: points, icon: Trophy },
+          ].map((s, i) => (
             <motion.div
               key={s.label}
               initial={{ opacity: 0, y: 30 }}
@@ -166,17 +171,15 @@ export default function Home() {
             >
               <s.icon size={18} className="mx-auto text-club-red/40 group-hover:text-club-red transition-colors mb-2" />
               <div className="font-display text-5xl md:text-6xl italic text-club-red">
-                <Counter end={s.end} />
+                {saintsLoading ? "—" : <Counter end={s.end} />}
               </div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground mt-1">
-                {s.label}
-              </div>
+              <div className="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground mt-1">{s.label}</div>
             </motion.div>
           ))}
         </div>
       </section>
 
-      {/* ULTIMO RESULTADO + GOLEADORES — dos columnas asimétricas */}
+      {/* ÚLTIMO RESULTADO + GOLEADORES */}
       <section className="px-6 md:px-16 max-w-7xl mx-auto py-24">
         <div className="grid md:grid-cols-5 gap-4">
           <motion.div
@@ -189,22 +192,29 @@ export default function Home() {
             <BorderBeam size={400} colorFrom="#D42030" colorTo="#D42030" />
             <div className="relative z-10">
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-club-red mb-3 block">Último Resultado</span>
-              <div className="flex items-end gap-4 md:gap-8">
-                <div>
-                  <p className="text-[10px] font-mono text-muted-foreground mb-1">LOCAL</p>
-                  <p className="font-display text-4xl md:text-5xl text-white">SFC</p>
-                </div>
-                <div className="font-display text-7xl md:text-8xl italic text-club-red [text-shadow:0_0_40px_rgba(212,32,48,0.5)]">
-                  3 - 1
-                </div>
-                <div>
-                  <p className="text-[10px] font-mono text-muted-foreground mb-1">VISITANTE</p>
-                  <p className="font-display text-4xl md:text-5xl text-white">RIV</p>
-                </div>
-              </div>
-              <p className="mt-4 text-sm text-muted-foreground/70 max-w-lg">
-                Doblete de M. López y gol de R. Gómez. Victoria en casa.
-              </p>
+              {lastMatch ? (
+                <>
+                  <div className="flex items-end gap-4 md:gap-8">
+                    <div>
+                      <p className="text-[10px] font-mono text-muted-foreground mb-1">LOCAL</p>
+                      <p className="font-display text-4xl md:text-5xl text-white">{lastMatch.homeTeam.name === "SAINT FERDINAND FC" ? "SFC" : lastMatch.homeTeam.name.slice(0, 3).toUpperCase()}</p>
+                    </div>
+                    <div className="font-display text-7xl md:text-8xl italic text-club-red [text-shadow:0_0_40px_rgba(212,32,48,0.5)]">
+                      {lastMatch.score?.home ?? "?"} - {lastMatch.score?.away ?? "?"}
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-mono text-muted-foreground mb-1">VISITANTE</p>
+                      <p className="font-display text-4xl md:text-5xl text-white">{lastMatch.awayTeam.name === "SAINT FERDINAND FC" ? "SFC" : lastMatch.awayTeam.name.slice(0, 3).toUpperCase()}</p>
+                    </div>
+                  </div>
+                  <p className="mt-4 text-sm text-muted-foreground/70 max-w-lg">
+                    {lastMatch.venue ? `En ${lastMatch.venue}` : ""}
+                    {lastMatch.phase ? ` · ${lastMatch.phase}` : ""}
+                  </p>
+                </>
+              ) : (
+                <p className="text-lg text-muted-foreground/50 font-mono">Sin partidos disputados aún</p>
+              )}
             </div>
           </motion.div>
 
@@ -219,22 +229,26 @@ export default function Home() {
               Top Goleadores
             </span>
             <div className="flex-1 space-y-2">
-              {scorers.map((p, i) => (
-                <div key={p.n} className="flex items-center gap-3 rounded-xl bg-white/[0.03] px-4 py-3 hover:bg-white/[0.06] transition-all">
-                  <span className="w-7 h-7 rounded-full bg-club-red/20 text-club-red text-xs font-mono font-bold flex items-center justify-center">
-                    {i + 1}
-                  </span>
-                  <span className="flex-1 text-sm text-white/80">{p.n}</span>
-                  <span className="font-mono text-xs text-muted-foreground mr-2">{p.a} ast</span>
-                  <span className="font-display text-xl text-club-red">{p.g}</span>
-                </div>
-              ))}
+              {scorers.length === 0 ? (
+                <p className="text-sm text-muted-foreground/50 font-mono">Sin datos de goleadores</p>
+              ) : (
+                scorers.slice(0, 5).map((p, i) => (
+                  <div key={p.player + i} className="flex items-center gap-3 rounded-xl bg-white/[0.03] px-4 py-3 hover:bg-white/[0.06] transition-all">
+                    <span className="w-7 h-7 rounded-full bg-club-red/20 text-club-red text-xs font-mono font-bold flex items-center justify-center">
+                      {i + 1}
+                    </span>
+                    <span className="flex-1 text-sm text-white/80">{p.player}</span>
+                    <span className="font-mono text-xs text-muted-foreground">{p.team.slice(0, 3).toUpperCase()}</span>
+                    <span className="font-display text-xl text-club-red">{p.goals}</span>
+                  </div>
+                ))
+              )}
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* PROXIMO PARTIDO — full-width card con countdown */}
+      {/* PRÓXIMO PARTIDO */}
       <section className="px-6 md:px-16 max-w-7xl mx-auto pb-24">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
@@ -244,27 +258,30 @@ export default function Home() {
         >
           <div className="absolute top-0 right-0 w-1/2 h-full bg-[radial-gradient(ellipse_at_center,rgba(212,32,48,0.08)_0%,transparent_70%)]" />
           <BorderBeam size={500} colorFrom="#CEAB5D" colorTo="#D42030" />
-
           <div className="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
               <span className="text-[10px] font-mono uppercase tracking-[0.2em] text-club-gold">
                 <Tv size={14} className="inline mr-1 mb-0.5" />
                 PRÓXIMO PARTIDO
               </span>
-              <h2 className="font-display text-4xl md:text-6xl text-white mt-2">
-                vs Atlético Madrid
-              </h2>
-              <p className="text-sm text-muted-foreground/70 mt-2 font-mono">
-                Domingo 16:00 · Estadio Municipal
-              </p>
+              {nextMatch ? (
+                <>
+                  <h2 className="font-display text-4xl md:text-6xl text-white mt-2">
+                    vs {nextMatch.awayTeam.name === "SAINT FERDINAND FC" ? nextMatch.homeTeam.name : nextMatch.awayTeam.name}
+                  </h2>
+                  <p className="text-sm text-muted-foreground/70 mt-2 font-mono">
+                    {nextMatch.date ? new Date(nextMatch.date).toLocaleDateString("es-ES", { weekday: "long", day: "numeric", month: "long" }) : "Fecha por definir"}
+                    {nextMatch.localHour ? ` · ${nextMatch.localHour}:00` : ""}
+                    {nextMatch.venue ? ` · ${nextMatch.venue}` : ""}
+                  </p>
+                </>
+              ) : (
+                <p className="text-lg text-muted-foreground/50 font-mono mt-2">No hay próximos partidos</p>
+              )}
             </div>
             <div className="flex gap-4">
-              <Link href="/partidos">
-                <Button variant="primary" hoverGlow>Ver Partido</Button>
-              </Link>
-              <Link href="/clasificacion">
-                <Button variant="glass">Clasificación</Button>
-              </Link>
+              <Link href="/partidos"><Button variant="primary" hoverGlow>Ver Partido</Button></Link>
+              <Link href="/jugadores"><Button variant="glass">Estadísticas</Button></Link>
             </div>
           </div>
         </motion.div>
@@ -273,14 +290,7 @@ export default function Home() {
       {/* NAV */}
       <section className="border-t border-white/5 py-16 px-6 md:px-16 max-w-7xl mx-auto">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
-          {[
-            { label: "Partidos", href: "/partidos", icon: "⚽" },
-            { label: "Plantilla", href: "/plantilla", icon: "👥" },
-            { label: "Club", href: "/club", icon: "🏛️" },
-            { label: "Jugadores", href: "/jugadores", icon: "📊" },
-            { label: "Noticias", href: "/blog", icon: "📰" },
-            { label: "Contacto", href: "/contacto", icon: "✉️" },
-          ].map((item, i) => (
+          {navItems.map((item, i) => (
             <motion.div
               key={item.label}
               initial={{ opacity: 0, y: 20 }}
@@ -293,9 +303,7 @@ export default function Home() {
                 className="glass rounded-2xl p-5 flex flex-col items-center text-center gap-2 border border-white/5 hover:border-club-red/30 hover:-translate-y-1 transition-all duration-300 group"
               >
                 <span className="text-2xl">{item.icon}</span>
-                <span className="font-display text-lg text-white/80 group-hover:text-club-red transition-colors">
-                  {item.label}
-                </span>
+                <span className="font-display text-lg text-white/80 group-hover:text-club-red transition-colors">{item.label}</span>
               </Link>
             </motion.div>
           ))}

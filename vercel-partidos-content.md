@@ -1,0 +1,181 @@
+- generic [active] [ref=e1]:
+  - navigation [ref=e2]:
+    - generic [ref=e3]:
+      - link "SFFC" [ref=e4] [cursor=pointer]:
+        - /url: /
+      - generic [ref=e5]:
+        - link "Inicio" [ref=e6] [cursor=pointer]:
+          - /url: /
+        - link "Partidos" [ref=e7] [cursor=pointer]:
+          - /url: /partidos
+        - link "Plantilla" [ref=e8] [cursor=pointer]:
+          - /url: /plantilla
+        - link "Jugadores" [ref=e9] [cursor=pointer]:
+          - /url: /jugadores
+        - link "Club" [ref=e10] [cursor=pointer]:
+          - /url: /club
+        - link "Contacto" [ref=e11] [cursor=pointer]:
+          - /url: /contacto
+      - link "Acceso" [ref=e13] [cursor=pointer]:
+        - /url: /login
+  - main [ref=e14]:
+    - generic [ref=e15]:
+      - generic [ref=e21]:
+        - generic [ref=e23]: ⚽
+        - generic [ref=e24]:
+          - heading "Partidos" [level=1] [ref=e25]
+          - paragraph [ref=e26]: Martes Uss Liga Premier · 7 partidos jugados
+      - generic [ref=e31]:
+        - generic [ref=e32]:
+          - paragraph [ref=e33]: "1"
+          - paragraph [ref=e34]: Victorias
+        - generic [ref=e35]:
+          - paragraph [ref=e36]: "0"
+          - paragraph [ref=e37]: Empates
+        - generic [ref=e38]:
+          - paragraph [ref=e39]: "5"
+          - paragraph [ref=e40]: Derrotas
+        - generic [ref=e41]:
+          - paragraph [ref=e42]: 19:32
+          - paragraph [ref=e43]: Goleo
+      - generic [ref=e46]:
+        - generic [ref=e47]:
+          - heading "Fase Regular" [level=2] [ref=e48]
+          - paragraph [ref=e49]: 7 partidos
+        - generic [ref=e50]:
+          - button "22 Abr 2026 Empate SFFC 6 - BACHI FC T2" [ref=e52] [cursor=pointer]:
+            - generic [ref=e53]:
+              - generic [ref=e54]:
+                - generic [ref=e55]: 22 Abr 2026
+                - generic [ref=e56]: Empate
+              - generic [ref=e57]:
+                - generic [ref=e60]: SFFC
+                - generic [ref=e61]:
+                  - generic [ref=e62]: "6"
+                  - generic [ref=e63]: "-"
+                - generic [ref=e65]: BACHI FC
+              - generic [ref=e68]: T2
+          - button "29 Abr 2026 Derrota SFFC 2 - 5 CSD RASISM T2" [ref=e70] [cursor=pointer]:
+            - generic [ref=e71]:
+              - generic [ref=e72]:
+                - generic [ref=e73]: 29 Abr 2026
+                - generic [ref=e74]: Derrota
+              - generic [ref=e75]:
+                - generic [ref=e78]: SFFC
+                - generic [ref=e79]:
+                  - generic [ref=e80]: "2"
+                  - generic [ref=e81]: "-"
+                  - generic [ref=e82]: "5"
+                - generic [ref=e84]: CSD RASISM
+              - generic [ref=e87]: T2
+          - button "6 May 2026 Derrota CATENACCIO CSD 2 - 5 SFFC T1" [ref=e89] [cursor=pointer]:
+            - generic [ref=e90]:
+              - generic [ref=e91]:
+                - generic [ref=e92]: 6 May 2026
+                - generic [ref=e93]: Derrota
+              - generic [ref=e94]:
+                - generic [ref=e97]: CATENACCIO CSD
+                - generic [ref=e98]:
+                  - generic [ref=e99]: "2"
+                  - generic [ref=e100]: "-"
+                  - generic [ref=e101]: "5"
+                - generic [ref=e103]: SFFC
+              - generic [ref=e106]: T1
+          - button "13 May 2026 Derrota SFFC 2 - 4 PARCHES FC T1" [ref=e108] [cursor=pointer]:
+            - generic [ref=e109]:
+              - generic [ref=e110]:
+                - generic [ref=e111]: 13 May 2026
+                - generic [ref=e112]: Derrota
+              - generic [ref=e113]:
+                - generic [ref=e116]: SFFC
+                - generic [ref=e117]:
+                  - generic [ref=e118]: "2"
+                  - generic [ref=e119]: "-"
+                  - generic [ref=e120]: "4"
+                - generic [ref=e122]: PARCHES FC
+              - generic [ref=e125]: T1
+          - button "20 May 2026 Derrota TOCO Y ME VOY 2 - 9 SFFC T2" [ref=e127] [cursor=pointer]:
+            - generic [ref=e128]:
+              - generic [ref=e129]:
+                - generic [ref=e130]: 20 May 2026
+                - generic [ref=e131]: Derrota
+              - generic [ref=e132]:
+                - generic [ref=e135]: TOCO Y ME VOY
+                - generic [ref=e136]:
+                  - generic [ref=e137]: "2"
+                  - generic [ref=e138]: "-"
+                  - generic [ref=e139]: "9"
+                - generic [ref=e141]: SFFC
+              - generic [ref=e144]: T2
+          - button "27 May 2026 Derrota SFFC 3 - 8 GUATAFOGO FC T1" [ref=e146] [cursor=pointer]:
+            - generic [ref=e147]:
+              - generic [ref=e148]:
+                - generic [ref=e149]: 27 May 2026
+                - generic [ref=e150]: Derrota
+              - generic [ref=e151]:
+                - generic [ref=e154]: SFFC
+                - generic [ref=e155]:
+                  - generic [ref=e156]: "3"
+                  - generic [ref=e157]: "-"
+                  - generic [ref=e158]: "8"
+                - generic [ref=e160]: GUATAFOGO FC
+              - generic [ref=e163]: T1
+          - button "3 Jun 2026 Victoria 5 ORIENTE 2 - 1 SFFC T2" [ref=e165] [cursor=pointer]:
+            - generic [ref=e166]:
+              - generic [ref=e167]:
+                - generic [ref=e168]: 3 Jun 2026
+                - generic [ref=e169]: Victoria
+              - generic [ref=e170]:
+                - generic [ref=e173]: 5 ORIENTE
+                - generic [ref=e174]:
+                  - generic [ref=e175]: "2"
+                  - generic [ref=e176]: "-"
+                  - generic [ref=e177]: "1"
+                - generic [ref=e179]: SFFC
+              - generic [ref=e182]: T2
+  - contentinfo [ref=e183]:
+    - generic [ref=e184]:
+      - generic [ref=e185]:
+        - generic [ref=e186]: SFFC
+        - paragraph [ref=e187]: Saint Ferdinand FC compite en la USS Liga Premier con orgullo, pasión y excelencia.
+      - generic [ref=e188]:
+        - heading "Club" [level=5] [ref=e189]
+        - list [ref=e190]:
+          - listitem [ref=e191]:
+            - link "Historia" [ref=e192] [cursor=pointer]:
+              - /url: /club
+          - listitem [ref=e193]:
+            - link "Plantilla" [ref=e194] [cursor=pointer]:
+              - /url: /plantilla
+          - listitem [ref=e195]:
+            - link "Partidos" [ref=e196] [cursor=pointer]:
+              - /url: /partidos
+          - listitem [ref=e197]:
+            - link "Jugadores" [ref=e198] [cursor=pointer]:
+              - /url: /jugadores
+          - listitem [ref=e199]:
+            - link "Galería" [ref=e200] [cursor=pointer]:
+              - /url: /galeria
+      - generic [ref=e201]:
+        - heading "Comunidad" [level=5] [ref=e202]
+        - list [ref=e203]:
+          - listitem [ref=e204]:
+            - link "Noticias" [ref=e205] [cursor=pointer]:
+              - /url: /blog
+          - listitem [ref=e206]:
+            - link "Contacto" [ref=e207] [cursor=pointer]:
+              - /url: /contacto
+          - listitem [ref=e208]:
+            - link "Privacidad" [ref=e209] [cursor=pointer]:
+              - /url: "#"
+          - listitem [ref=e210]:
+            - link "Términos" [ref=e211] [cursor=pointer]:
+              - /url: "#"
+      - generic [ref=e212]:
+        - heading "Newsletter" [level=5] [ref=e213]
+        - paragraph [ref=e214]: Recibe las últimas novedades del club.
+        - generic [ref=e215]:
+          - textbox "tu@email.com" [ref=e216]
+          - button "Suscribir" [ref=e217]
+      - generic [ref=e219]: © 2026 SAINT FERDINAND FC.
+  - alert [ref=e220]
