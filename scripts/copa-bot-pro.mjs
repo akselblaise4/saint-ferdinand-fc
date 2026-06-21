@@ -78,6 +78,21 @@ async function main() {
 
   const rtdbData = await bot.readMany(rtdbPaths);
 
+  // After reading matches, discover and READ match details + player data
+  const allMatchesFromDb = rtdbData[`events/${EVENT_ID}/matchs`];
+  if (allMatchesFromDb) {
+    const groupDetailIds = Object.entries(allMatchesFromDb)
+      .filter(([, m]) => m?.evt === `${EVENT_ID}@${GROUP}`)
+      .map(([id]) => id);
+
+    logger.info(`Reading ${groupDetailIds.length} match details...`);
+    const detailPaths = groupDetailIds.map(id => `events/${EVENT_ID}@${GROUP}/details/${id}`);
+    const detailResults = await bot.readMany(detailPaths);
+    rtdbData["__details"] = detailResults;
+
+    rtdbData["__players"] = await bot.readMany([`events/${EVENT_ID}@${GROUP}/player`]);
+  }
+
   // Validation
   const teamQuality = bot.validateTeamData(rtdbData[`events/${EVENT_ID}@${GROUP}/teams`]);
   const matchQuality = bot.validateMatchData(rtdbData[`events/${EVENT_ID}/matchs`]);
@@ -142,6 +157,51 @@ async function main() {
     };
   });
 
+  // --- Match details (events per match) ---
+  const allDetails = rtdbData["__details"] || {};
+  const allPlayersRaw = rtdbData["__players"]?.[`events/${EVENT_ID}@${GROUP}/player`] || {};
+
+  // Process players
+  const playerNamesMap = {};
+  Object.entries(allPlayersRaw).forEach(([pid, p]) => {
+    if (p && typeof p === "object") {
+      playerNamesMap[pid] = p.nome || p.name || p.num || null;
+    }
+  });
+
+  // Process match events and compute top scorers
+  const ACTION_LABELS = { 1: "goal", 2: "assist", 3: "misconduct", 4: "red_card", 5: "own_goal", 6: "penalty_save", 7: "starter", 8: "substitute", 9: "yellow_card", 10: "substitution", 11: "goal_against", 12: "penalty_taken", 13: "penalty_missed", 14: "penalty_saved" };
+  const matchDetails = {};
+  const scorersMap = {};
+
+  Object.entries(allDetails).forEach(([matchId, detail]) => {
+    if (!detail?.list) return;
+    const events = [];
+    Object.entries(detail.list).forEach(([ts, ev]) => {
+      const ac = ev.ac || 0;
+      const pid = ev.pl_id1 || null;
+      const entry = {
+        timestamp: parseInt(ts), actionCode: ac, action: ACTION_LABELS[ac] || `unknown_${ac}`,
+        playerId: pid, playerName: playerNamesMap[pid] || null,
+        teamId: ev.team1 || null, minute: ev.val1 ?? null,
+        val2: ev.val2 ?? null, val3: ev.val3 ?? null,
+        msg: ev.msg || null,
+      };
+      events.push(entry);
+
+      // Count goals for top scorers
+      if (ac === 1 && pid) {
+        if (!scorersMap[pid]) scorersMap[pid] = { playerId: pid, name: playerNamesMap[pid] || null, teamId: ev.team1, teamName: teamNames.get(ev.team1) || ev.team1, goals: 0 };
+        scorersMap[pid].goals++;
+      }
+    });
+    events.sort((a, b) => a.timestamp - b.timestamp);
+    matchDetails[matchId] = events;
+  });
+
+  const topScorers = Object.values(scorersMap).sort((a, b) => b.goals - a.goals);
+  const saintsScorers = topScorers.filter(s => s.teamId === SAINTS_ID);
+
   // --- Saints data ---
   const saintsTeam = allTeams.find(t => t.id === SAINTS_ID);
 
@@ -199,10 +259,19 @@ async function main() {
       items: allMatchesProcessed,
       saints: saintsMatches,
     },
+    players: {
+      total: Object.keys(playerNamesMap).length,
+      items: playerNamesMap,
+    },
+    matchDetails: {
+      total: Object.keys(matchDetails).length,
+      items: matchDetails,
+      totalEvents: Object.values(matchDetails).reduce((s, e) => s + e.length, 0),
+    },
     topScorers: {
-      overall: [],
-      saints: [],
-      lastUpdated: null,
+      overall: topScorers,
+      saints: saintsScorers,
+      lastUpdated: new Date().toISOString(),
     },
     attachments: Object.entries(allAttachments).map(([id, a]) => ({ id, title: a.title, url: a.url })),
     partners: Object.entries(allPartners).map(([id, p]) => ({ id, name: p.title, phone: p.numb, url: p.urlP || p.url_l })),
@@ -248,6 +317,16 @@ async function main() {
   });
 
   logger.info(`\nMedia: ${allMediaProcessed.length} total, ${saintsMedia.length} saints`);
+
+  const totalEvents = Object.values(matchDetails).reduce((s, e) => s + e.length, 0);
+  logger.info(`\n📊 Match Details: ${Object.keys(matchDetails).length} matches, ${totalEvents} events`);
+  logger.info(`🥅 Top Scorers: ${topScorers.length} total, ${saintsScorers.length} saints`);
+  topScorers.slice(0, 3).forEach(s => logger.info(`    ${(s.name || "???").padEnd(25)} ${s.goals} goles (${s.teamName})`));
+  if (saintsScorers.length > 0) {
+    logger.info(`  Saint Ferdinand top scorer: ${saintsScorers[0].name || "???"} (${saintsScorers[0].goals} goles)`);
+  }
+  logger.info(`🧑 Players: ${Object.keys(playerNamesMap).length} names resolved`);
+
   logger.info(`Changes: ${changes.changes.join(", ") || "none"}`);
 
   await bot.close();

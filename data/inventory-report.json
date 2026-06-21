@@ -1,0 +1,1232 @@
+{
+  "categories": {
+    "attachments": {
+      "status": "OK",
+      "total": 1
+    },
+    "brackets": {
+      "matchesPerRound": {
+        "regular": 140
+      },
+      "roundNames": [
+        "regular"
+      ],
+      "rounds": 1
+    },
+    "divisions": {
+      "list": [
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "5jvbh",
+          "teamsCount": 32,
+          "title": "Martes Uss Liga Premier "
+        },
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "kjk7t",
+          "teamsCount": 16,
+          "title": "Jueves Uss Liga Premier 3°División "
+        },
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "sz2ln",
+          "teamsCount": 16,
+          "title": "Jueves Uss Liga Premier 2°División"
+        },
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "66786",
+          "teamsCount": 16,
+          "title": "Jueves Uss Liga Premier 1°División"
+        },
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "mp7pq",
+          "teamsCount": 16,
+          "title": "Miercoles Uss Liga Premier "
+        },
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "8ard",
+          "teamsCount": 18,
+          "title": "Lunes Uss Liga Premier"
+        },
+        {
+          "hasInfo": true,
+          "hasTeams": true,
+          "id": "6d06s",
+          "teamsCount": 24,
+          "title": "Domingo Uss Liga Premier "
+        }
+      ],
+      "status": "OK",
+      "total": 7
+    },
+    "eventInfo": {
+      "details": {
+        "fieldCount": 15,
+        "fields": [
+          "admin",
+          "blue",
+          "d_f",
+          "d_i",
+          "evt_data",
+          "first",
+          "inf_g",
+          "info",
+          "last",
+          "new_inscription",
+          "parent",
+          "premium2",
+          "sport",
+          "tournament_plan",
+          "url_c"
+        ]
+      },
+      "pathsRead": [
+        "events/-5qp1c@5jvbh/info",
+        "events/-5qp1c@5jvbh/info",
+        "events/-5qp1c@kjk7t/info",
+        "events/-5qp1c@sz2ln/info",
+        "events/-5qp1c@66786/info",
+        "events/-5qp1c@mp7pq/info",
+        "events/-5qp1c@8ard/info",
+        "events/-5qp1c@6d06s/info"
+      ],
+      "status": "OK"
+    },
+    "extraPaths": {
+      "access_count": "FOUND",
+      "fs": "FOUND",
+      "name_groups": "NOT_FOUND",
+      "players": "NOT_FOUND",
+      "setting": "NOT_FOUND",
+      "standings": "NOT_FOUND"
+    },
+    "matchDetails": {
+      "actionsByCode": [
+        {
+          "code": 7,
+          "count": 2863,
+          "label": "TITULAR"
+        },
+        {
+          "code": 1,
+          "count": 1036,
+          "label": "GOL"
+        },
+        {
+          "code": 10,
+          "count": 270,
+          "label": "CAMBIO"
+        },
+        {
+          "code": 3,
+          "count": 156,
+          "label": "CONDUCTA_INDEBIDA"
+        },
+        {
+          "code": 4,
+          "count": 35,
+          "label": "EXPULSION"
+        },
+        {
+          "code": 9,
+          "count": 6,
+          "label": "TARJETA_AMARILLA"
+        },
+        {
+          "code": 8,
+          "count": 2,
+          "label": "SUPLENTE"
+        }
+      ],
+      "coveragePct": "97.1",
+      "status": "OK",
+      "totalAvailable": 140,
+      "totalCaptured": 136,
+      "totalEvents": 4368
+    },
+    "matches": {
+      "finished": 136,
+      "groupMatches": 140,
+      "phases": {
+        "playoff": 28,
+        "regular": 112
+      },
+      "saintsMatches": 8,
+      "status": "OK",
+      "totalAllGroups": 585,
+      "upcoming": 4,
+      "withDetails": 136,
+      "withVenue": 140,
+      "withoutDetails": 4
+    },
+    "media": {
+      "byGroup": {
+        "66786": 8,
+        "5jvbh": 9,
+        "6d06s": 6,
+        "8ard": 11,
+        "kjk7t": 8,
+        "mp7pq": 9,
+        "sz2ln": 8,
+        "unknown": 1
+      },
+      "saintsGroup": 9,
+      "status": "OK",
+      "total": 60
+    },
+    "partners": {
+      "list": [
+        {
+          "name": "Mojala",
+          "phone": "+56432231112 "
+        },
+        {
+          "name": "Friends Group",
+          "phone": "+56979610790"
+        },
+        {
+          "name": "Cristal",
+          "phone": ""
+        },
+        {
+          "name": "EpicBet",
+          "phone": ""
+        },
+        {
+          "name": "Gatorade",
+          "phone": ""
+        }
+      ],
+      "status": "OK",
+      "total": 5
+    },
+    "places": {
+      "list": [
+        {
+          "address": null,
+          "id": "35588",
+          "name": "Cancha 6"
+        },
+        {
+          "address": null,
+          "id": "40463",
+          "name": "Cancha 7"
+        },
+        {
+          "address": null,
+          "id": "47185",
+          "name": "Cancha 8"
+        },
+        {
+          "address": null,
+          "id": "5891521",
+          "name": "Cancha 1"
+        },
+        {
+          "address": null,
+          "id": "9921626",
+          "name": "Cancha 2"
+        },
+        {
+          "address": null,
+          "id": "9929699",
+          "name": "Cancha 3"
+        },
+        {
+          "address": null,
+          "id": "9936479",
+          "name": "Cancha 4"
+        },
+        {
+          "address": null,
+          "id": "9944212",
+          "name": "Cancha 5"
+        }
+      ],
+      "status": "OK",
+      "total": 8
+    },
+    "players": {
+      "status": "OK",
+      "uniqueIds": 485,
+      "withNames": 493,
+      "withNumbers": 0,
+      "withoutNames": 0
+    },
+    "teams": {
+      "details": {
+        "avgStatsEntries": "8.0",
+        "totalPlayersCount": 493,
+        "withCoach": 1,
+        "withPhoto": 32,
+        "withoutPhoto": 0
+      },
+      "status": "OK",
+      "teams": [
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_95dCU2MtUSDezVQ",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 1,
+            "pts": 1,
+            "stats": {
+              "cleanSheets": 0,
+              "draws": 0,
+              "efficiency": 1.2,
+              "fouls": 0,
+              "goalDiff": 1,
+              "goalsAgainst": 5,
+              "goalsFor": 6,
+              "losses": 0,
+              "ownGoals": 0,
+              "penaltiesAgainst": 0,
+              "penaltiesScored": 0,
+              "played": 2,
+              "points": 6,
+              "pointsPerGame": 3,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 2,
+              "yellowCards": 100
+            },
+            "suspended": true
+          },
+          "name": "PALO VIO FC",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_Hjozjwl44ZvqZ-o",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 2,
+            "pts": 2,
+            "stats": {
+              "cleanSheets": 2,
+              "draws": 0,
+              "efficiency": 1.56,
+              "fouls": 15,
+              "goalDiff": 5,
+              "goalsAgainst": 9,
+              "goalsFor": 14,
+              "losses": 1,
+              "ownGoals": 0,
+              "penaltiesAgainst": 1,
+              "penaltiesScored": 1,
+              "played": 2,
+              "points": 3,
+              "pointsPerGame": 1.5,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 1,
+              "yellowCards": 50
+            },
+            "suspended": true
+          },
+          "name": "IMPUTADOS",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_kx_Smw8rsXRTopv",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 3,
+            "pts": 3,
+            "stats": {
+              "cleanSheets": 3,
+              "draws": 0,
+              "efficiency": 1,
+              "fouls": 25,
+              "goalDiff": 0,
+              "goalsAgainst": 6,
+              "goalsFor": 6,
+              "losses": 1,
+              "ownGoals": 0,
+              "penaltiesAgainst": 1,
+              "penaltiesScored": 2,
+              "played": 2,
+              "points": 3,
+              "pointsPerGame": 1.5,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 1,
+              "yellowCards": 50
+            },
+            "suspended": true
+          },
+          "name": "FRAGATA FC",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_fdp6_9qLkO1F_FR",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 4,
+            "pts": 4,
+            "stats": {
+              "cleanSheets": 2,
+              "draws": 0,
+              "efficiency": 1,
+              "fouls": 15,
+              "goalDiff": 0,
+              "goalsAgainst": 3,
+              "goalsFor": 3,
+              "losses": 1,
+              "ownGoals": 0,
+              "penaltiesAgainst": 1,
+              "penaltiesScored": 1,
+              "played": 1,
+              "points": 0,
+              "pointsPerGame": 0,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 0,
+              "yellowCards": 0
+            },
+            "suspended": true
+          },
+          "name": "LA FERIA",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_J1kpZm34LAF2JCy",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 5,
+            "pts": 5,
+            "stats": {
+              "cleanSheets": 1,
+              "draws": 0,
+              "efficiency": 1,
+              "fouls": 10,
+              "goalDiff": 0,
+              "goalsAgainst": 1,
+              "goalsFor": 1,
+              "losses": 1,
+              "ownGoals": 0,
+              "penaltiesAgainst": 0,
+              "penaltiesScored": 1,
+              "played": 1,
+              "points": 0,
+              "pointsPerGame": 0,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 0,
+              "yellowCards": 0
+            },
+            "suspended": true
+          },
+          "name": "CSD RICKY BALBOA",
+          "photo": true,
+          "playersCount": 17
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_gudsYv9I_Ytk99i",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 6,
+            "pts": 6,
+            "stats": {
+              "cleanSheets": 0,
+              "draws": 0,
+              "efficiency": 0.67,
+              "fouls": 0,
+              "goalDiff": -1,
+              "goalsAgainst": 3,
+              "goalsFor": 2,
+              "losses": 1,
+              "ownGoals": 0,
+              "penaltiesAgainst": 0,
+              "penaltiesScored": 0,
+              "played": 1,
+              "points": 0,
+              "pointsPerGame": 0,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 0,
+              "yellowCards": 0
+            },
+            "suspended": true
+          },
+          "name": "PARACHOQUES ",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_6cXw4pS3n-rmQhv",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 7,
+            "pts": 7,
+            "stats": {
+              "cleanSheets": 1,
+              "draws": 0,
+              "efficiency": 0.33,
+              "fouls": 10,
+              "goalDiff": -6,
+              "goalsAgainst": 9,
+              "goalsFor": 3,
+              "losses": 1,
+              "ownGoals": 0,
+              "penaltiesAgainst": 0,
+              "penaltiesScored": 1,
+              "played": 1,
+              "points": 0,
+              "pointsPerGame": 0,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 0,
+              "yellowCards": 0
+            },
+            "suspended": true
+          },
+          "name": "5 ORIENTE",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_2kK9ObTZiyadqgY",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "MISTRAL CITY",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_3rU7j-w-cQMUuLJ",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "TOCO Y ME VOY",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_5MMlZWxXrXNaCYT",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "SPORT PILSEN",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_7rvSZqsFhWvktA8",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "AC CHITAL",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_AGQQye878Hevpts",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "TREN DEL AGUA FC",
+          "photo": true,
+          "playersCount": 18
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_Ba3Cy-WGnQuhKcX",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "LOS BORGES",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_CmKD8KCCNMu5P65",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "ATLÉTICO RONGJI",
+          "photo": true,
+          "playersCount": 17
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_DyMZey8vTF5Shq5",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "SAINT FERDINAND",
+          "photo": true,
+          "playersCount": 17
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_FQbzrz6biJyLrgY",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": 0,
+            "pts": 0,
+            "stats": {
+              "cleanSheets": 2,
+              "draws": 0,
+              "efficiency": 1.17,
+              "fouls": 15,
+              "goalDiff": 1,
+              "goalsAgainst": 6,
+              "goalsFor": 7,
+              "losses": 0,
+              "ownGoals": 0,
+              "penaltiesAgainst": 1,
+              "penaltiesScored": 1,
+              "played": 2,
+              "points": 6,
+              "pointsPerGame": 3,
+              "redCards": 0,
+              "redCardsOpponent": 0,
+              "suspensions": 0,
+              "wins": 2,
+              "yellowCards": 100
+            },
+            "suspended": true
+          },
+          "name": "BACHI FC",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_GXUXoNpefLZvgrA",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "CSD RASISM",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_KG12A1ebHYGs8Dv",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "EL CICLÓN",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_LTlExMlUN6IMFDk",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "SOLDADOS DE DEUS",
+          "photo": true,
+          "playersCount": 14
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_Mm0WhupmrtcPspt",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "LA SALAR FC",
+          "photo": true,
+          "playersCount": 14
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_NxBrUJMDH8Ovoq4",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "PARCHES FC",
+          "photo": true,
+          "playersCount": 14
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_PC0yWmNcYXIe3gB",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "CSD VERSACE",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_QgOUsdJxTNDQEf2",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "YO LA AMABA FC",
+          "photo": true,
+          "playersCount": 14
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_S8kbj2zHa58whnI",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "HANGOVER",
+          "photo": true,
+          "playersCount": 18
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_TJfPPjn6PnAID3J",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "REAL GORREAOS",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_URBDDGPYGhx6zbN",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "C.A MODO AVIÓN",
+          "photo": true,
+          "playersCount": 14
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_Vba6g_7prPgA8ME",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "EL PATÉ FC",
+          "photo": true,
+          "playersCount": 12
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_WnJynA5mThqv-9c",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "CATENACCIO CSD",
+          "photo": true,
+          "playersCount": 15
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_Yzu60Cq_e0WCmsS",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "GUATAFOGO FC",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": "Nicolás\tBohme\tOlivera",
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_iBF4FA1v8HmA6pv",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "ESCUDEROS FC",
+          "photo": true,
+          "playersCount": 17
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_jVavi_xccZ4k6Pi",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "CANCHEROS FC",
+          "photo": true,
+          "playersCount": 16
+        },
+        {
+          "coach": null,
+          "entriesCount": 8,
+          "hasPhoto": true,
+          "id": "-OqC_wM7ZUqlA-evocqO",
+          "lastStats": {
+            "at": 1780501929678,
+            "date": "2026-06-03T15:52:09.678Z",
+            "group": null,
+            "pos": null,
+            "pts": null,
+            "stats": null,
+            "suspended": false
+          },
+          "name": "DEPORTIVO EL YACAL",
+          "photo": true,
+          "playersCount": 15
+        }
+      ],
+      "total": 32
+    },
+    "topScorers": {
+      "knownNames": 289,
+      "saints": 10,
+      "saintsTop": [
+        {
+          "goals": 8,
+          "matches": 5,
+          "name": "Cristián Valenzuela\tDe Giorgis",
+          "playerId": "1776204671431",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 2,
+          "matches": 2,
+          "name": "Duvan\tHenao\tLabraña",
+          "playerId": "1776204821033",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 2,
+          "matches": 1,
+          "name": "Lukas Acosta\tLeyton",
+          "playerId": "1776204695902",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 2,
+          "matches": 2,
+          "name": "Rogelio San Martín ",
+          "playerId": "1778026851457",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 1,
+          "matches": 1,
+          "name": "Raúl\tValenzuela De Giorgis",
+          "playerId": "1776204721490",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 1,
+          "matches": 1,
+          "name": "Alan\tGaete\tMancilla",
+          "playerId": "1776204705294",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 1,
+          "matches": 1,
+          "name": "Nilton\tGonzáles\tCampos",
+          "playerId": "1776204684832",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 1,
+          "matches": 1,
+          "name": "Andrés\tSan Martín Roa",
+          "playerId": "1776204809691",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 1,
+          "matches": 1,
+          "name": "Bruno\tGuzmán\tEspinoza",
+          "playerId": "1776204775345",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        },
+        {
+          "goals": 1,
+          "matches": 1,
+          "name": "Javier Fuentes Palma",
+          "playerId": "1776204764803",
+          "teamId": "-OqC_DyMZey8vTF5Shq5",
+          "teamName": "SAINT FERDINAND"
+        }
+      ],
+      "status": "OK",
+      "top10": [
+        {
+          "goals": 20,
+          "matches": 9,
+          "name": "Diego Araya Leiva",
+          "playerId": "1776624855659",
+          "teamId": "-OqC_jVavi_xccZ4k6Pi",
+          "teamName": "CANCHEROS FC"
+        },
+        {
+          "goals": 17,
+          "matches": 7,
+          "name": "Franklin\tPalacios\tRamírez",
+          "playerId": "1776205407307",
+          "teamId": "-OqC_PC0yWmNcYXIe3gB",
+          "teamName": "CSD VERSACE"
+        },
+        {
+          "goals": 16,
+          "matches": 6,
+          "name": "Diego Ignacio\tRamírez\tIbarra",
+          "playerId": "1776203431858",
+          "teamId": "-OqC_Yzu60Cq_e0WCmsS",
+          "teamName": "GUATAFOGO FC"
+        },
+        {
+          "goals": 15,
+          "matches": 7,
+          "name": "Francisco Félix\tRapaz\tGonzález",
+          "playerId": "1776205180750",
+          "teamId": "-OqC_LTlExMlUN6IMFDk",
+          "teamName": "SOLDADOS DE DEUS"
+        },
+        {
+          "goals": 14,
+          "matches": 7,
+          "name": "Javier\tBarria\tSantana",
+          "playerId": "1776205305804",
+          "teamId": "-OqC_PC0yWmNcYXIe3gB",
+          "teamName": "CSD VERSACE"
+        },
+        {
+          "goals": 14,
+          "matches": 8,
+          "name": "Mauro\tFernando\tBruno",
+          "playerId": "1776624694861",
+          "teamId": "-OqC_WnJynA5mThqv-9c",
+          "teamName": "CATENACCIO CSD"
+        },
+        {
+          "goals": 12,
+          "matches": 7,
+          "name": "Eduardo \tPaillalef\tPiuchante",
+          "playerId": "1776795178089",
+          "teamId": "-OqC_Hjozjwl44ZvqZ-o",
+          "teamName": "IMPUTADOS"
+        },
+        {
+          "goals": 12,
+          "matches": 5,
+          "name": "Arturo\tDe la Rivera\tVivanco",
+          "playerId": "1776797429421",
+          "teamId": "-OqC_iBF4FA1v8HmA6pv",
+          "teamName": "ESCUDEROS FC"
+        },
+        {
+          "goals": 12,
+          "matches": 5,
+          "name": "Marcelo Giménez Flores",
+          "playerId": "1776795914130",
+          "teamId": "-OqC_S8kbj2zHa58whnI",
+          "teamName": "HANGOVER"
+        },
+        {
+          "goals": 11,
+          "matches": 6,
+          "name": "Juan Pablo\tAburto\tValderrama",
+          "playerId": "1776622512967",
+          "teamId": "-OqC_5MMlZWxXrXNaCYT",
+          "teamName": "SPORT PILSEN"
+        }
+      ],
+      "total": 290,
+      "unknownNames": 1
+    }
+  },
+  "event": {
+    "admin": "ZBJs7taX2wbT7LuUmPIbeAWRmt63",
+    "endDate": "2026-06-23T16:00:00.000Z",
+    "group": "5jvbh",
+    "groupCount": 4,
+    "hasCoverPhoto": true,
+    "id": "-5qp1c",
+    "lastUpdate": "2026-04-15T19:42:35.324Z",
+    "parent": "-5qp1c",
+    "premium": 10,
+    "settings": {
+      "as_red": 1,
+      "as_yellow": 3,
+      "blue": false,
+      "first": 4,
+      "last": 4,
+      "newInscription": true
+    },
+    "sport": "Fútbol 7",
+    "startDate": "2026-04-21T16:00:00.000Z",
+    "title": "Martes Uss Liga Premier ",
+    "tournamentPlan": 20
+  },
+  "gapAnalysis": {
+    "detailsList": [
+      "1780500667184",
+      "1780500977248",
+      "1780501700826",
+      "1780502031595"
+    ],
+    "matchesWithoutDetails": 4,
+    "matchesWithoutVenue": 0,
+    "missingDetails": 4,
+    "missingPlayers": -8,
+    "missingScorerNames": 1,
+    "teamsWithoutCoach": 31,
+    "teamsWithoutPhoto": 0,
+    "unknownPaths": [
+      "name_groups",
+      "players",
+      "setting",
+      "standings"
+    ]
+  },
+  "scanDurationMs": 90296,
+  "scanTimestamp": "2026-06-21T04:36:10.221Z"
+}
