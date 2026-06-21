@@ -1,56 +1,14 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { gsap } from "gsap";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Link from "next/link";
-import { ArrowRight, Trophy, Shield, Users, Goal, CalendarDays } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useSaints, useSaintsScorers, useNextMatch, useSaintsMatches } from "@/hooks/useCopaData";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
-
-const easeSmooth = [0.65, 0, 0.35, 1] as const;
-
-function StatCounter({ value, label }: { value: string | number; label: string }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const counterRef = useRef<HTMLDivElement>(null);
-
-  useGSAP(() => {
-    const el = counterRef.current;
-    if (!el) return;
-    const num = typeof value === "string" ? parseInt(value.replace(/\D/g, ""), 10) : value;
-    if (isNaN(num)) return;
-
-    ScrollTrigger.create({
-      trigger: ref.current,
-      start: "top 85%",
-      once: true,
-      onEnter: () => {
-        gsap.fromTo(el, { textContent: 0 }, {
-          textContent: num,
-          duration: 1.8,
-          ease: "power4.out",
-          snap: { textContent: 1 },
-        });
-      },
-    });
-  }, [value]);
-
-  return (
-    <div ref={ref} className="bento-stat p-8 flex flex-col justify-between h-48 md:h-56">
-      <div className="flex justify-between items-start">
-        <span className="text-primary font-label-sm uppercase tracking-widest">{label}</span>
-      </div>
-      <div>
-        <div ref={counterRef} className="font-display-lg text-display-lg leading-none text-primary">
-          0
-        </div>
-      </div>
-    </div>
-  );
-}
+gsap.registerPlugin(useGSAP);
 
 export default function Home() {
   const { data: saints } = useSaints();
@@ -59,7 +17,6 @@ export default function Home() {
   const { data: matches = [] } = useSaintsMatches();
 
   const stats = saints?.latest?.stats;
-  const points = saints?.latest?.pts ?? 0;
   const pos = saints?.latest?.pos ?? 0;
   const played = stats?.played ?? 0;
   const wins = stats?.wins ?? 0;
@@ -69,22 +26,36 @@ export default function Home() {
   const lastMatch = finished[finished.length - 1];
 
   const heroRef = useRef<HTMLElement>(null);
-  const marqueeRef = useRef<HTMLDivElement>(null);
+  const heroTitleRef = useRef<HTMLHeadingElement>(null);
+  const heroTagRef = useRef<HTMLParagraphElement>(null);
+  const heroBtnsRef = useRef<HTMLDivElement>(null);
 
+  // Countdown timer
+  const [countdown, setCountdown] = useState({ days: "00", hours: "00", mins: "00" });
+
+  useEffect(() => {
+    if (!nextMatch?.date) return;
+    const interval = setInterval(() => {
+      const now = new Date().getTime();
+      const matchTime = new Date(nextMatch.date!).getTime();
+      const diff = matchTime - now;
+      if (diff <= 0) { clearInterval(interval); return; }
+      setCountdown({
+        days: String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, "0"),
+        hours: String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, "0"),
+        mins: String(Math.floor((diff / (1000 * 60)) % 60)).padStart(2, "0"),
+      });
+    }, 1000);
+    return () => clearInterval(interval);
+  }, [nextMatch]);
+
+  // Hero entrance animation
   useGSAP(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out", duration: 0.8 } });
-      tl.fromTo(".hero-line", { y: 80, opacity: 0 }, { y: 0, opacity: 1, stagger: 0.1, duration: 1, ease: "power4.out" }, 0.2)
-        .fromTo(".hero-meta", { y: 24, opacity: 0 }, { y: 0, opacity: 1 }, 0.8)
-        .fromTo(".hero-buttons", { y: 16, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5 }, 1.0)
-        .fromTo(".hero-indicator", { opacity: 0 }, { opacity: 1, duration: 0.4 }, 1.2);
-
-      gsap.to(marqueeRef.current, {
-        xPercent: -50,
-        ease: "none",
-        duration: 25,
-        repeat: -1,
-      });
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.fromTo(heroTitleRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1, delay: 0.3 })
+        .fromTo(heroTagRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.4")
+        .fromTo(heroBtnsRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3");
     }, heroRef);
     return () => ctx.revert();
   }, []);
@@ -92,301 +63,259 @@ export default function Home() {
   return (
     <>
       {/* ─── HERO ─── */}
-      <section ref={heroRef} className="relative h-[85vh] md:h-[90vh] flex items-end overflow-hidden bg-inverse-surface">
+      <header ref={heroRef} className="relative w-full h-[95vh] overflow-hidden bg-on-background">
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent z-10" />
+        <div className="absolute inset-0 bg-on-surface" />
         <div className="absolute inset-0 z-0">
-          <div className="absolute inset-0 bg-gradient-to-t from-inverse-surface via-inverse-surface/60 to-transparent z-10" />
-          <div className="w-full h-full bg-on-surface" />
-          <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-primary-container/20 blur-[160px] rounded-full" />
+          <div className="w-full h-full bg-[radial-gradient(ellipse_at_center,rgba(227,6,19,0.15)_0%,transparent_70%)]" />
         </div>
 
-        <div className="relative z-20 w-full max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop pb-section-gap">
-          <div className="max-w-3xl">
-            <div className="overflow-hidden mb-4">
-              <p className="hero-meta font-label-sm text-label-sm uppercase tracking-[0.2em] text-primary-container/80">
-                USS Liga Premier &middot; 2026
-              </p>
-            </div>
-            <h1 className="font-display-xl text-display-xl uppercase leading-[0.9] text-white">
-              <div className="overflow-hidden"><span className="hero-line block">Saint</span></div>
-              <div className="overflow-hidden"><span className="hero-line block text-primary-container">Ferdinand</span></div>
+        <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-margin-mobile md:px-margin-desktop">
+          <div className="overflow-hidden">
+            <h1 ref={heroTitleRef} className="font-display-xl text-display-xl text-surface mb-4 uppercase tracking-tighter">
+              SAINT FERDINAND FC
             </h1>
-            <div className="overflow-hidden mt-6">
-              <p className="hero-meta font-body-lg text-body-lg text-surface-variant max-w-lg leading-relaxed">
-                Madrid. Excelencia, pasión y precisión en el terreno de juego. Un club construido para la grandeza.
-              </p>
-            </div>
-            <div className="hero-buttons flex flex-wrap gap-4 mt-10">
-              <Link
-                href="/partidos"
-                className="bg-primary-container text-white font-label-lg uppercase px-10 py-4 tracking-widest transition-all duration-300 hover:brightness-110 inline-flex items-center gap-2"
-              >
-                Calendario <ArrowRight size={14} />
-              </Link>
-              <Link
-                href="/plantilla"
-                className="bg-transparent border-2 border-white/30 text-white font-label-lg uppercase px-10 py-4 tracking-widest transition-all duration-300 hover:bg-white hover:text-on-surface"
-              >
-                Plantilla
-              </Link>
-            </div>
+          </div>
+          <div className="overflow-hidden">
+            <p ref={heroTagRef} className="font-headline-lg text-headline-lg text-surface-variant mb-12 uppercase tracking-[0.2em]">
+              THE PITCH IS OUR STAGE
+            </p>
+          </div>
+          <div ref={heroBtnsRef} className="flex flex-col md:flex-row gap-6 mt-4">
+            <Link
+              href="/plantilla"
+              className="px-12 py-4 bg-primary text-on-primary font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300"
+            >
+              Explorar Equipo
+            </Link>
+            <Link
+              href="/partidos"
+              className="px-12 py-4 bg-transparent border-2 border-surface text-surface font-label-lg uppercase tracking-widest hover:bg-surface hover:text-on-background transition-all duration-300"
+            >
+              Ver Partidos
+            </Link>
           </div>
         </div>
+      </header>
 
-        <div className="hero-indicator absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
-          <span className="font-label-sm text-label-sm uppercase tracking-[0.25em] text-white/30">Scroll</span>
-          <div className="h-8 w-[1px] bg-gradient-to-b from-white/40 to-transparent animate-scroll-indicator" />
-        </div>
-      </section>
+      {/* ─── NEXT MATCH WIDGET ─── */}
+      <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop -mt-24 relative z-30">
+        <div className="bg-surface-container-lowest border border-secondary-container p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-12 zero-gravity-shadow">
+          {nextMatch ? (
+            <>
+              {/* Home Team */}
+              <div className="flex flex-col items-center md:items-end gap-4">
+                <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
+                  <span className="material-symbols-outlined text-[60px] md:text-[80px] text-primary">shield</span>
+                </div>
+                <div className="text-center md:text-right">
+                  <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Local</p>
+                  <h3 className="font-headline-md text-headline-md uppercase">ST. FERDINAND</h3>
+                </div>
+              </div>
 
-      {/* ─── MARQUEE ─── */}
-      <div className="relative overflow-hidden bg-primary-container py-4">
-        <div ref={marqueeRef} className="flex w-max gap-12 whitespace-nowrap">
-          {Array.from({ length: 4 }).map((_, i) => (
-            <span key={i} className="flex items-center gap-12 text-white font-display text-sm md:text-base font-semibold uppercase tracking-[0.15em]">
-              <span>Saint Ferdinand FC</span>
-              <span className="text-white/40">&bull;</span>
-              <span>Est. 2024</span>
-              <span className="text-white/40">&bull;</span>
-              <span>Madrid</span>
-              <span className="text-white/40">&bull;</span>
-              <span>USS Liga Premier</span>
-              <span className="text-white/40">&bull;</span>
-            </span>
-          ))}
+              {/* Center: Score / Time / Countdown */}
+              <div className="flex flex-col items-center justify-center border-x-0 md:border-x border-secondary-container px-6 md:px-12 text-center">
+                <p className="font-label-lg text-label-lg text-primary uppercase mb-2 tracking-widest">Próximo Partido</p>
+                <div className="font-display-lg text-display-lg tracking-tighter text-on-surface mb-1">
+                  {nextMatch.date
+                    ? new Date(nextMatch.date).toLocaleDateString("es-ES", { day: "numeric", month: "short" }).toUpperCase()
+                    : "PRÓXIMAMENTE"}
+                </div>
+                <div className="flex gap-4 md:gap-6 font-label-sm text-label-sm text-on-surface-variant uppercase mt-3">
+                  <div className="flex flex-col items-center">
+                    <span className="text-on-surface font-headline-md text-headline-md">{countdown.days}</span>
+                    <span>DÍAS</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-on-surface font-headline-md text-headline-md">{countdown.hours}</span>
+                    <span>HRS</span>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <span className="text-on-surface font-headline-md text-headline-md">{countdown.mins}</span>
+                    <span>MIN</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Away Team */}
+              <div className="flex flex-col items-center md:items-start gap-4">
+                <div className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center p-2">
+                  <span className="material-symbols-outlined text-[60px] md:text-[80px] text-secondary">shield</span>
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Visitante</p>
+                  <h3 className="font-headline-md text-headline-md uppercase">
+                    {nextMatch.awayTeam.name === "SAINT FERDINAND" ? nextMatch.homeTeam.name : nextMatch.awayTeam.name}
+                  </h3>
+                </div>
+              </div>
+            </>
+          ) : (
+            <div className="col-span-3 text-center py-8">
+              <p className="font-headline-md text-headline-md text-on-surface-variant">No hay próximos partidos</p>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* ─── NEXT MATCH WIDGET ─── */}
-      <section className="bg-surface-container-lowest">
-        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop -mt-16 relative z-30">
-          <div className="bg-surface-container-lowest border border-secondary-container p-8 md:p-10 grid grid-cols-1 md:grid-cols-3 items-center gap-8 md:gap-12 zero-gravity-shadow">
-            {nextMatch ? (
-              <>
-                <div className="flex flex-col items-center md:items-end gap-4">
-                  <div className="flex items-center gap-4">
-                    <span className="material-symbols-outlined text-5xl text-primary">shield</span>
-                    <div className="text-right">
-                      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Local</p>
-                      <h3 className="font-headline-md text-headline-md uppercase">ST. FERDINAND</h3>
-                    </div>
-                  </div>
-                </div>
+      {/* ─── FEATURED BENTO GRID ─── */}
+      <section className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
+        <div className="flex justify-between items-end mb-12">
+          <div>
+            <span className="font-label-lg text-label-lg text-primary uppercase tracking-widest">En Foco</span>
+            <h2 className="font-headline-lg text-headline-lg uppercase mt-2">Lo Último Del Club</h2>
+          </div>
+          <Link href="/blog" className="font-label-lg text-label-lg text-on-surface-variant hover:text-primary uppercase flex items-center gap-2 group hidden md:flex">
+            Ver Noticias <span className="material-symbols-outlined text-[18px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+          </Link>
+        </div>
 
-                <div className="flex flex-col items-center justify-center border-x-0 md:border-x border-secondary-container px-8 md:px-12 text-center">
-                  <span className="font-label-lg text-label-lg text-primary uppercase mb-2 tracking-widest">Próximo Partido</span>
-                  <div className="font-display-lg text-display-lg tracking-tighter text-on-surface mb-1">
-                    {nextMatch.date ? new Date(nextMatch.date).toLocaleDateString("es-ES", { day: "numeric", month: "short" }).toUpperCase() : "PRÓXIMAMENTE"}
+        <div className="grid grid-cols-1 md:grid-cols-12 grid-rows-2 gap-gutter h-auto md:h-[800px]">
+          {/* Main Featured — Last Match */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="md:col-span-8 md:row-span-2 group relative overflow-hidden bg-surface-container-high"
+          >
+            <div className="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent" />
+            {lastMatch ? (
+              <div className="absolute bottom-0 left-0 p-8 md:p-12 text-white w-full">
+                <span className="bg-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-wider mb-4 inline-block">
+                  {lastMatch.phase || "Resultado"}
+                </span>
+                <div className="flex items-center gap-6 md:gap-10 flex-wrap">
+                  <div className="flex-1 min-w-[120px]">
+                    <p className="font-label-sm text-label-sm uppercase tracking-widest text-white/60 mb-1">LOCAL</p>
+                    <h3 className="font-headline-md text-headline-md uppercase">
+                      {lastMatch.homeTeam.name === "SAINT FERDINAND" ? "SAINT FERDINAND" : lastMatch.homeTeam.name}
+                    </h3>
                   </div>
-                  <div className="font-headline-md text-headline-md text-primary">VS</div>
-                </div>
-
-                <div className="flex flex-col items-center md:items-start gap-4">
-                  <div className="flex items-center gap-4">
-                    <div className="text-left">
-                      <p className="font-label-sm text-label-sm text-on-surface-variant uppercase mb-1">Visitante</p>
-                      <h3 className="font-headline-md text-headline-md uppercase">
-                        {nextMatch.awayTeam.name === "SAINT FERDINAND" ? nextMatch.homeTeam.name : nextMatch.awayTeam.name}
-                      </h3>
+                  <div className="text-center shrink-0">
+                    <div className="font-display-lg text-display-lg text-white leading-none tracking-tight">
+                      {lastMatch.score?.home ?? "?"}
+                      <span className="text-white/20 mx-2">:</span>
+                      {lastMatch.score?.away ?? "?"}
                     </div>
-                    <span className="material-symbols-outlined text-5xl text-secondary">shield</span>
+                    <span className="font-label-sm text-label-sm uppercase tracking-widest text-white/60 mt-1 block">FT</span>
+                  </div>
+                  <div className="flex-1 min-w-[120px] text-right">
+                    <p className="font-label-sm text-label-sm uppercase tracking-widest text-white/60 mb-1">VISITANTE</p>
+                    <h3 className="font-headline-md text-headline-md uppercase">
+                      {lastMatch.awayTeam.name === "SAINT FERDINAND" ? "SAINT FERDINAND" : lastMatch.awayTeam.name}
+                    </h3>
                   </div>
                 </div>
-              </>
+                {lastMatch.venue && (
+                  <p className="font-body-md text-body-md text-white/60 mt-4">{lastMatch.venue}</p>
+                )}
+              </div>
             ) : (
-              <div className="col-span-3 text-center py-8">
-                <p className="font-headline-md text-headline-md text-on-surface-variant">No hay próximos partidos</p>
+              <div className="absolute bottom-0 left-0 p-12 text-white">
+                <span className="bg-primary px-3 py-1 font-label-sm text-label-sm uppercase tracking-wider mb-4 inline-block">Primer Equipo</span>
+                <h3 className="font-display-lg text-display-lg uppercase leading-[1.1] max-w-xl">Saint Ferdinand FC</h3>
+                <p className="font-body-lg text-body-lg text-surface-variant mt-4 max-w-lg">La excelencia en el terreno de juego.</p>
               </div>
             )}
-          </div>
-        </div>
-      </section>
+          </motion.div>
 
-      {/* ─── STATS ROW ─── */}
-      <section className="py-section-gap bg-surface-container-low">
-        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-gutter">
-            <StatCounter value={played} label="Partidos" />
-            <StatCounter value={goalsFor} label="Goles" />
-            <StatCounter value={wins} label="Victorias" />
-            <StatCounter value={`#${pos}`} label="Posición" />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── LAST MATCH + TOP SCORERS ─── */}
-      <section className="bg-surface-container-lowest">
-        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop py-section-gap">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-gutter">
-            {/* Last Match */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, ease: easeSmooth }}
-              className="md:col-span-7 bg-white border border-surface-container-high p-8 md:p-10"
-            >
-              <div className="flex items-center gap-2 mb-8">
-                <Trophy size={14} className="text-primary" />
-                <span className="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em]">Último Resultado</span>
+          {/* Side — Top Scorers */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="md:col-span-4 bg-surface-container-lowest border border-secondary-container p-6 md:p-8 overflow-y-auto"
+          >
+            <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 block">Goleadores</span>
+            {scorers.length === 0 ? (
+              <p className="font-body-md text-body-md text-on-surface-variant">Sin datos</p>
+            ) : (
+              <div className="space-y-2">
+                {scorers.slice(0, 5).map((p: any, i: number) => (
+                  <div key={(p.playerName || i) + ""} className="flex items-center gap-3 border-b border-surface-container py-3 last:border-b-0">
+                    <span className="flex h-6 w-6 items-center justify-center bg-surface-container text-[10px] font-semibold text-on-surface-variant font-display">
+                      {i + 1}
+                    </span>
+                    <span className="flex-1 font-body-md text-body-md text-on-surface truncate">{p.playerName || "?"}</span>
+                    <span className="font-headline-md text-headline-md text-primary">{p.goals}</span>
+                  </div>
+                ))}
               </div>
+            )}
+            {scorers.length > 0 && (
+              <Link href="/plantilla" className="mt-4 font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-widest inline-flex items-center gap-1 transition-colors">
+                Ver todos <ArrowRight size={12} />
+              </Link>
+            )}
+          </motion.div>
 
-              {lastMatch ? (
+          {/* Side — Stats quick view */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="md:col-span-4 bg-surface-container-lowest border border-secondary-container p-6 md:p-8 flex flex-col justify-center"
+          >
+            <span className="font-label-sm text-label-sm text-primary uppercase tracking-widest mb-4 block">Estadísticas</span>
+            <div className="grid grid-cols-2 gap-6">
+              <div>
+                <div className="font-display-lg text-display-lg text-primary leading-none">{played}</div>
+                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Partidos</div>
+              </div>
+              <div>
+                <div className="font-display-lg text-display-lg text-primary leading-none">{wins}</div>
+                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Victorias</div>
+              </div>
+              <div>
+                <div className="font-display-lg text-display-lg text-primary leading-none">{goalsFor}</div>
+                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Goles</div>
+              </div>
+              <div>
+                <div className="font-display-lg text-display-lg text-primary leading-none">#{pos}</div>
+                <div className="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mt-1">Posición</div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ─── MEMBERSHIP CTA ─── */}
+      <section className="relative py-section-gap overflow-hidden bg-on-background text-surface">
+        <div className="absolute -top-1/4 -right-1/4 w-[600px] md:w-[800px] h-[600px] md:h-[800px] bg-primary/10 organic-curve blur-3xl opacity-30" />
+        <div className="absolute -bottom-1/4 -left-1/4 w-[450px] md:w-[600px] h-[450px] md:h-[600px] bg-primary organic-curve blur-3xl opacity-10" />
+        <div className="max-w-[1440px] mx-auto px-margin-mobile md:px-margin-desktop relative z-10">
+          <div className="max-w-3xl">
+            <span className="font-label-lg text-label-lg text-primary uppercase tracking-[0.3em]">Hazte Leyenda</span>
+            <h2 className="font-display-lg text-display-lg uppercase mt-4 mb-8">Únete al Saint Ferdinand</h2>
+            <p className="font-body-lg text-body-lg text-surface-variant mb-12">
+              Acceso exclusivo a entradas, contenido solo para miembros y beneficios premium. Sé más que un espectador—forma parte de la institución.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:gap-10 mb-12">
+              <div className="flex gap-4">
+                <span className="material-symbols-outlined text-primary text-3xl">confirmation_number</span>
                 <div>
-                  <div className="flex items-center justify-between gap-4 mb-6">
-                    <div className="flex-1">
-                      <p className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60 mb-2">LOCAL</p>
-                      <p className="font-headline-md text-headline-md uppercase text-on-surface">
-                        {lastMatch.homeTeam.name === "SAINT FERDINAND" ? "SAINT FERDINAND" : lastMatch.homeTeam.name}
-                      </p>
-                    </div>
-
-                    <div className="text-center shrink-0">
-                      <div className="font-display-lg text-display-lg text-primary leading-none tracking-tight">
-                        {lastMatch.score?.home ?? "?"}
-                        <span className="text-on-surface/20 mx-2">:</span>
-                        {lastMatch.score?.away ?? "?"}
-                      </div>
-                      <span className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60 mt-1 block">FT</span>
-                    </div>
-
-                    <div className="flex-1 text-right">
-                      <p className="font-label-sm text-label-sm uppercase tracking-widest text-on-surface-variant/60 mb-2">VISITANTE</p>
-                      <p className="font-headline-md text-headline-md uppercase text-on-surface">
-                        {lastMatch.awayTeam.name === "SAINT FERDINAND" ? "SAINT FERDINAND" : lastMatch.awayTeam.name}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 font-body-md text-body-md text-on-surface-variant mt-8 pt-6 border-t border-surface-container">
-                    {lastMatch.venue && <span>{lastMatch.venue}</span>}
-                    {lastMatch.phase && <><span className="text-on-surface/20">|</span><span>{lastMatch.phase}</span></>}
-                  </div>
+                  <h5 className="font-headline-md text-[20px] uppercase">Acceso Prioritario</h5>
+                  <p className="text-surface-variant mt-1 font-body-md text-body-md">Entradas anticipadas para los partidos más demandados.</p>
                 </div>
-              ) : (
-                <p className="font-body-lg text-body-lg text-on-surface-variant py-10 text-center">Sin partidos disputados aún</p>
-              )}
-            </motion.div>
-
-            {/* Top Scorers */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-60px" }}
-              transition={{ duration: 0.6, delay: 0.1, ease: easeSmooth }}
-              className="md:col-span-5 bg-white border border-surface-container-high p-8 md:p-10"
-            >
-              <div className="flex items-center gap-2 mb-8">
-                <Goal size={14} className="text-primary" />
-                <span className="font-label-sm text-label-sm text-primary uppercase tracking-[0.2em]">Goleadores</span>
               </div>
-
-              {scorers.length === 0 ? (
-                <p className="font-body-lg text-body-lg text-on-surface-variant">Sin datos</p>
-              ) : (
-                <div className="space-y-1">
-                  {scorers.slice(0, 6).map((p: any, i: number) => (
-                    <motion.div
-                      key={(p.playerName || i) + ""}
-                      initial={{ opacity: 0, y: 12 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: i * 0.05, duration: 0.3, ease: easeSmooth }}
-                      className="flex items-center gap-4 px-4 py-3 transition-colors duration-200 hover:bg-surface-container"
-                    >
-                      <span className={`flex h-7 w-7 shrink-0 items-center justify-center font-label-sm text-label-sm uppercase tracking-wider
-                        ${i === 0 ? "bg-primary text-white" : "bg-surface-container text-on-surface-variant"}
-                      `}>
-                        {i + 1}
-                      </span>
-                      <span className="flex-1 font-body-md text-body-md text-on-surface capitalize truncate">
-                        {p.playerName || "?"}
-                      </span>
-                      <span className="font-headline-md text-headline-md text-primary tabular-nums">{p.goals}</span>
-                    </motion.div>
-                  ))}
+              <div className="flex gap-4">
+                <span className="material-symbols-outlined text-primary text-3xl">workspace_premium</span>
+                <div>
+                  <h5 className="font-headline-md text-[20px] uppercase">Tienda Exclusiva</h5>
+                  <p className="text-surface-variant mt-1 font-body-md text-body-md">Ediciones limitadas disponibles solo para miembros.</p>
                 </div>
-              )}
-
-              {scorers.length > 0 && (
-                <Link
-                  href="/plantilla"
-                  className="mt-6 inline-flex items-center gap-2 font-label-sm text-label-sm text-on-surface-variant hover:text-primary uppercase tracking-widest transition-colors"
-                >
-                  Ver plantilla <ArrowRight size={12} />
-                </Link>
-              )}
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CLUB VALUES ─── */}
-      <section className="py-section-gap bg-surface">
-        <div className="max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="grid grid-cols-12 gap-gutter mb-16">
-            <div className="col-span-12 md:col-span-6">
-              <h2 className="font-headline-lg text-headline-lg uppercase border-l-4 border-primary pl-6">Nuestra Identidad</h2>
+              </div>
             </div>
-            <div className="col-span-12 md:col-span-6 flex items-center">
-              <p className="font-body-md text-body-md text-secondary border-t border-secondary-container pt-4 w-full">
-                Nuestros valores son los pilares arquitectónicos de nuestra institución, guiando cada pase, cada gol y cada decisión.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
-            {[
-              { icon: "favorite", title: "Pasión", desc: "El fuego interior que impulsa a nuestros atletas a trascender sus límites físicos en cada partido." },
-              { icon: "shield", title: "Honor", desc: "Defender el prestigio del club mediante una conducta impecable dentro y fuera del campo." },
-              { icon: "diversity_3", title: "Unión", desc: "La fuerza colectiva de nuestra plantilla y comunidad global, forjada en una unidad inquebrantable." },
-              { icon: "diamond", title: "Excelencia", desc: "La búsqueda incansable de la perfección técnica y el dominio estratégico en cada aspecto del juego." },
-            ].map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 24 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ delay: i * 0.08, duration: 0.5, ease: easeSmooth }}
-                className="group p-8 md:p-10 bg-surface-container-lowest border border-surface-container-high transition-all duration-500 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5"
-              >
-                <div className="mb-8 w-16 h-16 rounded-full border border-primary/20 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-500">
-                  <span className="material-symbols-outlined text-3xl">{v.icon}</span>
-                </div>
-                <h3 className="font-headline-md text-headline-md uppercase mb-4 tracking-tight">{v.title}</h3>
-                <p className="font-body-md text-body-md text-secondary leading-relaxed">{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── NEXT MATCH CTA ─── */}
-      <section className="relative py-section-gap bg-primary-container text-white overflow-hidden">
-        <div className="absolute right-0 top-0 h-full w-1/3 opacity-10 mix-blend-overlay bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTEwMCAwIEMgODAgMjAsIDUwIDEwLCAzMCA1MCBTIDAgODAsIDAgMTAwIEwgMTAwIDEwMCBaIiBmaWxsPSIjZmZmIi8+PC9zdmc+')] bg-contain bg-no-repeat bg-right" />
-        <div className="relative z-10 max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div>
-              <span className="font-label-sm text-label-sm uppercase tracking-[0.3em] text-white/80 mb-4 block">No te lo pierdas</span>
-              <h2 className="font-display-lg text-display-lg uppercase tracking-tighter">
-                Vive la emoción del estadio
-              </h2>
-              <p className="font-body-lg text-body-lg text-white/80 max-w-xl mt-4">
-                Consigue tus abonos o entradas. Únete al muro de sonido en el Estadio San Fernando.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 shrink-0">
-              <Link
-                href="/partidos"
-                className="bg-white text-primary font-label-lg uppercase px-10 py-4 tracking-widest transition-all hover:bg-on-surface hover:text-white"
-              >
-                Calendario
-              </Link>
-              <Link
-                href="/contacto"
-                className="bg-transparent border-2 border-white text-white font-label-lg uppercase px-10 py-4 tracking-widest transition-all hover:bg-white hover:text-primary"
-              >
-                Entradas
-              </Link>
-            </div>
+            <Link
+              href="/contacto"
+              className="inline-block bg-primary text-on-primary px-12 md:px-16 py-4 md:py-5 font-label-lg uppercase tracking-widest hover:scale-105 transition-transform duration-300"
+            >
+              Unirse
+            </Link>
           </div>
         </div>
       </section>

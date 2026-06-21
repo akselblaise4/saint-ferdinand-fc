@@ -40,23 +40,10 @@ export default function Navbar() {
     return () => ctx.revert();
   }, []);
 
+  const [scrolled, setScrolled] = useState(false);
+
   useEffect(() => {
-    const nav = navRef.current;
-    if (!nav) return;
-    let ticking = false;
-    const onScroll = () => {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          if (window.scrollY > 50) {
-            nav.classList.add("shadow-xl", "shadow-black/5");
-          } else {
-            nav.classList.remove("shadow-xl", "shadow-black/5");
-          }
-          ticking = false;
-        });
-        ticking = true;
-      }
-    };
+    const onScroll = () => setScrolled(window.scrollY > 100);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -67,7 +54,7 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className="fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-secondary-container h-20 transition-shadow duration-200"
+        className={`fixed top-0 w-full z-50 bg-surface-container-lowest border-b border-secondary-container transition-all duration-200 ${scrolled ? "h-16 zero-gravity-shadow" : "h-20"}`}
       >
         <div className="flex justify-between items-center max-w-desktop mx-auto px-margin-mobile md:px-margin-desktop h-full">
           <Link
